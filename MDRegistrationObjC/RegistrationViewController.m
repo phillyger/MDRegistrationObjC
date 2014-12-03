@@ -8,14 +8,17 @@
 
 #import "RegistrationViewController.h"
 
-static NSInteger maxPages = 3;
+
 
 @interface RegistrationViewController ()
 
+@property (assign)NSInteger maxPages;
 @property (assign)NSInteger currentIndex;
 
 - (BOOL)loadNextPage;
 - (BOOL)loadPreviousPage;
+
+@property (nonatomic, strong) NSArray *contentViewControllers;
 
 @end
 
@@ -25,8 +28,8 @@ static NSInteger maxPages = 3;
 {
     [super viewDidLoad];
 	// Create the data model
-//    _pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
-//    _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
+    
+
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationPageViewController"];
@@ -36,10 +39,12 @@ static NSInteger maxPages = 3;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closePage)];
     
-    RegistrationPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    self.contentViewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent1ViewController"], [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent2ViewController"], [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent3ViewController"]];
     
+    self.maxPages = self.contentViewControllers.count;
+
     
-    NSArray *viewControllers = @[startingViewController];
+    NSArray *viewControllers = @[self.contentViewControllers[0]];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
@@ -53,6 +58,7 @@ static NSInteger maxPages = 3;
     self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     self.pageControl.backgroundColor = [UIColor whiteColor];
+    self.pageControl.numberOfPages = self.contentViewControllers.count;
     
 }
 
@@ -69,12 +75,12 @@ static NSInteger maxPages = 3;
     
     NSLog(@"currentIndex : %d", (int)self.currentIndex );
     
-    if ((_currentIndex) != maxPages) {
+    if ((_currentIndex) != _maxPages) {
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
         
     }
     
-    if ((_currentIndex+1) == maxPages) {
+    if ((_currentIndex+1) == _maxPages) {
         self.navigationItem.rightBarButtonItem = nil;
         
     }
@@ -94,12 +100,12 @@ static NSInteger maxPages = 3;
     
     NSLog(@"currentIndex : %d", (int)self.currentIndex );
     
-    if ((_currentIndex) != maxPages) {
+    if ((_currentIndex) != _maxPages) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
         
     }
     
-    if ((_currentIndex+1) == maxPages) {
+    if ((_currentIndex+1) == _maxPages) {
         self.navigationItem.rightBarButtonItem = nil;
         
     }
@@ -148,90 +154,58 @@ static NSInteger maxPages = 3;
     }
 }
 
-//- (IBAction)startWalkthrough:(UIButton *)sender
-//{
-//     [self moveToIndex:0];
-//}
 
 - (RegistrationPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    if ((maxPages == 0) || (index >= maxPages)) {
+    if ((_maxPages == 0) || (index >= _maxPages)) {
         return nil;
     }
-
-    // Create a new view controller and pass suitable data.
-    RegistrationPageContentViewController *pageContentViewController = nil;
     
-    // add a switch to determine the page controller to show.
-    
-
-    
-    switch (index) {
-        case 0:
-            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent1ViewController"];
-            pageContentViewController.pageIndex = index;
-            break;
-        case 1:
-            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent2ViewController"];
-            pageContentViewController.pageIndex = index;
-            break;
-        case 2:
-            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent3ViewController"];
-            pageContentViewController.pageIndex = index;
-            break;
-        default:
-            break;
-    }
-    
-
-    return pageContentViewController;
+//    self.pageControl.currentPage = index;
+//    [self.pageControl updateCurrentPageDisplay];
+    _currentIndex = index;
+    return self.contentViewControllers[index];
 }
 
 #pragma mark - Page View Controller Data Source
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSUInteger index = ((RegistrationPageContentViewController*) viewController).pageIndex;
     
-    if ((index == 0) || (index == NSNotFound)) {
+    NSUInteger index = [self.contentViewControllers indexOfObject:viewController];
+    
+    if (index == 0) {
         return nil;
     }
     
-    index--;
-    
-
-    return [self viewControllerAtIndex:index];
+    return self.contentViewControllers[index - 1];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSUInteger index = ((RegistrationPageContentViewController*) viewController).pageIndex;
-    
-    if (index == NSNotFound) {
-        return nil;
-    }
-    
-    index++;
-    if (index == maxPages) {
-        return nil;
-    }
-    
 
     
-    return [self viewControllerAtIndex:index];
-//    return regViewController;
+    NSUInteger index = [self.contentViewControllers indexOfObject:viewController];
+    
+    if (index >= self.contentViewControllers.count - 1) {
+        return nil;
+    }
+    
+    return self.contentViewControllers[index + 1];
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-//    return [self.pageTitles count];
-    return maxPages;
+
+    return self.contentViewControllers.count;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
 {
-    return 0;
+    return _currentIndex;
 }
+
+
 
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegistrationPageContentTableViewController : UITableViewController
+@interface RegistrationPageContentTableViewController : UITableViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UILabel *question1Label;
