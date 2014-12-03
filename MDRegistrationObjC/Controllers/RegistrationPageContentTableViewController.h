@@ -10,7 +10,6 @@
 
 @interface RegistrationPageContentTableViewController : UITableViewController<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UILabel *question1Label;
 @property (weak, nonatomic) IBOutlet UILabel *question2Label;
 @property (weak, nonatomic) IBOutlet UILabel *question3Label;

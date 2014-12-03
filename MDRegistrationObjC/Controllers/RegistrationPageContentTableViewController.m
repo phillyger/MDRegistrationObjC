@@ -108,12 +108,6 @@
     
     [ActionSheetStringPicker showPickerWithTitle:@"Select Question" rows:self.questions initialSelection:self.selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
-//        NSLog(@"%@", (NSString*)selectedValue);
-//        NSLog(@"%d", (int)selectedIndex);
-        //may have originated from textField or barButtonItem, use an IBOutlet instead of element
-//        self.question1Label.text = (self.questions)[(NSUInteger) selectedIndex];
-//        [sender setText:(self.questions)[(NSUInteger) selectedIndex]];
-        
         switch (cellTagId) {
             case 1:
                 self.question1Label.text = (self.questions)[(NSUInteger) selectedIndex];
