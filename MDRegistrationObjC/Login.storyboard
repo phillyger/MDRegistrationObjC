@@ -252,43 +252,44 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfh-39-FIe">
                                 <rect key="frame" x="16" y="37" width="263" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="VVk-ZF-NtX"/>
+                                    <constraint firstAttribute="height" constant="26" id="OZM-WV-u6P"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3C1-23-oI1">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3C1-23-oI1">
                                 <rect key="frame" x="16" y="71" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIg-4v-qDd">
                                 <rect key="frame" x="16" y="119" width="263" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="uzU-25-6xd"/>
+                                    <constraint firstAttribute="height" constant="26" id="P8U-r6-lVb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZVA-tU-qEg">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZVA-tU-qEg">
                                 <rect key="frame" x="16" y="153" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KIg-4v-qDd" firstAttribute="leading" secondItem="ZVA-tU-qEg" secondAttribute="leading" id="2Eh-Ib-QfN"/>
-                            <constraint firstItem="wfh-39-FIe" firstAttribute="trailing" secondItem="KIg-4v-qDd" secondAttribute="trailing" id="77J-Jj-cdz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wfh-39-FIe" secondAttribute="trailing" constant="25" id="AqU-Xq-wkq"/>
-                            <constraint firstItem="ZVA-tU-qEg" firstAttribute="top" secondItem="KIg-4v-qDd" secondAttribute="bottom" constant="8" symbolic="YES" id="DT9-DP-9Q8"/>
-                            <constraint firstItem="wfh-39-FIe" firstAttribute="top" secondItem="EEE-li-o3Q" secondAttribute="bottom" constant="17" id="KSX-G6-9ES"/>
-                            <constraint firstItem="KIg-4v-qDd" firstAttribute="top" secondItem="3C1-23-oI1" secondAttribute="bottom" constant="18" id="Lkh-rE-HK8"/>
-                            <constraint firstItem="ZVA-tU-qEg" firstAttribute="trailing" secondItem="3C1-23-oI1" secondAttribute="trailing" id="Qdw-y6-oDD"/>
-                            <constraint firstItem="KIg-4v-qDd" firstAttribute="leading" secondItem="3C1-23-oI1" secondAttribute="leading" id="SH5-4r-YzA"/>
-                            <constraint firstItem="3C1-23-oI1" firstAttribute="leading" secondItem="wfh-39-FIe" secondAttribute="leading" id="TBH-2Q-8h5"/>
-                            <constraint firstItem="3C1-23-oI1" firstAttribute="top" secondItem="wfh-39-FIe" secondAttribute="bottom" constant="8" symbolic="YES" id="eYF-fc-1H6"/>
-                            <constraint firstItem="wfh-39-FIe" firstAttribute="leading" secondItem="5lA-Xz-7xO" secondAttribute="leadingMargin" id="tiT-xX-Eww"/>
+                            <constraint firstItem="ZVA-tU-qEg" firstAttribute="trailing" secondItem="5lA-Xz-7xO" secondAttribute="trailingMargin" id="Fwe-Qh-Z46"/>
+                            <constraint firstItem="KIg-4v-qDd" firstAttribute="leading" secondItem="5lA-Xz-7xO" secondAttribute="leadingMargin" id="LvZ-dA-JWR"/>
+                            <constraint firstItem="3C1-23-oI1" firstAttribute="top" secondItem="wfh-39-FIe" secondAttribute="bottom" constant="8" symbolic="YES" id="M7f-Ng-RXq"/>
+                            <constraint firstItem="KIg-4v-qDd" firstAttribute="trailing" secondItem="wfh-39-FIe" secondAttribute="trailing" id="OOO-Vc-Cu2"/>
+                            <constraint firstItem="wfh-39-FIe" firstAttribute="top" secondItem="EEE-li-o3Q" secondAttribute="bottom" constant="17" id="UoH-H5-B20"/>
+                            <constraint firstItem="KIg-4v-qDd" firstAttribute="top" secondItem="3C1-23-oI1" secondAttribute="bottom" constant="18" id="VhB-y3-aIM"/>
+                            <constraint firstItem="ZVA-tU-qEg" firstAttribute="top" secondItem="KIg-4v-qDd" secondAttribute="bottom" constant="8" symbolic="YES" id="XPc-n1-3ih"/>
+                            <constraint firstItem="wfh-39-FIe" firstAttribute="leading" secondItem="3C1-23-oI1" secondAttribute="leading" id="Ynw-5V-4ep"/>
+                            <constraint firstItem="3C1-23-oI1" firstAttribute="trailing" secondItem="ZVA-tU-qEg" secondAttribute="trailing" id="iHd-o3-cmJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wfh-39-FIe" secondAttribute="trailing" constant="25" id="qeG-fe-u5B"/>
+                            <constraint firstItem="3C1-23-oI1" firstAttribute="leading" secondItem="KIg-4v-qDd" secondAttribute="leading" id="vYh-Py-WvN"/>
+                            <constraint firstItem="ZVA-tU-qEg" firstAttribute="leading" secondItem="KIg-4v-qDd" secondAttribute="leading" id="xK8-2W-jTu"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -350,6 +351,12 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What city were you born in?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gaz-Jc-MAM">
+                                                    <rect key="frame" x="74" y="8" width="238" height="21.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -387,6 +394,12 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In what town was your first job?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMX-Li-5xJ">
+                                                    <rect key="frame" x="74" y="8" width="314" height="21.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -421,6 +434,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWt-Kb-3HB">
                                                     <rect key="frame" x="8" y="8" width="69" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is the make of your first car?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMa-LY-omy">
+                                                    <rect key="frame" x="74" y="7" width="314" height="21.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PageContentViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+//@interface PageContentViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface PageContentViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;

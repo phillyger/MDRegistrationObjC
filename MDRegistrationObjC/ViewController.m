@@ -14,6 +14,8 @@ static NSInteger maxPages = 3;
 
 @property (assign)int currentIndex;
 
+- (void)loadNextPage;
+
 @end
 
 @implementation ViewController
@@ -22,19 +24,17 @@ static NSInteger maxPages = 3;
 {
     [super viewDidLoad];
 	// Create the data model
-    _pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
-    _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
+//    _pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
+//    _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
     
-//    PageContentViewController *startingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
     
     PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     
-//    PageContentViewController *regViewController0 = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent1ViewController"];
-
     
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -59,6 +59,11 @@ static NSInteger maxPages = 3;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)loadNextPage
+{
+    NSLog(@"Run next page...");
+}
+
 - (IBAction)startWalkthrough:(UIButton *)sender
 {
     PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
@@ -78,12 +83,6 @@ static NSInteger maxPages = 3;
     // add a switch to determine the page controller to show.
     
     switch (index) {
-//        case 0:
-//            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-//            pageContentViewController.imageFile = self.pageImages[index];
-//            pageContentViewController.titleText = self.pageTitles[index];
-//            pageContentViewController.pageIndex = index;
-//            break;
         case 0:
             pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent1ViewController"];
             pageContentViewController.pageIndex = index;

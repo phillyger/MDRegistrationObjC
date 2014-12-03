@@ -9,7 +9,7 @@
 #import "RegistrationPageViewController.h"
 
 @interface RegistrationPageViewController ()
-
+- (void)loadNextPage;
 @end
 
 @implementation RegistrationPageViewController
@@ -17,6 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+          self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
+}
+
+- (void)loadNextPage
+{
+    NSLog(@"Run next page...");
 }
 
 - (void)didReceiveMemoryWarning {
