@@ -12,9 +12,10 @@ static NSInteger maxPages = 3;
 
 @interface ViewController ()
 
-@property (assign)int currentIndex;
+@property (assign)NSInteger currentIndex;
 
-- (void)loadNextPage;
+- (BOOL)loadNextPage;
+- (BOOL)loadPreviousPage;
 
 @end
 
@@ -32,6 +33,8 @@ static NSInteger maxPages = 3;
     self.pageViewController.dataSource = self;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closePage)];
     
     PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     
@@ -59,16 +62,95 @@ static NSInteger maxPages = 3;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadNextPage
+- (BOOL)loadNextPage
 {
-    NSLog(@"Run next page...");
+    
+    _currentIndex++;
+    
+    NSLog(@"currentIndex : %d", (int)self.currentIndex );
+    
+    if ((_currentIndex) != maxPages) {
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
+        
+    }
+    
+    if ((_currentIndex+1) == maxPages) {
+        self.navigationItem.rightBarButtonItem = nil;
+        
+    }
+    
+    if (_currentIndex > 0 ) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(loadPreviousPage)];
+    }
+    
+    [self moveToIndex:_currentIndex];
+    
+    return YES;
+}
+
+- (BOOL)loadPreviousPage
+{
+    _currentIndex--;
+    
+    NSLog(@"currentIndex : %d", (int)self.currentIndex );
+    
+    if ((_currentIndex) != maxPages) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
+        
+    }
+    
+    if ((_currentIndex+1) == maxPages) {
+        self.navigationItem.rightBarButtonItem = nil;
+        
+    }
+    
+    if (_currentIndex == 0 ) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closePage)];
+    }
+    
+    [self moveToIndex:_currentIndex];
+    
+    return YES;
+
+}
+
+- (void)moveToIndex:(NSInteger)index
+{
+    PageContentViewController *startingViewController = [self viewControllerAtIndex:index];
+    NSArray *viewControllers = @[startingViewController];
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+}
+
+- (void)closePage
+{
+    
+ 
+    NSLog(@"Close registration...");
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exit Registration" message:@"Are you sure you want to cancel setting up account access?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No",nil];
+    
+    [alert show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Button Index =%ld",buttonIndex);
+    if (buttonIndex == 0)
+    {
+        NSLog(@"You have clicked Yes");
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else if(buttonIndex == 1)
+    {
+        NSLog(@"You have clicked No");
+        
+    }
 }
 
 - (IBAction)startWalkthrough:(UIButton *)sender
 {
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = @[startingViewController];
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+     [self moveToIndex:0];
 }
 
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
@@ -81,6 +163,8 @@ static NSInteger maxPages = 3;
     PageContentViewController *pageContentViewController = nil;
     
     // add a switch to determine the page controller to show.
+    
+
     
     switch (index) {
         case 0:
@@ -99,7 +183,7 @@ static NSInteger maxPages = 3;
             break;
     }
     
-    
+
     return pageContentViewController;
 }
 
