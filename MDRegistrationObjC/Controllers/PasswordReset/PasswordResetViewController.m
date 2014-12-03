@@ -1,16 +1,16 @@
 //
-//  ViewController.m
-//  PageViewDemo
+//  PasswordResetViewController.m
+//  MDRegistrationObjC
 //
-//  Created by Simon on 24/11/13.
-//  Copyright (c) 2013 Appcoda. All rights reserved.
+//  Created by GER OSULLIVAN on 12/3/14.
+//  Copyright (c) 2014 brilliantage. All rights reserved.
 //
 
-#import "RegistrationViewController.h"
+#import "PasswordResetViewController.h"
 
-static NSInteger maxPages = 3;
+static NSInteger maxPages = 2;
 
-@interface RegistrationViewController ()
+@interface PasswordResetViewController ()
 
 @property (assign)NSInteger currentIndex;
 
@@ -19,24 +19,21 @@ static NSInteger maxPages = 3;
 
 @end
 
-@implementation RegistrationViewController
+@implementation PasswordResetViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Create the data model
-//    _pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
-//    _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
     
     // Create page view controller
-    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationPageViewController"];
+    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetPageViewController"];
     self.pageViewController.dataSource = self;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closePage)];
     
-    RegistrationPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    PasswordResetPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     
     
     NSArray *viewControllers = @[startingViewController];
@@ -48,7 +45,7 @@ static NSInteger maxPages = 3;
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-
+    
     self.pageControl = [UIPageControl appearance];
     self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
@@ -70,7 +67,7 @@ static NSInteger maxPages = 3;
     NSLog(@"currentIndex : %d", (int)self.currentIndex );
     
     if ((_currentIndex) != maxPages) {
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
         
     }
     
@@ -111,12 +108,12 @@ static NSInteger maxPages = 3;
     [self moveToIndex:_currentIndex];
     
     return YES;
-
+    
 }
 
 - (void)moveToIndex:(NSInteger)index
 {
-    RegistrationPageContentViewController *startingViewController = [self viewControllerAtIndex:index];
+    PasswordResetPageContentViewController *startingViewController = [self viewControllerAtIndex:index];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
 }
@@ -124,10 +121,10 @@ static NSInteger maxPages = 3;
 - (void)closePage
 {
     
- 
-    NSLog(@"Close registration...");
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exit Registration" message:@"Are you sure you want to cancel setting up account access?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No",nil];
+    NSLog(@"Close PasswordReset...");
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exit Password Reset" message:@"Are you sure you want to cancel?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No",nil];
     
     [alert show];
     
@@ -153,37 +150,33 @@ static NSInteger maxPages = 3;
 //     [self moveToIndex:0];
 //}
 
-- (RegistrationPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
+- (PasswordResetPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if ((maxPages == 0) || (index >= maxPages)) {
         return nil;
     }
-
+    
     // Create a new view controller and pass suitable data.
-    RegistrationPageContentViewController *pageContentViewController = nil;
+    PasswordResetPageContentViewController *pageContentViewController = nil;
     
     // add a switch to determine the page controller to show.
     
-
+    
     
     switch (index) {
         case 0:
-            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent1ViewController"];
+            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetContent1ViewController"];
             pageContentViewController.pageIndex = index;
             break;
         case 1:
-            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent2ViewController"];
-            pageContentViewController.pageIndex = index;
-            break;
-        case 2:
-            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent3ViewController"];
+            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetContent2ViewController"];
             pageContentViewController.pageIndex = index;
             break;
         default:
             break;
     }
     
-
+    
     return pageContentViewController;
 }
 
@@ -191,7 +184,7 @@ static NSInteger maxPages = 3;
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSUInteger index = ((RegistrationPageContentViewController*) viewController).pageIndex;
+    NSUInteger index = ((PasswordResetPageContentViewController*) viewController).pageIndex;
     
     if ((index == 0) || (index == NSNotFound)) {
         return nil;
@@ -199,13 +192,13 @@ static NSInteger maxPages = 3;
     
     index--;
     
-
+    
     return [self viewControllerAtIndex:index];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSUInteger index = ((RegistrationPageContentViewController*) viewController).pageIndex;
+    NSUInteger index = ((PasswordResetPageContentViewController*) viewController).pageIndex;
     
     if (index == NSNotFound) {
         return nil;
@@ -216,15 +209,15 @@ static NSInteger maxPages = 3;
         return nil;
     }
     
-
+    
     
     return [self viewControllerAtIndex:index];
-//    return regViewController;
+    //    return regViewController;
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-//    return [self.pageTitles count];
+    //    return [self.pageTitles count];
     return maxPages;
 }
 

@@ -1,26 +1,23 @@
 //
-//  RegistrationPageViewController.m
+//  PasswordResetPageViewController.m
 //  MDRegistrationObjC
 //
-//  Created by GER OSULLIVAN on 12/2/14.
+//  Created by GER OSULLIVAN on 12/3/14.
 //  Copyright (c) 2014 brilliantage. All rights reserved.
 //
 
-#import "RegistrationPageViewController.h"
+#import "PasswordResetPageViewController.h"
 
-@interface RegistrationPageViewController ()
-- (void)loadNextPage;
+@interface PasswordResetPageViewController ()
+
 @end
 
-@implementation RegistrationPageViewController
+@implementation PasswordResetPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-//          self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

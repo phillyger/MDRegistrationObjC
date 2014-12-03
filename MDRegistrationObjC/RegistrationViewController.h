@@ -13,7 +13,7 @@
 
 
 
-- (IBAction)startWalkthrough:(UIButton *)sender;
+//- (IBAction)startWalkthrough:(UIButton *)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
