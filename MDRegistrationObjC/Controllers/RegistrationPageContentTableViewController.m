@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 brilliantage. All rights reserved.
 //
 
-#import "PageContentTableViewController.h"
+#import "RegistrationPageContentTableViewController.h"
 
-@interface PageContentTableViewController ()
+@interface RegistrationPageContentTableViewController ()
 
 @end
 
-@implementation PageContentTableViewController
+@implementation RegistrationPageContentTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

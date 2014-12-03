@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Appcoda. All rights reserved.
 //
 
-#import "PageContentViewController.h"
+#import "RegistrationPageContentViewController.h"
 
-@interface PageContentViewController ()
+@interface RegistrationPageContentViewController ()
 
 //@property NSArray *pickerData;
 
 @end
 
-@implementation PageContentViewController
+@implementation RegistrationPageContentViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

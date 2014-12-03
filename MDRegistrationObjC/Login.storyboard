@@ -170,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="1510" y="-430"/>
         </scene>
-        <!--Page Content View Controller-->
+        <!--Registration Page Content View Controller-->
         <scene sceneID="Tug-bh-kOW">
             <objects>
-                <viewController storyboardIdentifier="RegistrationContent1ViewController" id="QEd-gl-XN0" customClass="PageContentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegistrationContent1ViewController" id="QEd-gl-XN0" customClass="RegistrationPageContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eQW-bb-APv"/>
                         <viewControllerLayoutGuide type="bottom" id="M1b-tx-Fwn"/>
@@ -267,10 +267,10 @@
             </objects>
             <point key="canvasLocation" x="600" y="126"/>
         </scene>
-        <!--Page Content View Controller-->
+        <!--Registration Page Content View Controller-->
         <scene sceneID="X7P-6V-mM2">
             <objects>
-                <viewController storyboardIdentifier="RegistrationContent2ViewController" id="Pmc-i0-8ws" customClass="PageContentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegistrationContent2ViewController" id="Pmc-i0-8ws" customClass="RegistrationPageContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EEE-li-o3Q"/>
                         <viewControllerLayoutGuide type="bottom" id="BFh-Ot-XAh"/>
@@ -327,10 +327,10 @@
             </objects>
             <point key="canvasLocation" x="2272" y="268"/>
         </scene>
-        <!--Page Content View Controller-->
+        <!--Registration Page Content View Controller-->
         <scene sceneID="CGc-QU-h2z">
             <objects>
-                <viewController storyboardIdentifier="RegistrationContent3ViewController" id="ZRd-iu-GSL" customClass="PageContentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegistrationContent3ViewController" id="ZRd-iu-GSL" customClass="RegistrationPageContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SfE-ok-fq1"/>
                         <viewControllerLayoutGuide type="bottom" id="UgI-pA-xdH"/>

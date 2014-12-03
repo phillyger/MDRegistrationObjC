@@ -36,7 +36,7 @@ static NSInteger maxPages = 3;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closePage)];
     
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    RegistrationPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     
     
     NSArray *viewControllers = @[startingViewController];
@@ -116,7 +116,7 @@ static NSInteger maxPages = 3;
 
 - (void)moveToIndex:(NSInteger)index
 {
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:index];
+    RegistrationPageContentViewController *startingViewController = [self viewControllerAtIndex:index];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
 }
@@ -153,14 +153,14 @@ static NSInteger maxPages = 3;
      [self moveToIndex:0];
 }
 
-- (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
+- (RegistrationPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if ((maxPages == 0) || (index >= maxPages)) {
         return nil;
     }
 
     // Create a new view controller and pass suitable data.
-    PageContentViewController *pageContentViewController = nil;
+    RegistrationPageContentViewController *pageContentViewController = nil;
     
     // add a switch to determine the page controller to show.
     
@@ -191,7 +191,7 @@ static NSInteger maxPages = 3;
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
+    NSUInteger index = ((RegistrationPageContentViewController*) viewController).pageIndex;
     
     if ((index == 0) || (index == NSNotFound)) {
         return nil;
@@ -205,7 +205,7 @@ static NSInteger maxPages = 3;
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
+    NSUInteger index = ((RegistrationPageContentViewController*) viewController).pageIndex;
     
     if (index == NSNotFound) {
         return nil;
