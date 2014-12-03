@@ -22,9 +22,10 @@
 		28F786851A2E3EE600284FBA /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F7867F1A2E3EE600284FBA /* page2.png */; };
 		28F786861A2E3EE600284FBA /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F786801A2E3EE600284FBA /* page3.png */; };
 		28F786871A2E3EE600284FBA /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F786811A2E3EE600284FBA /* page4.png */; };
-		28F786881A2E3EE600284FBA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F786831A2E3EE600284FBA /* ViewController.m */; };
+		28F786881A2E3EE600284FBA /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F786831A2E3EE600284FBA /* RegistrationViewController.m */; };
 		28F7868B1A2E3F2E00284FBA /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F7868A1A2E3F2E00284FBA /* PageContentViewController.m */; };
 		28F7868E1A2EA08100284FBA /* PageContentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F7868D1A2EA08100284FBA /* PageContentTableViewController.m */; };
+		28F786911A2F47A000284FBA /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F786901A2F47A000284FBA /* PrivacyPolicyViewController.m */; };
 		E7291E04DFD910A448F7CED5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 713B7EAA2D91D2EB136D2F27 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,12 +65,14 @@
 		28F7867F1A2E3EE600284FBA /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
 		28F786801A2E3EE600284FBA /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
 		28F786811A2E3EE600284FBA /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
-		28F786821A2E3EE600284FBA /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		28F786831A2E3EE600284FBA /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		28F786821A2E3EE600284FBA /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
+		28F786831A2E3EE600284FBA /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		28F786891A2E3F2E00284FBA /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
 		28F7868A1A2E3F2E00284FBA /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		28F7868C1A2EA08100284FBA /* PageContentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageContentTableViewController.h; path = Controllers/PageContentTableViewController.h; sourceTree = "<group>"; };
 		28F7868D1A2EA08100284FBA /* PageContentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageContentTableViewController.m; path = Controllers/PageContentTableViewController.m; sourceTree = "<group>"; };
+		28F7868F1A2F47A000284FBA /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacyPolicyViewController.h; path = Controllers/PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		28F786901A2F47A000284FBA /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyPolicyViewController.m; path = Controllers/PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		6A03B01AB6ACA6564C05C9A3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		713B7EAA2D91D2EB136D2F27 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -126,8 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				28F7867D1A2E3EE600284FBA /* images */,
-				28F786821A2E3EE600284FBA /* ViewController.h */,
-				28F786831A2E3EE600284FBA /* ViewController.m */,
 				28F786791A2E34F400284FBA /* Controllers */,
 				2876A5391A23B40500147038 /* Communicators */,
 				2876A5091A23AE5B00147038 /* AppDelegate.h */,
@@ -189,6 +190,8 @@
 		28F786791A2E34F400284FBA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				28F786821A2E3EE600284FBA /* RegistrationViewController.h */,
+				28F786831A2E3EE600284FBA /* RegistrationViewController.m */,
 				28F786891A2E3F2E00284FBA /* PageContentViewController.h */,
 				28F7868A1A2E3F2E00284FBA /* PageContentViewController.m */,
 				28F786761A2E34EE00284FBA /* MainViewController.h */,
@@ -197,6 +200,8 @@
 				28F7867B1A2E3CB600284FBA /* RegistrationPageViewController.m */,
 				28F7868C1A2EA08100284FBA /* PageContentTableViewController.h */,
 				28F7868D1A2EA08100284FBA /* PageContentTableViewController.m */,
+				28F7868F1A2F47A000284FBA /* PrivacyPolicyViewController.h */,
+				28F786901A2F47A000284FBA /* PrivacyPolicyViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -360,7 +365,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28F786881A2E3EE600284FBA /* ViewController.m in Sources */,
+				28F786881A2E3EE600284FBA /* RegistrationViewController.m in Sources */,
+				28F786911A2F47A000284FBA /* PrivacyPolicyViewController.m in Sources */,
 				2876A50B1A23AE5B00147038 /* AppDelegate.m in Sources */,
 				28F7868E1A2EA08100284FBA /* PageContentTableViewController.m in Sources */,
 				2876A5081A23AE5B00147038 /* main.m in Sources */,

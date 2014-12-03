@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Appcoda. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "RegistrationViewController.h"
 
 static NSInteger maxPages = 3;
 
-@interface ViewController ()
+@interface RegistrationViewController ()
 
 @property (assign)NSInteger currentIndex;
 
@@ -19,7 +19,7 @@ static NSInteger maxPages = 3;
 
 @end
 
-@implementation ViewController
+@implementation RegistrationViewController
 
 - (void)viewDidLoad
 {

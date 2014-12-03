@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PageContentViewController.h"
 
-@interface ViewController : UIViewController <UIPageViewControllerDataSource, UIAlertViewDelegate>
+@interface RegistrationViewController : UIViewController <UIPageViewControllerDataSource, UIAlertViewDelegate>
 
 
 
@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
-//@property (strong, nonatomic) NSArray *pageTitles;
-//@property (strong, nonatomic) NSArray *pageImages;
+
 
 @end
