@@ -10,6 +10,8 @@
 
 @interface PageContentViewController ()
 
+@property NSArray *pickerData;
+
 @end
 
 @implementation PageContentViewController
@@ -29,13 +31,13 @@
 
     self.backgroundImageView.image = [UIImage imageNamed:self.imageFile];
     self.titleLabel.text = self.titleText;
-
-}
+ }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

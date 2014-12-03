@@ -24,6 +24,7 @@
 		28F786871A2E3EE600284FBA /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F786811A2E3EE600284FBA /* page4.png */; };
 		28F786881A2E3EE600284FBA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F786831A2E3EE600284FBA /* ViewController.m */; };
 		28F7868B1A2E3F2E00284FBA /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F7868A1A2E3F2E00284FBA /* PageContentViewController.m */; };
+		28F7868E1A2EA08100284FBA /* PageContentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F7868D1A2EA08100284FBA /* PageContentTableViewController.m */; };
 		E7291E04DFD910A448F7CED5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 713B7EAA2D91D2EB136D2F27 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		28F786831A2E3EE600284FBA /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		28F786891A2E3F2E00284FBA /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
 		28F7868A1A2E3F2E00284FBA /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
+		28F7868C1A2EA08100284FBA /* PageContentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageContentTableViewController.h; path = Controllers/PageContentTableViewController.h; sourceTree = "<group>"; };
+		28F7868D1A2EA08100284FBA /* PageContentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageContentTableViewController.m; path = Controllers/PageContentTableViewController.m; sourceTree = "<group>"; };
 		6A03B01AB6ACA6564C05C9A3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		713B7EAA2D91D2EB136D2F27 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -192,6 +195,8 @@
 				28F786771A2E34EE00284FBA /* MainViewController.m */,
 				28F7867A1A2E3CB600284FBA /* RegistrationPageViewController.h */,
 				28F7867B1A2E3CB600284FBA /* RegistrationPageViewController.m */,
+				28F7868C1A2EA08100284FBA /* PageContentTableViewController.h */,
+				28F7868D1A2EA08100284FBA /* PageContentTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 			files = (
 				28F786881A2E3EE600284FBA /* ViewController.m in Sources */,
 				2876A50B1A23AE5B00147038 /* AppDelegate.m in Sources */,
+				28F7868E1A2EA08100284FBA /* PageContentTableViewController.m in Sources */,
 				2876A5081A23AE5B00147038 /* main.m in Sources */,
 				2876A53D1A23B40500147038 /* MDRegistrationAPIClient.m in Sources */,
 				28F786781A2E34EE00284FBA /* MainViewController.m in Sources */,

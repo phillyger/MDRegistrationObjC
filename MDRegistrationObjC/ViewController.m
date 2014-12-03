@@ -31,12 +31,12 @@ static NSInteger maxPages = 3;
     
 //    PageContentViewController *startingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
     
-    PageContentViewController *regViewController0 = [self viewControllerAtIndex:0];
+    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     
 //    PageContentViewController *regViewController0 = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent1ViewController"];
 
     
-    NSArray *viewControllers = @[regViewController0];
+    NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
@@ -78,18 +78,22 @@ static NSInteger maxPages = 3;
     // add a switch to determine the page controller to show.
     
     switch (index) {
+//        case 0:
+//            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+//            pageContentViewController.imageFile = self.pageImages[index];
+//            pageContentViewController.titleText = self.pageTitles[index];
+//            pageContentViewController.pageIndex = index;
+//            break;
         case 0:
-            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-            pageContentViewController.imageFile = self.pageImages[index];
-            pageContentViewController.titleText = self.pageTitles[index];
-            pageContentViewController.pageIndex = index;
-            break;
-        case 1:
             pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent1ViewController"];
             pageContentViewController.pageIndex = index;
             break;
-        case 2:
+        case 1:
             pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent2ViewController"];
+            pageContentViewController.pageIndex = index;
+            break;
+        case 2:
+            pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent3ViewController"];
             pageContentViewController.pageIndex = index;
             break;
         default:
@@ -105,30 +109,12 @@ static NSInteger maxPages = 3;
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
-    PageContentViewController *regViewController;
     
     if ((index == 0) || (index == NSNotFound)) {
         return nil;
     }
     
     index--;
-    
-//    switch (index) {
-//        case 0:
-//            regViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-//            
-//            break;
-//        case 1:
-//            regViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent1ViewController"];
-//            break;
-//        case 2:
-//            regViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent2ViewController"];
-//            break;
-//        default:
-//            break;
-//    }
-    
-//    return regViewController;
     
 
     return [self viewControllerAtIndex:index];
@@ -137,7 +123,6 @@ static NSInteger maxPages = 3;
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((PageContentViewController*) viewController).pageIndex;
-    PageContentViewController *regViewController;
     
     if (index == NSNotFound) {
         return nil;
@@ -148,19 +133,7 @@ static NSInteger maxPages = 3;
         return nil;
     }
     
-//    switch (index) {
-//        case 0:
-//            regViewController = nil;
-//            break;
-//        case 1:
-//            regViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent1ViewController"];
-//            break;
-//        case 2:
-//            regViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationContent2ViewController"];
-//            break;
-//        default:
-//            break;
-//    }
+
     
     return [self viewControllerAtIndex:index];
 //    return regViewController;
