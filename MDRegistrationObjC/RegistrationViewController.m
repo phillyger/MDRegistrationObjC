@@ -14,8 +14,6 @@
 
 @property (assign)NSInteger maxPages;
 @property (assign)NSInteger currentIndex;
-@property (assign)NSInteger beforeTransitionIndex;
-@property (assign)NSInteger afterTransitionIndex;
 
 
 - (BOOL)loadNextPage;
@@ -59,7 +57,7 @@
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
 
-
+    // Configure page controller
     self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     self.pageControl.backgroundColor = [UIColor whiteColor];
@@ -128,16 +126,12 @@
 
 - (void)moveToIndex:(NSInteger)index
 {
-
     
     [self viewControllerAtIndex:index];
 }
 
 - (void)closePage
 {
-    
- 
-    NSLog(@"Close registration...");
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exit Registration" message:@"Are you sure you want to cancel setting up account access?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No",nil];
     
@@ -147,15 +141,13 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Button Index =%ld",buttonIndex);
     if (buttonIndex == 0)
     {
-        NSLog(@"You have clicked Yes");
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else if(buttonIndex == 1)
     {
-        NSLog(@"You have clicked No");
+//        NSLog(@"You have clicked No");
         
     }
 }
@@ -163,20 +155,15 @@
 
 - (RegistrationPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    NSLog(@"Running viewControllerAtIndex..." );
     
     if ((_maxPages == 0) || (index >= _maxPages)) {
         return nil;
     }
     
-//    self.pageControl.currentPage = index;
-//    [self.pageControl updateCurrentPageDisplay];
-    
-    
-        [self.pageViewController setViewControllers:@[self.contentViewControllers[index]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageViewController setViewControllers:@[self.contentViewControllers[index]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     _currentIndex = index;
-    NSLog(@"currentIndex: %d", (int)_currentIndex);
+
     return self.contentViewControllers[index];
 }
 
@@ -184,82 +171,51 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
- 
-    NSLog(@"Running viewControllerBeforeViewController..." );
-
     NSUInteger index = [self.contentViewControllers indexOfObject:viewController];
     
     if (index == 0) {
         return nil;
     }
-    
-    _beforeTransitionIndex = index - 1;
-    
-    
-//    NSLog(@"BeforeViewController::_beforeTransitionIndex: %d", (int)_beforeTransitionIndex);
-    
-    return self.contentViewControllers[_beforeTransitionIndex];
+
+    return self.contentViewControllers[index - 1];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
 
-     NSLog(@"Running viewControllerAfterViewController..." );
     NSUInteger index = [self.contentViewControllers indexOfObject:viewController];
     
     if (index >= self.contentViewControllers.count - 1) {
         return nil;
     }
     
-//    _currentIndex = index + 1;
-    _afterTransitionIndex = index + 1;
-    
-//    NSLog(@"AfterViewController::_afterTransitionIndex: %d", (int)_afterTransitionIndex);
-    
-    return self.contentViewControllers[_afterTransitionIndex];
+    return self.contentViewControllers[index + 1];
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    NSLog(@"Running presentationCountForPageViewController..." );
     return self.contentViewControllers.count;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
 {
-    NSLog(@"Running presentationIndexForPageViewController..." );
     return _currentIndex;
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
 {
-    NSLog(@"Running willTransitionToViewControllers..." );
-    _beforeTransitionIndex = _currentIndex;
-    
-    NSLog(@"will: %d", (int)_currentIndex);
     
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-     NSLog(@"Running didFinishAnimating..." );
     // Find index of current page
     RegistrationPageContentViewController *currentViewController = (RegistrationPageContentViewController *)[self.pageViewController.viewControllers lastObject];
     _currentIndex = [self.contentViewControllers indexOfObjectIdenticalTo:currentViewController];
-    _afterTransitionIndex = _currentIndex;
-    
-
     
     [self setNavigationBarButtons];
-//    if (_beforeTransitionIndex > _afterTransitionIndex) {
-//        [self loadPreviousPage];
-//    } else {
-//        [self loadNextPage];
-//    }
-    
-    self.pageControl.currentPage = _afterTransitionIndex;
-    NSLog(@"PageControl::pageCurrent:: after: %d", (int)_afterTransitionIndex);
-    
+
+    self.pageControl.currentPage = _currentIndex;
     
 }
 
