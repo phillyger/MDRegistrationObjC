@@ -11,11 +11,6 @@
 
 @interface RegistrationViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIAlertViewDelegate>
 
-
-
-//- (IBAction)startWalkthrough:(UIButton *)sender;
-
-
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
