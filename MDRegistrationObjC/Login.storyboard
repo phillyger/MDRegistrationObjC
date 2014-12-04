@@ -142,7 +142,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8A8-3c-L0V">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" currentPage="1" translatesAutoresizingMaskIntoConstraints="NO" id="8A8-3c-L0V">
                                 <rect key="frame" x="99" y="511" width="122" height="37"/>
                             </pageControl>
                         </subviews>
@@ -155,7 +155,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="New Registration" id="XNa-X7-9hE"/>
                     <connections>
-                        <outlet property="pageControl" destination="8A8-3c-L0V" id="QKi-ot-PWs"/>
+                        <outlet property="pageControl" destination="8A8-3c-L0V" id="5GQ-mQ-yrV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iei-oD-PqA" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RegistrationPageContentViewController.h"
 
-@interface RegistrationViewController : UIViewController <UIPageViewControllerDataSource, UIAlertViewDelegate>
+@interface RegistrationViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIAlertViewDelegate>
 
 
 
