@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "PasswordResetPageContentViewController.h"
+#import "PasswordResetViewControllerDelegate.h"
 
-@interface PasswordResetViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate,UIAlertViewDelegate>
+@interface PasswordResetViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate,UIAlertViewDelegate, PasswordResetViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
+
+
 
 @end

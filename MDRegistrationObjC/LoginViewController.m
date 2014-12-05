@@ -10,7 +10,7 @@
 #import "MDRegistrationAPIClient.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "RegistrationViewController.h"
-#import "LTHPasscodeViewController.h"
+
 #import "VerificationViewController.h"
 
 static UIStoryboard *main;
@@ -50,6 +50,7 @@ static NSString *kMainStoryboardiPad = @"Main";
         [self openMainStoryboard];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Outcome: %@", [operation responseString]);
         NSLog(@"Error: %@", error);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unauthorized"  message:@"We were unable to validate your credentials. Please re-enter your credentials" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
@@ -73,22 +74,7 @@ static NSString *kMainStoryboardiPad = @"Main";
 {
     NSLog(@"dismissAndPresentVerificationWithPasscode...");
     
-    
-
-    
-    VerificationViewController *verifyVC = (VerificationViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"Verification"];
-    
-    verifyVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-
-    
-    [self presentViewController:verifyVC animated:YES completion:^{
-        [[LTHPasscodeViewController sharedUser] showLockScreenWithAnimation:YES
-                                                                 withLogout:NO
-                                                             andLogoutTitle:nil];
-    }];
-
-
-    
+    [self performSegueWithIdentifier:@"LoginSegueVerification" sender:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -98,6 +84,21 @@ static NSString *kMainStoryboardiPad = @"Main";
         UINavigationController *regNavVC = (UINavigationController*)segue.destinationViewController;
         self.registerVC = regNavVC.childViewControllers.firstObject;
         self.registerVC.delegate = self;
+        
+    } else if ([[segue identifier] isEqualToString:@"LoginSegueVerification"]) {
+        
+        UINavigationController *verifyNavVC = (UINavigationController*)segue.destinationViewController;
+        
+        self.verifyVC = verifyNavVC.childViewControllers.firstObject;
+        
+        
+        
+//        [self presentViewController:verifyVC animated:YES completion:^{
+//            [[LTHPasscodeViewController sharedUser] showLockScreenWithAnimation:YES
+//                                                                     withLogout:NO
+//                                                                 andLogoutTitle:nil];
+//        }];
+        
     }
 }
 

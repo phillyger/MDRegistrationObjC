@@ -11,6 +11,7 @@
 #import "AFHTTPRequestOperationManager.h"
 
 #import "LoginViewController.h"
+#import "SVProgressHUD.h"
 
 @interface RegistrationViewController ()
 
@@ -174,44 +175,28 @@
 }
 - (void)submit {
     
-    NSDictionary *parameters = [self buildPayloadMock];
+//    NSDictionary *parameters = [self buildPayloadMock];
+    NSDictionary *parameters = [self buildPayload];
     NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] fetchFullEndPointUri:@"register"];
     
     NSError *error = nil;
     NSMutableURLRequest *request;
     
+    
+    
     request = [[[MDRegistrationAPIClient sharedClient] requestSerializer] requestWithMethod:@"POST" URLString:fullEndPointUri parameters:parameters error:&error];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
                                          initWithRequest:request];
     
-    
+
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", [operation responseString]);
+        [SVProgressHUD dismiss];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registration Complete!"  message:@"Your registration was successful. We have sent an activation code to the phone number you registered with. Please use this activation code to..." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
         [alert show];
         
-//        [LTHPasscodeViewController useKeychain:NO];
-        
-//        [LTHPasscodeViewController sharedUser].delegate = self;
 
-//        [LTHPasscodeViewController sharedUser].enablePasscodeString = @"0000";
-//        [LTHPasscodeViewController sharedUser].enterNewPasscodeString = @"0000";
-//        [LTHPasscodeViewController sharedUser].enterOldPasscodeString = @"0000";
-//
-//
-//        
-//        NSLog(@"%d", [LTHPasscodeViewController doesPasscodeExist]);
-//        
-//        [[LTHPasscodeViewController sharedUser] showLockScreenWithAnimation:YES
-//                                                                 withLogout:NO
-//                                                             andLogoutTitle:nil];
-//        if ([LTHPasscodeViewController doesPasscodeExist] &&
-//            [LTHPasscodeViewController didPasscodeTimerEnd]) {
-//            [[LTHPasscodeViewController sharedUser] showLockScreenWithAnimation:YES
-//                                                                     withLogout:NO
-//                                                                 andLogoutTitle:nil];
-//        }
         
         NSLog(@"Transition");
         
@@ -226,10 +211,17 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unauthorized"  message:@"We were unable to register your account. Please contact your system admin" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [SVProgressHUD dismiss];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unauthorized"  message:@"We were unable to register your account. Please contact your system admin." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         
         [alert show];
     }];
+    
+    
+    
+    [SVProgressHUD show];
+
+    
     
     [operation start];
     

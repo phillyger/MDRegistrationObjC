@@ -10,9 +10,19 @@
 //#import "CommonUtilities.h"
 
 
-static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
+//static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
+static NSString * const kMDRegistrationAPIBaseURLString = @"http://clvdv-rapid-2:8085/app/rest";
 static NSString * const kMDRegistrationAPICharset = @"utf-8";
 static NSString * const kMDRegistrationJSONMimeType = @"application/json";
+
+/**
+ *   RegistrationAPI - DEV keys
+ *
+ **/
+
+static NSString * const kMDRegistrationAPIRESTApiKeyName = @"x-md-client-key";
+static NSString * const kMDRegistrationAPIRESTApiKeyValue = @"APIKEY123";
+
 
 @implementation MDRegistrationAPIClient
 
@@ -35,6 +45,9 @@ static NSString * const kMDRegistrationJSONMimeType = @"application/json";
     }
     
     [self setRequestSerializer:[AFJSONRequestSerializer serializer]];
+    
+    [self.requestSerializer setValue:kMDRegistrationAPIRESTApiKeyValue
+                  forHTTPHeaderField:kMDRegistrationAPIRESTApiKeyName];
     
     [self startReachabilityMonitoring];
 

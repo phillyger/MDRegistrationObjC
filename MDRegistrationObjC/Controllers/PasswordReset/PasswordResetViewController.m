@@ -7,17 +7,19 @@
 //
 
 #import "PasswordResetViewController.h"
-
+#import "PasswordResetPageContentViewController.h"
 
 @interface PasswordResetViewController ()
 
 @property (assign)NSInteger maxPages;
 @property (assign)NSInteger currentIndex;
 
+
 - (BOOL)loadNextPage;
 - (BOOL)loadPreviousPage;
 
 @property (nonatomic, strong) NSArray *contentViewControllers;
+@property (nonatomic) PasswordResetPageContentViewController *pwdResetPageContentVC;
 
 @end
 
@@ -42,7 +44,32 @@
     
     self.contentViewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetContent1ViewController"], [self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetContent2ViewController"], [self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetContent3ViewController"]];
     
+    
+    NSLog(@"Nav Button Name: %@", self.navigationItem.rightBarButtonItem.title);
+    
     self.maxPages = self.contentViewControllers.count;
+    
+    self.pwdResetPageContentVC = self.contentViewControllers[0];
+    
+    self.pwdResetPageContentVC.delegate = self;
+    
+//    [[self.searchText.rac_textSignal
+//      map:^id(NSString *text) {
+//          return [self isValidSearchText:text] ?
+//          [UIColor whiteColor] : [UIColor yellowColor];
+//      }]
+//     subscribeNext:^(UIColor *color) {
+//         self.searchText.backgroundColor = color;
+//     }];
+    
+   
+//    [[self.pwdResetPageContentVC.usernameTextField.rac_textSignal map:^id(NSString *text) {
+//        return [self isValidUsername:text] ?
+//        [UIColor whiteColor] : [UIColor yellowColor];
+//    }]
+//subscribeNext:^(UIColor *color) {
+//    self.pwdResetPageContentVC.usernameTextField.backgroundColor = color;
+//}];
     
     
     
@@ -65,6 +92,8 @@
 }
 
 
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -81,6 +110,7 @@
     
     if ((_currentIndex+1) == _maxPages) {
         self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleBordered target:self action:nil];
         
     }
     
@@ -217,4 +247,38 @@
     self.pageControl.currentPage = _currentIndex;
     
 }
+
+//// ReactiveCocoa
+//
+//- (BOOL)isValidUsername:(NSString *)username {
+//    return username.length > 3;
+//}
+//
+//
+//- (void)usernameTextFieldChanged {
+//    self.usernameIsValid = [self isValidUsername:self.pwdResetPageContentVC.usernameTextField.text];
+//    [self updateUIState];
+//}
+//
+//// updates the enabled state and style of the text fields based on whether the current username
+//// and password combo is valid
+//- (void)updateUIState {
+//    self.pwdResetPageContentVC.usernameTextField.backgroundColor = self.usernameIsValid ? [UIColor clearColor] : [UIColor yellowColor];
+//    self.navigationItem.rightBarButtonItem.enabled = self.usernameIsValid;
+//}
+
+#pragma mark - delegation
+- (void)shouldSetSignalOnRightNavItemButton:(RACCommand*)command
+{
+    self.navigationItem.rightBarButtonItem.rac_command = command;
+}
+
+- (void)shouldLoadNextPage{
+    [self loadNextPage];
+}
+
+- (void)shouldLoadPreviousPage{
+    [self loadPreviousPage];
+}
+
 @end

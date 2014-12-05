@@ -97,6 +97,9 @@
                             <constraint firstItem="S3t-oB-0TM" firstAttribute="centerX" secondItem="ohy-9S-dS9" secondAttribute="centerX" id="wvh-UQ-Gt1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="tsf-ZY-i7g" kind="modal" identifier="LoginSegueVerification" id="lqh-NQ-Bu8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7PS-Fb-HQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -663,8 +666,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip or Postal Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fgp-SA-3pR">
-                                <rect key="frame" x="16" y="513" width="288" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fgp-SA-3pR">
+                                <rect key="frame" x="16" y="513" width="42" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="DD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zpU-p6-zgt">
+                                <rect key="frame" x="66" y="513" width="42" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="YYYY" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HeZ-hk-QmA">
+                                <rect key="frame" x="116" y="513" width="55" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -739,6 +752,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="TGr-a4-mvh" secondAttribute="trailing" constant="25" id="wzT-5Z-fpK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="usernameTextField" destination="DaL-iQ-1ch" id="vyU-2K-IT7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3D-06-A8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
