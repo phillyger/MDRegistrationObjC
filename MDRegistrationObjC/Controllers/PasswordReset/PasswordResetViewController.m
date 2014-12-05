@@ -132,7 +132,7 @@
 - (void)closePage
 {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exit PasswordReset" message:@"Are you sure you want to cancel setting up account access?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No",nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exit Password Reset" message:@"Are you sure you want to cancel password account reset?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No",nil];
     
     [alert show];
     
