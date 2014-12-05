@@ -7,8 +7,10 @@
 //
 
 #import "RegistrationViewController.h"
+#import "MDRegistrationAPIClient.h"
+#import "AFHTTPRequestOperationManager.h"
 
-
+#import "LoginViewController.h"
 
 @interface RegistrationViewController ()
 
@@ -16,8 +18,8 @@
 @property (assign)NSInteger currentIndex;
 
 
-- (BOOL)loadNextPage;
-- (BOOL)loadPreviousPage;
+- (void)loadNextPage;
+- (void)loadPreviousPage;
 
 @property (nonatomic, strong) NSArray *contentViewControllers;
 
@@ -82,6 +84,7 @@
     
     if ((_currentIndex+1) == _maxPages) {
         self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(submit)];
         
     }
     
@@ -96,7 +99,143 @@
     
 }
 
-- (BOOL)loadNextPage
+- (NSDictionary*)buildPayload
+{
+    
+    NSLog(@"Submit this content:" );
+
+    // Create new mutable dictionary
+    NSMutableDictionary *mutableDict = [NSMutableDictionary new];
+    
+    // Controller #1
+    RegistrationPageContentViewController *vc = (RegistrationPageContentViewController*)self.contentViewControllers[0];
+    
+    NSDictionary *dict1 = @{
+    @"firstName": vc.firstName.text,
+    @"lastName": vc.lastName.text,
+    @"username": vc.username.text };
+
+        [mutableDict addEntriesFromDictionary:dict1];
+    
+    // Controller #2
+    vc = (RegistrationPageContentViewController*)self.contentViewControllers[1];
+    NSDictionary *dict2 = @{@"password": vc.passwordNew.text};
+    [mutableDict addEntriesFromDictionary:dict2];
+    
+    
+      // Controller #3
+     vc = (RegistrationPageContentViewController*)self.contentViewControllers[2];
+    
+    RegistrationPageContentTableViewController *secQuestionsVc = (RegistrationPageContentTableViewController *)vc.securityQuestions;
+    
+    
+    NSDictionary *securityQuestion1Dict = @{@"question": [[secQuestionsVc question1Label] text],
+                                            @"answer":[[secQuestionsVc answer1TextField] text]};
+    NSDictionary *securityQuestion2Dict = @{@"question": [[secQuestionsVc question2Label] text],
+                                            @"answer":[[secQuestionsVc answer2TextField] text]};
+    NSDictionary *securityQuestion3Dict = @{@"question": [[secQuestionsVc question3Label] text],
+                                            @"answer":[[secQuestionsVc answer3TextField] text]};
+    
+    NSArray *securityQuestionsList = @[securityQuestion1Dict, securityQuestion2Dict, securityQuestion3Dict];
+    
+    NSDictionary *dict3 = @{@"securityQuestions":securityQuestionsList};
+
+    
+    
+        [mutableDict addEntriesFromDictionary:dict3];
+    
+    NSLog(@"%@", mutableDict);
+    
+    return [mutableDict copy];
+}
+
+- (NSDictionary*)buildPayloadMock
+{
+    return @{@"firstName" : @"Ger",
+             @"lastName" : @"O'Sullivan",
+             @"password" : @"test1",
+             @"securityQuestions" :  @[
+                             @{
+                                 @"answer" : @"Dublin",
+                                 @"question" : @"What city where you born in?"
+                             },
+                             @{
+                                 @"answer" : @"Meyers",
+                                 @"question" : @"What was your first pet's name?"
+                             },
+                             @{
+                                 @"answer" : @"Mini",
+                                 @"question" : @"What is the make of your first car?"
+                             }
+                             ],
+             @"username" : @"ger@brilliantage.com"
+             };
+    
+}
+- (void)submit {
+    
+    NSDictionary *parameters = [self buildPayloadMock];
+    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] fetchFullEndPointUri:@"register"];
+    
+    NSError *error = nil;
+    NSMutableURLRequest *request;
+    
+    request = [[[MDRegistrationAPIClient sharedClient] requestSerializer] requestWithMethod:@"POST" URLString:fullEndPointUri parameters:parameters error:&error];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
+                                         initWithRequest:request];
+    
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success: %@", [operation responseString]);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registration Complete!"  message:@"Your registration was successful. We have sent an activation code to the phone number you registered with. Please use this activation code to..." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        
+        [alert show];
+        
+//        [LTHPasscodeViewController useKeychain:NO];
+        
+//        [LTHPasscodeViewController sharedUser].delegate = self;
+
+//        [LTHPasscodeViewController sharedUser].enablePasscodeString = @"0000";
+//        [LTHPasscodeViewController sharedUser].enterNewPasscodeString = @"0000";
+//        [LTHPasscodeViewController sharedUser].enterOldPasscodeString = @"0000";
+//
+//
+//        
+//        NSLog(@"%d", [LTHPasscodeViewController doesPasscodeExist]);
+//        
+//        [[LTHPasscodeViewController sharedUser] showLockScreenWithAnimation:YES
+//                                                                 withLogout:NO
+//                                                             andLogoutTitle:nil];
+//        if ([LTHPasscodeViewController doesPasscodeExist] &&
+//            [LTHPasscodeViewController didPasscodeTimerEnd]) {
+//            [[LTHPasscodeViewController sharedUser] showLockScreenWithAnimation:YES
+//                                                                     withLogout:NO
+//                                                                 andLogoutTitle:nil];
+//        }
+        
+        NSLog(@"Transition");
+        
+        __weak RegistrationViewController *weakSelf = self;
+        
+        [weakSelf dismissViewControllerAnimated:YES completion:^{
+           
+            [[weakSelf delegate] dismissAndPresentVerificationWithPasscode];
+            
+        }];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unauthorized"  message:@"We were unable to register your account. Please contact your system admin" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        
+        [alert show];
+    }];
+    
+    [operation start];
+    
+}
+
+- (void)loadNextPage
 {
     
     _currentIndex++;
@@ -106,11 +245,10 @@
     [self setNavigationBarButtons];
     
     [self moveToIndex:_currentIndex];
-    
-    return YES;
+
 }
 
-- (BOOL)loadPreviousPage
+- (void)loadPreviousPage
 {
     _currentIndex--;
     
@@ -119,8 +257,6 @@
     [self setNavigationBarButtons];
     
     [self moveToIndex:_currentIndex];
-    
-    return YES;
 
 }
 
@@ -219,5 +355,9 @@
     
 }
 
+- (void)savePasscode:(NSString *)passcode
+{
+    NSLog(@"passcode: %@", passcode);
+}
 
 @end

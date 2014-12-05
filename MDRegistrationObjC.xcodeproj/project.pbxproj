@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		284A7A441A316042001A7E4A /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284A7A431A316042001A7E4A /* VerificationViewController.m */; };
 		2876A5081A23AE5B00147038 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876A5071A23AE5B00147038 /* main.m */; };
 		2876A50B1A23AE5B00147038 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876A50A1A23AE5B00147038 /* AppDelegate.m */; };
 		2876A5141A23AE5B00147038 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2876A5121A23AE5B00147038 /* Main.storyboard */; };
@@ -44,6 +45,9 @@
 
 /* Begin PBXFileReference section */
 		27BC9A0D49051BC71638D33B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		284A7A401A315AC5001A7E4A /* LoginViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewControllerDelegate.h; path = Delegates/LoginViewControllerDelegate.h; sourceTree = "<group>"; };
+		284A7A421A316042001A7E4A /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerificationViewController.h; path = Controllers/Verification/VerificationViewController.h; sourceTree = "<group>"; };
+		284A7A431A316042001A7E4A /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerificationViewController.m; path = Controllers/Verification/VerificationViewController.m; sourceTree = "<group>"; };
 		2876A5021A23AE5B00147038 /* MDRegistrationObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDRegistrationObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2876A5061A23AE5B00147038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2876A5071A23AE5B00147038 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -114,6 +118,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		284A7A3F1A315A6A001A7E4A /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				284A7A401A315AC5001A7E4A /* LoginViewControllerDelegate.h */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		284A7A411A315F91001A7E4A /* Verification */ = {
+			isa = PBXGroup;
+			children = (
+				284A7A421A316042001A7E4A /* VerificationViewController.h */,
+				284A7A431A316042001A7E4A /* VerificationViewController.m */,
+			);
+			name = Verification;
+			sourceTree = "<group>";
+		};
 		2876A4F91A23AE5B00147038 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +158,7 @@
 		2876A5041A23AE5B00147038 /* MDRegistrationObjC */ = {
 			isa = PBXGroup;
 			children = (
+				284A7A3F1A315A6A001A7E4A /* Delegates */,
 				28F7867D1A2E3EE600284FBA /* images */,
 				28F786791A2E34F400284FBA /* Controllers */,
 				2876A5391A23B40500147038 /* Communicators */,
@@ -199,6 +221,7 @@
 		28F786791A2E34F400284FBA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				284A7A411A315F91001A7E4A /* Verification */,
 				28F786961A2F528E00284FBA /* Password Reset */,
 				28F786951A2F524D00284FBA /* Registration */,
 				28F786761A2E34EE00284FBA /* MainViewController.h */,
@@ -399,6 +422,7 @@
 				28F786881A2E3EE600284FBA /* RegistrationViewController.m in Sources */,
 				28F786911A2F47A000284FBA /* PrivacyPolicyViewController.m in Sources */,
 				2876A50B1A23AE5B00147038 /* AppDelegate.m in Sources */,
+				284A7A441A316042001A7E4A /* VerificationViewController.m in Sources */,
 				28F7868E1A2EA08100284FBA /* RegistrationPageContentTableViewController.m in Sources */,
 				28F7869C1A2F54D600284FBA /* PasswordResetPageContentViewController.m in Sources */,
 				2876A5081A23AE5B00147038 /* main.m in Sources */,

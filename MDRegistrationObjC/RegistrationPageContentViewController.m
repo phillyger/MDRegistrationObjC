@@ -7,6 +7,7 @@
 //
 
 #import "RegistrationPageContentViewController.h"
+#import "RegistrationPageContentTableViewController.h"
 
 @interface RegistrationPageContentViewController ()
 
@@ -41,5 +42,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"RegistrationSegueSecurityQuestions"]) {
+        
+        self.securityQuestions = (RegistrationPageContentTableViewController*)segue.destinationViewController;
+    }
+    
+}
 
 @end

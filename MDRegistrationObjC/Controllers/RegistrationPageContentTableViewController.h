@@ -16,7 +16,6 @@
 
 
 @property (weak, nonatomic) IBOutlet UITextField *answer1TextField;
-
 @property (weak, nonatomic) IBOutlet UITextField *answer2TextField;
 @property (weak, nonatomic) IBOutlet UITextField *answer3TextField;
 

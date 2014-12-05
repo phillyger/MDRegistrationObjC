@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class RegistrationPageContentTableViewController;
+
 //@interface PageContentViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 @interface RegistrationPageContentViewController : UIViewController
 
+@property (nonatomic)RegistrationPageContentTableViewController *securityQuestions;
+@property (weak, nonatomic) IBOutlet UITextField *firstName;
+@property (weak, nonatomic) IBOutlet UITextField *lastName;
 
-@property NSUInteger pageIndex;
+@property (weak, nonatomic) IBOutlet UITextField *username;
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
+@property (weak, nonatomic) IBOutlet UITextField *passwordConfirm;
+@property (weak, nonatomic) IBOutlet UITextField *passwordNew;
 
 @end

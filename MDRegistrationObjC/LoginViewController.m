@@ -9,6 +9,9 @@
 #import "LoginViewController.h"
 #import "MDRegistrationAPIClient.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "RegistrationViewController.h"
+#import "LTHPasscodeViewController.h"
+#import "VerificationViewController.h"
 
 static UIStoryboard *main;
 static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
@@ -17,6 +20,8 @@ static NSString *kMainStoryboardiPad = @"Main";
 @interface LoginViewController ()
 - (IBAction)login:(UIButton *)sender;
 
+@property (nonatomic)RegistrationViewController *registerVC;
+@property (nonatomic)VerificationViewController *verifyVC;
 @end
 
 @implementation LoginViewController
@@ -64,5 +69,36 @@ static NSString *kMainStoryboardiPad = @"Main";
     [self presentViewController:initialDashboardController animated:YES completion:nil];
 }
 
+- (void)dismissAndPresentVerificationWithPasscode
+{
+    NSLog(@"dismissAndPresentVerificationWithPasscode...");
+    
+    
+
+    
+    VerificationViewController *verifyVC = (VerificationViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"Verification"];
+    
+    verifyVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
+    
+    [self presentViewController:verifyVC animated:YES completion:^{
+        [[LTHPasscodeViewController sharedUser] showLockScreenWithAnimation:YES
+                                                                 withLogout:NO
+                                                             andLogoutTitle:nil];
+    }];
+
+
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"LoginSegueRegistration"]) {
+
+        UINavigationController *regNavVC = (UINavigationController*)segue.destinationViewController;
+        self.registerVC = regNavVC.childViewControllers.firstObject;
+        self.registerVC.delegate = self;
+    }
+}
 
 @end
