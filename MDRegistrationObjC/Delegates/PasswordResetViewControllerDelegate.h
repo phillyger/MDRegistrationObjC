@@ -15,5 +15,7 @@
 
 - (void)shouldLoadNextPage;
 - (void)shouldLoadPreviousPage;
+- (void)shouldSubmitPasswordReset;
+- (void)shouldDismissController;
 
 @end

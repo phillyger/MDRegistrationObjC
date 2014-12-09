@@ -16,4 +16,6 @@
 
 - (RACSignal *)questions:(NSString *)username;
 
+- (RACSignal *)resetPassword:(NSDictionary *)userInfo;
+
 @end

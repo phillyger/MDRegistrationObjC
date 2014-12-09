@@ -11,7 +11,7 @@
 #import "PasswordResetUsernameViewModel.h"
 #import "PasswordResetViewController.h"
 #import "PasswordResetSecurityQuestionsViewModel.h"
-#import "PasswordResetOldNewConfirmedViewModel.h"
+#import "PasswordResetNewAndConfirmedViewModel.h"
 #import "MDViewModelServicesImpl.h"
 #import "PasswordResetPageViewController.h"
 
@@ -21,7 +21,7 @@
 @property(nonatomic, strong) id viewModel;
 @property(nonatomic, strong) PasswordResetUsernameViewModel *viewModelUsername;
 @property(nonatomic, strong) PasswordResetSecurityQuestionsViewModel *viewModelSecQuestions;
-@property(nonatomic, strong) PasswordResetOldNewConfirmedViewModel *viewModelOldNewConfirmed;
+@property(nonatomic, strong) PasswordResetNewAndConfirmedViewModel *viewModelPwdNewAndConfirmed;
 
 @property(nonatomic, weak) PasswordResetPageViewController *parentVC;
 @property (strong, nonatomic) MDViewModelServicesImpl *viewModelServices;
@@ -66,10 +66,10 @@
             break;
             
         case 2:
-            self.viewModelOldNewConfirmed = [[PasswordResetOldNewConfirmedViewModel alloc]
+            self.viewModelPwdNewAndConfirmed = [[PasswordResetNewAndConfirmedViewModel alloc]
                                           initWithUsername:[self.parentVC username] withServices:self.viewModelServices];
-            self.viewModelOldNewConfirmed.delegate = self.delegate;
-            self.viewModel = self.viewModelOldNewConfirmed;
+            self.viewModelPwdNewAndConfirmed.delegate = self.delegate;
+            self.viewModel = self.viewModelPwdNewAndConfirmed;
             break;
             
             
@@ -89,8 +89,8 @@
         [self bindViewModelUsername:(PasswordResetUsernameViewModel *)self.viewModel];
     } else if ([self.viewModel isKindOfClass:[PasswordResetSecurityQuestionsViewModel class]]) {
         [self bindViewModelSecQuestions:(PasswordResetSecurityQuestionsViewModel *)self.viewModel];
-    } else if ([self.viewModel isKindOfClass:[PasswordResetOldNewConfirmedViewModel class]]) {
-        [self bindViewModelOldNewConfirmedPassword:(PasswordResetOldNewConfirmedViewModel *)self.viewModel];
+    } else if ([self.viewModel isKindOfClass:[PasswordResetNewAndConfirmedViewModel class]]) {
+        [self bindviewModelPwdNewAndConfirmedPassword:(PasswordResetNewAndConfirmedViewModel *)self.viewModel];
     }
     
 
@@ -129,16 +129,15 @@
 //    RAC(self.statusLabel, text) = RACObserve(self.viewModelUsername, statusMessage);
 }
 
-- (void)bindViewModelOldNewConfirmedPassword:(PasswordResetOldNewConfirmedViewModel*)viewModel
+- (void)bindviewModelPwdNewAndConfirmedPassword:(PasswordResetNewAndConfirmedViewModel*)viewModel
 {
     
-    if (self.delegate && self.viewModelOldNewConfirmed.nextCommand) {
-        [self.delegate shouldSetSignalOnRightNavItemButton:self.viewModelOldNewConfirmed.nextCommand];
+    if (self.delegate && self.viewModelPwdNewAndConfirmed.nextCommand) {
+        [self.delegate shouldSetSignalOnRightNavItemButton:self.viewModelPwdNewAndConfirmed.nextCommand];
     }
     
-    RAC(self.viewModelOldNewConfirmed, passwordNew) = self.passwordNewTextField.rac_textSignal;
-    RAC(self.viewModelOldNewConfirmed, passwordOld) = self.passwordOldTextField.rac_textSignal;
-    RAC(self.viewModelOldNewConfirmed, passwordConfirmedNew) = self.passwordConfirmedNewTextField.rac_textSignal;
+    RAC(self.viewModelPwdNewAndConfirmed, passwordNew) = self.passwordNewTextField.rac_textSignal;
+    RAC(self.viewModelPwdNewAndConfirmed, passwordConfirmedNew) = self.passwordConfirmedNewTextField.rac_textSignal;
     
 //    RAC(self.statusLabel, text) = RACObserve(self.viewModelUsername, statusMessage);
 }

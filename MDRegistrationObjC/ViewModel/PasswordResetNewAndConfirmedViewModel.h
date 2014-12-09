@@ -11,7 +11,7 @@
 #import "PasswordResetViewControllerDelegate.h"
 #import "MDViewModelServices.h"
 
-@interface PasswordResetOldNewConfirmedViewModel : NSObject
+@interface PasswordResetNewAndConfirmedViewModel : NSObject
 
 - (instancetype)initWithUsername:(NSString*)username withServices:(id<MDViewModelServices>)services;
 

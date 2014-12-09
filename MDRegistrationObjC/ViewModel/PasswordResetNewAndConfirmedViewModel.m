@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 brilliantage. All rights reserved.
 //
 
-#import "PasswordResetOldNewConfirmedViewModel.h"
+#import "PasswordResetNewAndConfirmedViewModel.h"
 #import "AFHTTPRequestOperationManager+RACSupport.h"
 #import "NSString+EmailAdditions.h"
 #import <ReactiveCocoa.h>
@@ -14,7 +14,7 @@
 #import "MDRegistrationAPIClient.h"
 #import "MDViewModelServicesImpl.h"
 
-@interface PasswordResetOldNewConfirmedViewModel ()
+@interface PasswordResetNewAndConfirmedViewModel ()
 @property (weak, nonatomic) id<MDViewModelServices> services;
 
 @property(nonatomic, strong) RACSignal *passwordNewValidSignal;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation PasswordResetOldNewConfirmedViewModel
+@implementation PasswordResetNewAndConfirmedViewModel
 
 
 - (instancetype)initWithUsername:(NSString*)username withServices:(id<MDViewModelServices>)services
@@ -46,7 +46,7 @@
             @strongify(self);
             
             //            return [self checkIsAvailable:self.username];
-            [self.delegate shouldLoadNextPage];
+            [self.delegate shouldSubmitPasswordReset];
             return [RACSignal empty];
         }];
     }
@@ -61,16 +61,6 @@
         }];
     }
     return _passwordNewValidSignal;
-}
-
-- (RACSignal *)passwordOldValidSignal {
-    if (!_passwordOldValidSignal) {
-        _passwordOldValidSignal = [RACObserve(self, passwordOld) map:^id(NSString *password) {
-            NSLog(@"passwordOldValidSignal: %@",@(password.length > 1));
-            return @(password.length > 1);
-        }];
-    }
-    return _passwordOldValidSignal;
 }
 
 
@@ -94,9 +84,9 @@
 
 ///Only enable the create account button when each field is filled out correctly.
 -(RACSignal *)allPasswordsEnteredSignal {
-    return [RACSignal combineLatest:@[self.passwordOldValidSignal, self.passwordNewValidSignal, self.passwordConfirmedNewValidSignal]
-                             reduce:^(NSNumber *passwordOld, NSNumber *passwordNew, NSNumber *passwordConfirmedNew) {
-                                 return @((passwordOld.boolValue && passwordNew.boolValue && passwordConfirmedNew.boolValue));
+    return [RACSignal combineLatest:@[self.passwordNewValidSignal, self.passwordConfirmedNewValidSignal]
+                             reduce:^(NSNumber *passwordNew, NSNumber *passwordConfirmedNew) {
+                                 return @((passwordNew.boolValue && passwordConfirmedNew.boolValue));
                              }];
     
 }

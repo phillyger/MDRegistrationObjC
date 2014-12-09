@@ -8,8 +8,15 @@
 
 #import "PasswordResetViewController.h"
 #import "PasswordResetPageContentViewController.h"
+#import <ReactiveCocoa.h>
+#import "EXTScope.h"
+#import "MDViewModelServicesImpl.h"
+#import "PasswordResetViewModel.h"
 
 @interface PasswordResetViewController ()
+
+@property(nonatomic, strong) PasswordResetViewModel *viewModel;
+@property (strong, nonatomic) MDViewModelServicesImpl *viewModelServices;
 
 @property (assign)NSInteger maxPages;
 @property (assign)NSInteger currentIndex;
@@ -29,6 +36,9 @@
 {
     [super viewDidLoad];
     // Create the data model
+    
+    [self initializeViewModel];
+    
     
     // set current index
     self.currentIndex = 0;
@@ -78,7 +88,14 @@
 }
 
 
+- (void)initializeViewModel
+{
+    self.viewModelServices = [[MDViewModelServicesImpl alloc] init];
+    self.viewModel = [[PasswordResetViewModel alloc] initWithServices:self.viewModelServices ];
+    self.viewModel.delegate = self;
+    [self bindViewModel:self.viewModel];
 
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -239,24 +256,35 @@
     
 }
 
-//// ReactiveCocoa
-//
-//- (BOOL)isValidUsername:(NSString *)username {
-//    return username.length > 3;
-//}
-//
-//
-//- (void)usernameTextFieldChanged {
-//    self.usernameIsValid = [self isValidUsername:self.pwdResetPageContentVC.usernameTextField.text];
-//    [self updateUIState];
-//}
-//
-//// updates the enabled state and style of the text fields based on whether the current username
-//// and password combo is valid
-//- (void)updateUIState {
-//    self.pwdResetPageContentVC.usernameTextField.backgroundColor = self.usernameIsValid ? [UIColor clearColor] : [UIColor yellowColor];
-//    self.navigationItem.rightBarButtonItem.enabled = self.usernameIsValid;
-//}
+#pragma mark - Custom Methods
+- (NSDictionary*)buildUserInfoDict:(NSArray*)contentViewControllers{
+    
+    __block NSMutableDictionary *mutableDict = [NSMutableDictionary new];
+    [contentViewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        PasswordResetPageContentViewController *contentVC = (PasswordResetPageContentViewController*)obj;
+        
+        switch (idx) {
+            case 0:
+                [mutableDict addEntriesFromDictionary:@{@"username": contentVC.usernameTextField.text}];
+                break;
+            case 1:
+                [mutableDict addEntriesFromDictionary:@{@"answer1": contentVC.securityQuestions.answer1TextField.text}];
+                [mutableDict addEntriesFromDictionary:@{@"answer2": contentVC.securityQuestions.answer2TextField.text}];
+                [mutableDict addEntriesFromDictionary:@{@"answer3": contentVC.securityQuestions.answer3TextField.text}];
+                break;
+            case 2:
+                [mutableDict addEntriesFromDictionary:@{@"newPassword": contentVC.passwordNewTextField.text}];
+                [mutableDict addEntriesFromDictionary:@{@"confirmedNewPassword": contentVC.passwordConfirmedNewTextField.text}];
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    
+    return [mutableDict copy];
+}
 
 #pragma mark - delegation
 - (void)shouldSetSignalOnRightNavItemButton:(RACCommand*)command
@@ -270,6 +298,22 @@
 
 - (void)shouldLoadPreviousPage{
     [self loadPreviousPage];
+}
+
+- (void)shouldDismissController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)shouldSubmitPasswordReset {
+    NSLog(@"Preparing to submit page...");
+    NSDictionary *userInfo = [self buildUserInfoDict:self.contentViewControllers];
+    [self.viewModel subscribeToResetPassword:userInfo];
+}
+
+#pragma mark - ReactiveCocoa 
+- (void)bindViewModel:(id)viewModel
+{
+
 }
 
 @end

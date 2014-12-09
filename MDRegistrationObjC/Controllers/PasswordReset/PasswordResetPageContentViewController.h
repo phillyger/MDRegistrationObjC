@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-@property (weak, nonatomic) IBOutlet UITextField *passwordOldTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordNewTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmedNewTextField;
 
