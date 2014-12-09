@@ -13,7 +13,15 @@
 #import "LoginViewController.h"
 #import "SVProgressHUD.h"
 
+#import <ReactiveCocoa.h>
+#import "EXTScope.h"
+#import "MDViewModelServicesImpl.h"
+#import "RegistrationViewModel.h"
+
 @interface RegistrationViewController ()
+
+@property(nonatomic, strong) RegistrationViewModel *viewModel;
+@property (strong, nonatomic) MDViewModelServicesImpl *viewModelServices;
 
 @property (assign)NSInteger maxPages;
 @property (assign)NSInteger currentIndex;
@@ -32,6 +40,8 @@
 {
     [super viewDidLoad];
 	// Create the data model
+    
+    [self initializeViewModel];
     
     // set current index
     self.currentIndex = 0;
@@ -66,6 +76,15 @@
     self.pageControl.backgroundColor = [UIColor whiteColor];
     self.pageControl.numberOfPages = _maxPages;
     self.pageControl.currentPage = 0;
+    
+}
+
+- (void)initializeViewModel
+{
+    self.viewModelServices = [[MDViewModelServicesImpl alloc] init];
+    self.viewModel = [[RegistrationViewModel alloc] initWithServices:self.viewModelServices ];
+    self.viewModel.delegate = self;
+    [self bindViewModel:self.viewModel];
     
 }
 
@@ -112,15 +131,15 @@
     RegistrationPageContentViewController *vc = (RegistrationPageContentViewController*)self.contentViewControllers[0];
     
     NSDictionary *dict1 = @{
-    @"firstName": vc.firstName.text,
-    @"lastName": vc.lastName.text,
-    @"username": vc.username.text };
+    @"firstName": vc.firstNameTextField.text,
+    @"lastName": vc.lastNameTextField.text,
+    @"username": vc.usernameTextField.text };
 
         [mutableDict addEntriesFromDictionary:dict1];
     
     // Controller #2
     vc = (RegistrationPageContentViewController*)self.contentViewControllers[1];
-    NSDictionary *dict2 = @{@"password": vc.passwordNew.text};
+    NSDictionary *dict2 = @{@"password": vc.passwordNewTextField.text};
     [mutableDict addEntriesFromDictionary:dict2];
     
     
@@ -225,6 +244,22 @@
     
     [operation start];
     
+}
+
+- (void)showRegistrationSuccessAlert
+{
+//    [SVProgressHUD dismiss];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registration Complete!"  message:@"Your registration was successful. We have sent an activation code to the phone number you registered with. Please use this activation code to..." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    
+    [alert show];
+}
+
+- (void)showRegistrationFailureAlert
+{
+//    [SVProgressHUD dismiss];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unauthorized"  message:@"We were unable to register your account. Please contact your system admin." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    
+    [alert show];
 }
 
 - (void)loadNextPage
@@ -351,5 +386,87 @@
 {
     NSLog(@"passcode: %@", passcode);
 }
+
+#pragma mark - Delegation methods
+- (void)shouldShowRegistrationSuccessAlert
+{
+    [self showRegistrationSuccessAlert];
+}
+
+- (void)shouldShowRegistrationFailureAlert
+{
+    [self showRegistrationFailureAlert];
+}
+
+- (void)shouldSetSignalOnRightNavItemButton:(RACCommand*)command
+{
+    self.navigationItem.rightBarButtonItem.rac_command = command;
+}
+
+- (void)shouldLoadNextPage
+{
+    [self loadNextPage];
+}
+
+- (void)shouldLoadPreviousPage
+{
+    [self loadPreviousPage];
+}
+
+- (void)shouldDismissController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)shouldSubmitRegistration
+{
+    NSLog(@"Preparing to submit page...");
+    NSDictionary *userInfo = [self buildUserInfoDict:self.contentViewControllers];
+    [self.viewModel subscribeToRegistration:userInfo];
+}
+
+- (void)bindViewModel:(id)viewModel
+{
+    
+}
+
+#pragma mark - Custom Methods
+- (NSDictionary*)buildUserInfoDict:(NSArray*)contentViewControllers{
+    
+    __block NSMutableDictionary *mutableDict = [NSMutableDictionary new];
+    [contentViewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        RegistrationPageContentViewController *contentVC = (RegistrationPageContentViewController*)obj;
+        switch (idx) {
+            case 0:
+                [mutableDict addEntriesFromDictionary:@{
+                                                        @"firstName": contentVC.firstNameTextField.text,
+                                                        @"lastName": contentVC.lastNameTextField.text,
+                                                        @"username": contentVC.usernameTextField.text }];
+                break;
+            case 1:
+                [mutableDict addEntriesFromDictionary:@{@"password": contentVC.passwordNewTextField.text}];
+
+
+                break;
+            case 2:
+                
+                [mutableDict addEntriesFromDictionary:@{@"securityQuestions":
+                                                            @[@{@"question": contentVC.securityQuestions.question1Label.text,
+                                                                @"answer":contentVC.securityQuestions.answer1TextField.text},
+                                                              @{@"question": contentVC.securityQuestions.question2Label.text,
+                                                                @"answer":contentVC.securityQuestions.answer2TextField.text},
+                                                              @{@"question": contentVC.securityQuestions.question3Label.text,
+                                                                @"answer":contentVC.securityQuestions.answer3TextField.text}]}];
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    
+    return [mutableDict copy];
+}
+
 
 @end

@@ -171,7 +171,7 @@
                 <pageViewController storyboardIdentifier="RegistrationPageViewController" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="1UE-rD-ATN" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MaY-kI-Xdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1510" y="-430"/>
+            <point key="canvasLocation" x="2038" y="278"/>
         </scene>
         <!--Registration Page Content View Controller-->
         <scene sceneID="Tug-bh-kOW">
@@ -267,11 +267,16 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="currentIndex">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="firstName" destination="e4h-c0-mQT" id="B9m-Cx-bmU"/>
-                        <outlet property="lastName" destination="zXF-uM-Y7O" id="qye-5e-z9B"/>
-                        <outlet property="phoneNumber" destination="yxq-Yh-Xfm" id="sSK-Lx-cco"/>
-                        <outlet property="username" destination="swD-br-Tbl" id="TSz-kh-QVG"/>
+                        <outlet property="firstNameTextField" destination="e4h-c0-mQT" id="0LP-vT-AS7"/>
+                        <outlet property="lastNameTextField" destination="zXF-uM-Y7O" id="PeY-dB-cGQ"/>
+                        <outlet property="phoneNumberTextField" destination="yxq-Yh-Xfm" id="Lvi-oI-r5G"/>
+                        <outlet property="usernameTextField" destination="swD-br-Tbl" id="GFC-tm-azj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ii3-uv-VPn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -364,11 +369,6 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3C1-23-oI1">
-                                <rect key="frame" x="16" y="71" width="288" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIg-4v-qDd">
                                 <rect key="frame" x="16" y="119" width="263" height="26"/>
                                 <constraints>
@@ -379,6 +379,11 @@
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZVA-tU-qEg">
                                 <rect key="frame" x="16" y="153" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3C1-23-oI1">
+                                <rect key="frame" x="16" y="71" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
@@ -400,9 +405,14 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="currentIndex">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="passwordConfirm" destination="ZVA-tU-qEg" id="t7y-iG-bxM"/>
-                        <outlet property="passwordNew" destination="3C1-23-oI1" id="ZiB-xy-khz"/>
+                        <outlet property="passwordConfirmedNewTextField" destination="ZVA-tU-qEg" id="Uyy-yB-1Ln"/>
+                        <outlet property="passwordNewTextField" destination="3C1-23-oI1" id="xsl-Sx-Lgz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ao4-iM-PUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -437,6 +447,11 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="currentIndex">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKo-nj-8zX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

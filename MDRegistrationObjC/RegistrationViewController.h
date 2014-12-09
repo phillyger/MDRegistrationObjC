@@ -11,8 +11,10 @@
 #import "RegistrationPageContentTableViewController.h"
 #import "LTHPasscodeViewController.h"
 #import "LoginViewControllerDelegate.h"
+#import "RegistrationViewControllerDelegate.h"
+#import "MDReactiveView.h"
 
-@interface RegistrationViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIAlertViewDelegate, LTHPasscodeViewControllerDelegate>
+@interface RegistrationViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIAlertViewDelegate, LTHPasscodeViewControllerDelegate, RegistrationViewControllerDelegate, MDReactiveView>
 
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 

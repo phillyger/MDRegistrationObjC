@@ -47,6 +47,17 @@
     
 }
 
+- (RACSignal *)register:(NSDictionary *)userInfo
+{
+    NSString *const pathUri = @"register";
+    
+    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:pathUri];
+    
+    //    NSLog(@"%@", userInfo);
+    
+    
+    return [[[[MDRegistrationAPIClient sharedClient] rac_POST:fullEndPointUri parameters:userInfo] logError] replayLazily];
+}
 
 
 

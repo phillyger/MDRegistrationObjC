@@ -7,19 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RegistrationViewControllerDelegate.h"
+#import "MDReactiveView.h"
 
 @class RegistrationPageContentTableViewController;
 
-//@interface PageContentViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
-@interface RegistrationPageContentViewController : UIViewController
+@interface RegistrationPageContentViewController : UIViewController <MDReactiveView>
 
 @property (nonatomic)RegistrationPageContentTableViewController *securityQuestions;
-@property (weak, nonatomic) IBOutlet UITextField *firstName;
-@property (weak, nonatomic) IBOutlet UITextField *lastName;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 
-@property (weak, nonatomic) IBOutlet UITextField *username;
-@property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
-@property (weak, nonatomic) IBOutlet UITextField *passwordConfirm;
-@property (weak, nonatomic) IBOutlet UITextField *passwordNew;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordConfirmedNewTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordNewTextField;
+
+
+@property (nonatomic,weak) id <RegistrationViewControllerDelegate> delegate;
+
+@property (assign)NSInteger currentIndex;
+
 
 @end

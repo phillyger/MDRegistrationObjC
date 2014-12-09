@@ -1,23 +1,25 @@
 //
-//  PasswordResetViewModel.m
+//  RegistrationViewModel.m
 //  MDRegistrationObjC
 //
 //  Created by GER OSULLIVAN on 12/9/14.
 //  Copyright (c) 2014 brilliantage. All rights reserved.
 //
 
-#import "PasswordResetViewModel.h"
+#import "RegistrationViewModel.h"
 #import <ReactiveCocoa.h>
 #import "EXTScope.h"
 #import "MDViewModelServicesImpl.h"
 
-@interface PasswordResetViewModel ()
+
+@interface RegistrationViewModel ()
 
 @property (weak, nonatomic) id<MDViewModelServices> services;
 @property (nonatomic) UIAlertView *alertView;
+
 @end
 
-@implementation PasswordResetViewModel
+@implementation RegistrationViewModel
 
 - (instancetype)initWithServices:(id<MDViewModelServices>)services
 {
@@ -31,13 +33,13 @@
 
 
 
-- (RACSignal *)submitResetPassword:(NSDictionary*)userInfo {
+- (RACSignal *)submitRegister:(NSDictionary*)userInfo {
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         //        @weakify(self);
         
-        [[[[self.services getMDRegistrationService] resetPassword:userInfo]
+        [[[[self.services getMDRegistrationService] register:userInfo]
           map:^id(RACTuple *tuple) {
               return tuple.second;
           }]
@@ -57,42 +59,34 @@
     }];
 }
 
--(void)subscribeToResetPassword:(NSDictionary*)userInfo
+-(void)subscribeToRegistration:(NSDictionary*)userInfo
 {
-    [[self submitResetPassword:userInfo] subscribeNext:^(NSDictionary *responseDict) {
+    [[self submitRegister:userInfo] subscribeNext:^(NSDictionary *responseDict) {
         NSLog(@"hello");
         NSLog(@"%@", responseDict);
-
+        
         NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
-
+        
         if ([outcomeCode intValue] == 200000) {
-
+            
             NSLog(@"good to go");
-            self.alertView = [[UIAlertView alloc] initWithTitle:@"Password Reset" message:@"The password has successfully been reset." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-
-            [self.alertView show];
+            [self.delegate shouldShowRegistrationSuccessAlert];
             [self.delegate shouldDismissController];
-
+            
         } else {
             NSLog(@"stop");
-            self.alertView = [[UIAlertView alloc] initWithTitle:@"Password Reset Failed!" message:@"Unable to reset password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-
-            [self.alertView show];
+            [self.delegate shouldShowRegistrationFailureAlert];
             
         }
-
+        
         
     } error:^(NSError *error) {
         NSLog(@"stop");
-        self.alertView = [[UIAlertView alloc] initWithTitle:@"Password Reset Failed!" message:@"Unable to reset password." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [self.alertView show];
+         [self.delegate shouldShowRegistrationFailureAlert];
     } completed:^{
         // do nothing
     }];
     
 }
-
-
 
 @end

@@ -1,12 +1,12 @@
 //
-//  PasswordResetOldNewConfirmedViewModel.m
+//  RegistrationNewAndConfirmedViewModel.m
 //  MDRegistrationObjC
 //
-//  Created by GER OSULLIVAN on 12/8/14.
+//  Created by GER OSULLIVAN on 12/9/14.
 //  Copyright (c) 2014 brilliantage. All rights reserved.
 //
 
-#import "PasswordResetNewAndConfirmedViewModel.h"
+#import "RegistrationNewAndConfirmedViewModel.h"
 #import "AFHTTPRequestOperationManager+RACSupport.h"
 #import "NSString+EmailAdditions.h"
 #import <ReactiveCocoa.h>
@@ -14,7 +14,7 @@
 #import "MDRegistrationAPIClient.h"
 #import "MDViewModelServicesImpl.h"
 
-@interface PasswordResetNewAndConfirmedViewModel ()
+@interface RegistrationNewAndConfirmedViewModel ()
 @property (weak, nonatomic) id<MDViewModelServices> services;
 
 @property(nonatomic, strong) RACSignal *passwordNewValidSignal;
@@ -22,30 +22,26 @@
 
 @end
 
-@implementation PasswordResetNewAndConfirmedViewModel
+@implementation RegistrationNewAndConfirmedViewModel
 
 
-- (instancetype)initWithUsername:(NSString*)username withServices:(id<MDViewModelServices>)services
+
+- (instancetype)initWithServices:(id<MDViewModelServices>)services
 {
     self = [super init];
     if (self) {
         _services = services;
-        _username = username;
-        
-//        [self initialize];
-        
     }
     return self;
 }
 
 - (RACCommand *)nextCommand {
     if (!_nextCommand) {
-        @weakify(self);
+//        @weakify(self);
         _nextCommand = [[RACCommand alloc] initWithEnabled:self.passwordsValidSignal signalBlock:^RACSignal *(id input) {
-            @strongify(self);
+//            @strongify(self);
             
             //            return [self checkIsAvailable:self.username];
-            [self.delegate shouldSubmitPasswordReset];
             return [RACSignal empty];
         }];
     }
@@ -64,14 +60,14 @@
 
 
 - (RACSignal *)passwordConfirmedNewValidSignal {
-        if (!_passwordConfirmedNewValidSignal) {
-            _passwordConfirmedNewValidSignal = [RACObserve(self, passwordConfirmedNew) map:^id(NSString *password) {
-                NSLog(@"passwordConfirmedNewValidSignal: %@",@(password.length > 1));
-                return @(password.length > 1);
-            }];
-        }
-        return _passwordConfirmedNewValidSignal;
+    if (!_passwordConfirmedNewValidSignal) {
+        _passwordConfirmedNewValidSignal = [RACObserve(self, passwordConfirmedNew) map:^id(NSString *password) {
+            NSLog(@"passwordConfirmedNewValidSignal: %@",@(password.length > 1));
+            return @(password.length > 1);
+        }];
     }
+    return _passwordConfirmedNewValidSignal;
+}
 
 
 

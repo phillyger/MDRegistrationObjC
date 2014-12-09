@@ -18,4 +18,6 @@
 
 - (RACSignal *)resetPassword:(NSDictionary *)userInfo;
 
+- (RACSignal *)register:(NSDictionary *)userInfo;
+
 @end

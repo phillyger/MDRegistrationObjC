@@ -14,7 +14,7 @@
 @interface PasswordResetPageContentViewController : UIViewController <MDReactiveView>
 
 @property (nonatomic)RegistrationPageContentTableViewController *securityQuestions;
-@property NSUInteger pageIndex;
+//@property NSUInteger pageIndex;
 
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
