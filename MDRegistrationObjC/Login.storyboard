@@ -899,6 +899,11 @@
                             <integer key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="passwordConfirmedNewTextField" destination="FOh-k0-GQf" id="8Sr-ME-rr7"/>
+                        <outlet property="passwordNewTextField" destination="Lzb-UN-Lyv" id="O4d-8a-6K5"/>
+                        <outlet property="passwordOldTextField" destination="Nuy-oh-Uyb" id="Emo-lu-uY5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSM-Gy-JOp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

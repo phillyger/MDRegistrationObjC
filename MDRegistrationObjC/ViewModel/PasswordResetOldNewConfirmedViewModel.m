@@ -42,7 +42,7 @@
 - (RACCommand *)nextCommand {
     if (!_nextCommand) {
         @weakify(self);
-        _nextCommand = [[RACCommand alloc] initWithEnabled:self.allAnsweredSignal signalBlock:^RACSignal *(id input) {
+        _nextCommand = [[RACCommand alloc] initWithEnabled:self.passwordsValidSignal signalBlock:^RACSignal *(id input) {
             @strongify(self);
             
             //            return [self checkIsAvailable:self.username];
@@ -93,10 +93,26 @@
 //}
 
 ///Only enable the create account button when each field is filled out correctly.
--(RACSignal *)allAnsweredSignal {
+-(RACSignal *)allPasswordsEnteredSignal {
     return [RACSignal combineLatest:@[self.passwordOldValidSignal, self.passwordNewValidSignal, self.passwordConfirmedNewValidSignal]
                              reduce:^(NSNumber *passwordOld, NSNumber *passwordNew, NSNumber *passwordConfirmedNew) {
                                  return @((passwordOld.boolValue && passwordNew.boolValue && passwordConfirmedNew.boolValue));
+                             }];
+    
+}
+
+-(RACSignal *)passwordsNewAndConfirmedMatchSignal {
+    return [RACSignal combineLatest:@[RACObserve(self, passwordNew), RACObserve(self, passwordConfirmedNew)]
+                             reduce:^(NSString *passwordNew, NSString *passwordConfirmedNew) {
+                                 return @(([passwordConfirmedNew isEqualToString:passwordNew]));
+                             }];
+    
+}
+
+-(RACSignal *)passwordsValidSignal {
+    return [RACSignal combineLatest:@[self.allPasswordsEnteredSignal, self.passwordsNewAndConfirmedMatchSignal]
+                             reduce:^(NSNumber *allPasswordsEntered, NSNumber *passwordsNewAndConfirmedMatch) {
+                                 return @((allPasswordsEntered.boolValue && passwordsNewAndConfirmedMatch.boolValue));
                              }];
     
 }

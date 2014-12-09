@@ -90,7 +90,7 @@
     } else if ([self.viewModel isKindOfClass:[PasswordResetSecurityQuestionsViewModel class]]) {
         [self bindViewModelSecQuestions:(PasswordResetSecurityQuestionsViewModel *)self.viewModel];
     } else if ([self.viewModel isKindOfClass:[PasswordResetOldNewConfirmedViewModel class]]) {
-        [self bindViewModelSecQuestions:(PasswordResetSecurityQuestionsViewModel *)self.viewModel];
+        [self bindViewModelOldNewConfirmedPassword:(PasswordResetOldNewConfirmedViewModel *)self.viewModel];
     }
     
 
@@ -129,17 +129,17 @@
 //    RAC(self.statusLabel, text) = RACObserve(self.viewModelUsername, statusMessage);
 }
 
-- (void)bindViewModelOldNewConfirmed:(PasswordResetOldNewConfirmedViewModel*)viewModel
+- (void)bindViewModelOldNewConfirmedPassword:(PasswordResetOldNewConfirmedViewModel*)viewModel
 {
     
     if (self.delegate && self.viewModelOldNewConfirmed.nextCommand) {
         [self.delegate shouldSetSignalOnRightNavItemButton:self.viewModelOldNewConfirmed.nextCommand];
     }
     
-//    RAC(self.viewModelOldNewConfirmed, passwordNew) = self.passwordNewTextField.rac_textSignal;
-//    RAC(self.viewModelOldNewConfirmed, passwordOld) = self.passwordOldTextField.rac_textSignal;
-//    RAC(self.viewModelOldNewConfirmed, passwordConfirmedNew) = self.passwordConfirmedNewTextField.rac_textSignal;
-//    
+    RAC(self.viewModelOldNewConfirmed, passwordNew) = self.passwordNewTextField.rac_textSignal;
+    RAC(self.viewModelOldNewConfirmed, passwordOld) = self.passwordOldTextField.rac_textSignal;
+    RAC(self.viewModelOldNewConfirmed, passwordConfirmedNew) = self.passwordConfirmedNewTextField.rac_textSignal;
+    
 //    RAC(self.statusLabel, text) = RACObserve(self.viewModelUsername, statusMessage);
 }
 
