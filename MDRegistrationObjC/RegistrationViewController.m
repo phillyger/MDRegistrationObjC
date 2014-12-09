@@ -177,7 +177,7 @@
     
 //    NSDictionary *parameters = [self buildPayloadMock];
     NSDictionary *parameters = [self buildPayload];
-    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] fetchFullEndPointUri:@"register"];
+    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:@"register"];
     
     NSError *error = nil;
     NSMutableURLRequest *request;

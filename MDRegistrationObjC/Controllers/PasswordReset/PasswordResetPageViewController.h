@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PasswordResetPageViewController : UIViewController
+@interface PasswordResetPageViewController : UIPageViewController
+
+@property (nonatomic, strong) NSString *username;
 
 @end

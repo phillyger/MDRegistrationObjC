@@ -8,14 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "PasswordResetViewControllerDelegate.h"
+#import "RegistrationPageContentTableViewController.h"
+#import "MDReactiveView.h"
 
-@interface PasswordResetPageContentViewController : UIViewController
+@interface PasswordResetPageContentViewController : UIViewController <MDReactiveView>
 
+@property (nonatomic)RegistrationPageContentTableViewController *securityQuestions;
 @property NSUInteger pageIndex;
 
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+
 @property (nonatomic,weak) id <PasswordResetViewControllerDelegate> delegate;
+
+@property (assign)NSInteger currentIndex;
 
 @end

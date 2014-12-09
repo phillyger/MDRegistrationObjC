@@ -35,7 +35,7 @@ static NSString *kMainStoryboardiPad = @"Main";
 - (IBAction)login:(UIButton *)sender {
     
     NSDictionary *parameters = @{@"username": @"ger@brilliantage.com", @"password":@"test1"};
-    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] fetchFullEndPointUri:@"authenticate"];
+    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:@"authenticate"];
 
     NSError *error = nil;
     NSMutableURLRequest *request;

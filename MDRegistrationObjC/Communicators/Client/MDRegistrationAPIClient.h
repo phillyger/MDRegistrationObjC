@@ -6,12 +6,13 @@
 //  Copyright (c) 2013 Brilliant Age. All rights reserved.
 //
 
-#import "AFHTTPSessionManager.h"
+//#import "AFHTTPSessionManager.h"
+#import "AFHTTPRequestOperationManager.h"
 
-@interface MDRegistrationAPIClient : AFHTTPSessionManager
+@interface MDRegistrationAPIClient : AFHTTPRequestOperationManager
 
 + (instancetype)sharedClient;
 
-- (NSString *)fetchFullEndPointUri:(NSString*)relativeEndPointUri;
+- (NSString *)appendPathVarToEndPointUri:(NSString*)path;
 
 @end

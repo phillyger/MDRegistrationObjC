@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 //#import "DetailViewController.h"
+#import "MDViewModelServicesImpl.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 

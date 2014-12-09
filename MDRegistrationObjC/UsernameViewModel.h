@@ -6,11 +6,13 @@
 #import <Foundation/Foundation.h>
 #import <ReactiveCocoa.h>
 #import "PasswordResetViewControllerDelegate.h"
-
+#import "MDViewModelServices.h"
 
 @interface UsernameViewModel : NSObject
 
-@property(nonatomic, strong) RACCommand *usernameCommand;
+- (instancetype)initWithServices:(id<MDViewModelServices>)services;
+
+@property(nonatomic, strong) RACCommand *nextCommand;
 
 // write to this property
 @property(nonatomic, strong) NSString *username;

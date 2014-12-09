@@ -45,31 +45,17 @@
     self.contentViewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetContent1ViewController"], [self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetContent2ViewController"], [self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetContent3ViewController"]];
     
     
+    [self.contentViewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        PasswordResetPageContentViewController *pageContentVC = (PasswordResetPageContentViewController*)obj;
+        pageContentVC.delegate = self;
+    }];
+    
     NSLog(@"Nav Button Name: %@", self.navigationItem.rightBarButtonItem.title);
     
     self.maxPages = self.contentViewControllers.count;
     
     self.pwdResetPageContentVC = self.contentViewControllers[0];
     
-    self.pwdResetPageContentVC.delegate = self;
-    
-//    [[self.searchText.rac_textSignal
-//      map:^id(NSString *text) {
-//          return [self isValidSearchText:text] ?
-//          [UIColor whiteColor] : [UIColor yellowColor];
-//      }]
-//     subscribeNext:^(UIColor *color) {
-//         self.searchText.backgroundColor = color;
-//     }];
-    
-   
-//    [[self.pwdResetPageContentVC.usernameTextField.rac_textSignal map:^id(NSString *text) {
-//        return [self isValidUsername:text] ?
-//        [UIColor whiteColor] : [UIColor yellowColor];
-//    }]
-//subscribeNext:^(UIColor *color) {
-//    self.pwdResetPageContentVC.usernameTextField.backgroundColor = color;
-//}];
     
     
     
@@ -127,9 +113,12 @@
 
 - (BOOL)loadNextPage
 {
+    if (_currentIndex == 0) {
+        self.pageViewController.username = [[(PasswordResetPageContentViewController*)self.contentViewControllers[0] usernameTextField] text];
+    }
     
     _currentIndex++;
-    
+
     self.pageControl.currentPage = _currentIndex;
     
     [self setNavigationBarButtons];
@@ -142,6 +131,8 @@
 - (BOOL)loadPreviousPage
 {
     _currentIndex--;
+    
+//    self.pageViewController.username = [[(PasswordResetPageContentViewController*)self.contentViewControllers[0] usernameTextField] text];
     
     self.pageControl.currentPage = _currentIndex;
     

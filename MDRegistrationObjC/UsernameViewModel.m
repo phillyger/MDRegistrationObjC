@@ -4,33 +4,39 @@
 //
 
 #import "UsernameViewModel.h"
-#import "AFHTTPRequestOperationManager+RACSupport.h"
 #import "NSString+EmailAdditions.h"
 #import <ReactiveCocoa.h>
 #import "EXTScope.h"
+#import "MDViewModelServicesImpl.h"
 
-static NSString *const kSubscribeURL = @"http://reactivetest.apiary.io/subscribers";
 
 @interface UsernameViewModel ()
+@property (weak, nonatomic) id<MDViewModelServices> services;
+
 @property(nonatomic, strong) RACSignal *usernameValidSignal;
 @end
 
 @implementation UsernameViewModel
 
-- (id)init {
-	self = [super init];
-	if (self) {
-		[self mapUsernameCommandStateToStatusMessage];
-	}
-	return self;
+
+- (instancetype)initWithServices:(id<MDViewModelServices>)services
+{
+    self = [super init];
+    if (self) {
+        _services = services;
+        
+        [self mapNextCommandStateToStatusMessage];
+    }
+    return self;
 }
 
-- (void)mapUsernameCommandStateToStatusMessage {
-	RACSignal *startedMessageSource = [self.usernameCommand.executionSignals map:^id(RACSignal *subscribeSignal) {
+
+- (void)mapNextCommandStateToStatusMessage {
+	RACSignal *startedMessageSource = [self.nextCommand.executionSignals map:^id(RACSignal *subscribeSignal) {
 		return NSLocalizedString(@"Sending request...", nil);
 	}];
 
-	RACSignal *completedMessageSource = [self.usernameCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) {
+	RACSignal *completedMessageSource = [self.nextCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) {
 		return [[[subscribeSignal materialize] filter:^BOOL(RACEvent *event) {
 			return event.eventType == RACEventTypeCompleted;
 		}] map:^id(id value) {
@@ -38,31 +44,55 @@ static NSString *const kSubscribeURL = @"http://reactivetest.apiary.io/subscribe
 		}];
 	}];
 
-	RACSignal *failedMessageSource = [[self.usernameCommand.errors subscribeOn:[RACScheduler mainThreadScheduler]] map:^id(NSError *error) {
+	RACSignal *failedMessageSource = [[self.nextCommand.errors subscribeOn:[RACScheduler mainThreadScheduler]] map:^id(NSError *error) {
 		return NSLocalizedString(@"Error :(", nil);
 	}];
 
 	RAC(self, statusMessage) = [RACSignal merge:@[startedMessageSource, completedMessageSource, failedMessageSource]];
 }
 
-- (RACCommand *)usernameCommand {
-	if (!_usernameCommand) {
+
+- (RACCommand *)nextCommand {
+	if (!_nextCommand) {
 		@weakify(self);
-		_usernameCommand = [[RACCommand alloc] initWithEnabled:self.usernameValidSignal signalBlock:^RACSignal *(id input) {
+		_nextCommand = [[RACCommand alloc] initWithEnabled:self.usernameValidSignal signalBlock:^RACSignal *(id input) {
 			@strongify(self);
-            [self.delegate shouldLoadNextPage];
-			return [RACSignal empty];
+            
+            return [self checkIsAvailable:self.username];
+
+//			return [RACSignal empty];
 		}];
 	}
-	return _usernameCommand;
+	return _nextCommand;
 }
 
-+ (RACSignal *)postEmail:(NSString *)email {
-	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-	manager.requestSerializer = [AFJSONRequestSerializer new];
-	NSDictionary *body = @{@"email": email ?: @""};
-	return [[[manager rac_POST:kSubscribeURL parameters:body] logError] replayLazily];
+- (RACSignal *)checkIsAvailable:(NSString *)username {
+
+    @weakify(self);
+	
+    
+	return [[[self.services getMDRegistrationService] isAvailable:username]
+            doNext:^(RACTuple *JSONAndHeaders) {
+                @strongify(self);
+   
+                NSArray *tupleList =[JSONAndHeaders allObjects];
+                NSLog(@"%@", tupleList.lastObject);
+                NSDictionary *responseDict = tupleList.lastObject;
+                
+                NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
+                
+                if ([outcomeCode intValue] == 200000) {
+                    
+                    NSLog(@"good to go");
+                    [self.delegate shouldLoadNextPage];
+                } else {
+                    NSLog(@"stop");
+                }
+            }];
+    
 }
+
+
 
 - (RACSignal *)usernameValidSignal {
 	if (!_usernameValidSignal) {

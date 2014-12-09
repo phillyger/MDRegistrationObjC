@@ -10,8 +10,8 @@
 //#import "CommonUtilities.h"
 
 
-//static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
-static NSString * const kMDRegistrationAPIBaseURLString = @"http://clvdv-rapid-2:8085/app/rest";
+static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
+//static NSString * const kMDRegistrationAPIBaseURLString = @"http://clvdv-rapid-2:8085/app/rest";
 static NSString * const kMDRegistrationAPICharset = @"utf-8";
 static NSString * const kMDRegistrationJSONMimeType = @"application/json";
 
@@ -93,10 +93,10 @@ static NSString * const kMDRegistrationAPIRESTApiKeyValue = @"APIKEY123";
     [manager startMonitoring];
 }
 
-- (NSString *)fetchFullEndPointUri:(NSString*)relativeEndPointUri
+- (NSString *)appendPathVarToEndPointUri:(NSString*)path
 {
     NSString *clientBaseUrl = [[self baseURL] absoluteString];
-    return [clientBaseUrl stringByAppendingString:relativeEndPointUri];
+    return [clientBaseUrl stringByAppendingString:path];
 }
 
 
