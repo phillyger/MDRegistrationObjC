@@ -40,16 +40,7 @@
     
     NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:pathUri];
     
-    NSLog(@"%@", userInfo);
-    
-    userInfo = @{
-        @"username": @"ger@brilliantage.com",
-        @"answer1": @"Dublin",
-        @"answer2": @"Mini",
-        @"answer3": @"Meyers",
-        @"newPassword": @"test2",
-        @"confirmedNewPassword": @"test2"
-        };
+//    NSLog(@"%@", userInfo);
 
     
     return [[[[MDRegistrationAPIClient sharedClient] rac_POST:fullEndPointUri parameters:userInfo] logError] replayLazily];

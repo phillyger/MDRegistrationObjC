@@ -45,7 +45,14 @@
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PasswordResetPageViewController"];
-    self.pageViewController.dataSource = self;
+
+
+    /**
+     *   Disable gesture swipes by setting datasource to nil
+     */
+    // TODO:: Implement page control.
+    //    self.pageViewController.dataSource = self;
+    
     self.pageViewController.delegate = self;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
