@@ -13,6 +13,7 @@
 #import "EXTScope.h"
 #import "MDRegistrationAPIClient.h"
 #import "MDViewModelServicesImpl.h"
+#import "PasswordResetPageContentViewController.h"
 
 @interface PasswordResetSecurityQuestionsViewModel ()
 @property (weak, nonatomic) id<MDViewModelServices> services;
@@ -36,10 +37,31 @@
         _services = services;
         _username = username;
         
-        [self fetchQuestions:_username];
+        [self initialize];
+
     }
     return self;
 }
+
+- (void)initialize
+{
+    [[self fetchQuestions:_username] subscribeNext:^(NSDictionary *response) {
+        //            NSLog(@"hello");
+        //            NSLog(@"%@", response);
+        //            NSLog(@"%@", [response valueForKeyPath:@"data.question1"]);
+        //            NSLog(@"%@", [response valueForKeyPath:@"data.question2"]);
+        //            NSLog(@"%@", [response valueForKeyPath:@"data.question3"]);
+        //
+        self.question1 = [response valueForKeyPath:@"data.question1"];
+        self.question2 = [response valueForKeyPath:@"data.question2"];
+        self.question3 = [response valueForKeyPath:@"data.question3"];
+        
+        
+    } completed:^{
+        // do nothing
+    }];
+}
+
 
 - (void)mapNextCommandStateToStatusMessage {
     RACSignal *startedMessageSource = [self.nextCommand.executionSignals map:^id(RACSignal *subscribeSignal) {
@@ -125,20 +147,23 @@
 
 - (RACSignal *)fetchQuestions:(NSString *)username {
     
-//    @weakify(self);
-    
-    
-    return [[[self.services getMDRegistrationService] questions:username]
-            subscribeNext:^(RACTuple *JSONAndHeaders) {
-                NSLog(@"Hello");
-                NSArray *tupleList =[JSONAndHeaders allObjects];
-                NSLog(@"%@", tupleList.lastObject);
-               
-            } completed:^{
-                NSLog(@"Goodbye");
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+//        @weakify(self);
+        
+        [[[[self.services getMDRegistrationService] questions:username]
+            map:^id(RACTuple *tuple) {
+                return tuple.second;
+            }]
+            subscribeNext:^(NSDictionary *dict) {
+                [subscriber sendNext:dict];
+                [subscriber sendCompleted];
             }];
-
-    
+        // 6. When we are done, remvoe the reference to this request
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
+    }];
 }
 
 

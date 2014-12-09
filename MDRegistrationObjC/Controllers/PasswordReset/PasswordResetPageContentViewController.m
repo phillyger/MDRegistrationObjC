@@ -101,9 +101,17 @@
         [self.delegate shouldSetSignalOnRightNavItemButton:self.viewModelSecQuestions.nextCommand];
     }
     
+    
+    RAC(self.securityQuestions.question1Label,text) = RACObserve(self.viewModelSecQuestions, question1);
+    RAC(self.securityQuestions.question2Label,text) = RACObserve(self.viewModelSecQuestions, question2);
+    RAC(self.securityQuestions.question3Label,text) = RACObserve(self.viewModelSecQuestions, question3);
+    
+    
     RAC(self.viewModelSecQuestions, answer1) = self.securityQuestions.answer1TextField.rac_textSignal;
      RAC(self.viewModelSecQuestions, answer2) = self.securityQuestions.answer2TextField.rac_textSignal;
      RAC(self.viewModelSecQuestions, answer3) = self.securityQuestions.answer3TextField.rac_textSignal;
+    
+    
     
 //    RAC(self.statusLabel, text) = RACObserve(self.viewModelUsername, statusMessage);
 }
