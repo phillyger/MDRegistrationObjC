@@ -3,20 +3,20 @@
 //  Copyright (c) 2012 SHAPE A/S. All rights reserved.
 //
 
-#import "UsernameViewModel.h"
+#import "PasswordResetUsernameViewModel.h"
 #import "NSString+EmailAdditions.h"
 #import <ReactiveCocoa.h>
 #import "EXTScope.h"
 #import "MDViewModelServicesImpl.h"
 
 
-@interface UsernameViewModel ()
+@interface PasswordResetUsernameViewModel ()
 @property (weak, nonatomic) id<MDViewModelServices> services;
 
 @property(nonatomic, strong) RACSignal *usernameValidSignal;
 @end
 
-@implementation UsernameViewModel
+@implementation PasswordResetUsernameViewModel
 
 
 - (instancetype)initWithServices:(id<MDViewModelServices>)services

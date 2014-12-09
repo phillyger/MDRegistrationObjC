@@ -1,5 +1,5 @@
 //
-//  PasswordResetSecurityQuestionsViewModel.h
+//  PasswordResetOldNewConfirmedViewModel.h
 //  MDRegistrationObjC
 //
 //  Created by GER OSULLIVAN on 12/8/14.
@@ -11,27 +11,17 @@
 #import "PasswordResetViewControllerDelegate.h"
 #import "MDViewModelServices.h"
 
-@interface PasswordResetSecurityQuestionsViewModel : NSObject
+@interface PasswordResetOldNewConfirmedViewModel : NSObject
 
 - (instancetype)initWithUsername:(NSString*)username withServices:(id<MDViewModelServices>)services;
 
 @property(nonatomic, strong) RACCommand *nextCommand;
 
-
-
-// write to this property
 @property(nonatomic, strong) NSString *username;
 
-@property(nonatomic, strong) NSString *answer1;
-@property(nonatomic, strong) NSString *answer2;
-@property(nonatomic, strong) NSString *answer3;
-
-@property(nonatomic, strong) NSString *question1;
-@property(nonatomic, strong) NSString *question2;
-@property(nonatomic, strong) NSString *question3;
-
-// read from this property
-@property(nonatomic, strong) NSString *statusMessage;
+@property(nonatomic, strong) NSString *passwordOld;
+@property(nonatomic, strong) NSString *passwordNew;
+@property(nonatomic, strong) NSString *passwordConfirmedNew;
 
 @property (nonatomic,weak) id <PasswordResetViewControllerDelegate> delegate;
 

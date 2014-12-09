@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		284A7A441A316042001A7E4A /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284A7A431A316042001A7E4A /* VerificationViewController.m */; };
-		284A7A491A322B6E001A7E4A /* UsernameViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 284A7A481A322B6E001A7E4A /* UsernameViewModel.m */; };
+		284A7A491A322B6E001A7E4A /* PasswordResetUsernameViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 284A7A481A322B6E001A7E4A /* PasswordResetUsernameViewModel.m */; };
 		284A7A4C1A322C6A001A7E4A /* NSString+EmailAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 284A7A4B1A322C6A001A7E4A /* NSString+EmailAdditions.m */; };
 		2876A5081A23AE5B00147038 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876A5071A23AE5B00147038 /* main.m */; };
 		2876A50B1A23AE5B00147038 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876A50A1A23AE5B00147038 /* AppDelegate.m */; };
@@ -36,6 +36,7 @@
 		28FA56431A36406900BA95D1 /* PasswordResetPageContentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA56421A36406900BA95D1 /* PasswordResetPageContentTableViewController.m */; };
 		28FA56481A36478A00BA95D1 /* MDRegistrationAPIImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA56471A36478A00BA95D1 /* MDRegistrationAPIImpl.m */; };
 		28FA564C1A364EF200BA95D1 /* MDViewModelServicesImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA564B1A364EF200BA95D1 /* MDViewModelServicesImpl.m */; };
+		28FA564F1A36AA2700BA95D1 /* PasswordResetOldNewConfirmedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA564E1A36AA2700BA95D1 /* PasswordResetOldNewConfirmedViewModel.m */; };
 		E7291E04DFD910A448F7CED5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 713B7EAA2D91D2EB136D2F27 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +55,8 @@
 		284A7A401A315AC5001A7E4A /* LoginViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewControllerDelegate.h; path = Delegates/LoginViewControllerDelegate.h; sourceTree = "<group>"; };
 		284A7A421A316042001A7E4A /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerificationViewController.h; path = Controllers/Verification/VerificationViewController.h; sourceTree = "<group>"; };
 		284A7A431A316042001A7E4A /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerificationViewController.m; path = Controllers/Verification/VerificationViewController.m; sourceTree = "<group>"; };
-		284A7A471A322B6E001A7E4A /* UsernameViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsernameViewModel.h; sourceTree = "<group>"; };
-		284A7A481A322B6E001A7E4A /* UsernameViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsernameViewModel.m; sourceTree = "<group>"; };
+		284A7A471A322B6E001A7E4A /* PasswordResetUsernameViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordResetUsernameViewModel.h; sourceTree = "<group>"; };
+		284A7A481A322B6E001A7E4A /* PasswordResetUsernameViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordResetUsernameViewModel.m; sourceTree = "<group>"; };
 		284A7A4A1A322C6A001A7E4A /* NSString+EmailAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EmailAdditions.h"; sourceTree = "<group>"; };
 		284A7A4B1A322C6A001A7E4A /* NSString+EmailAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EmailAdditions.m"; sourceTree = "<group>"; };
 		284A7A4D1A3231FF001A7E4A /* PasswordResetViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasswordResetViewControllerDelegate.h; path = Delegates/PasswordResetViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -108,6 +109,8 @@
 		28FA56491A364AE400BA95D1 /* MDViewModelServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDViewModelServices.h; path = ViewModel/MDViewModelServices.h; sourceTree = "<group>"; };
 		28FA564A1A364EF200BA95D1 /* MDViewModelServicesImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MDViewModelServicesImpl.h; path = ViewModel/MDViewModelServicesImpl.h; sourceTree = "<group>"; };
 		28FA564B1A364EF200BA95D1 /* MDViewModelServicesImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MDViewModelServicesImpl.m; path = ViewModel/MDViewModelServicesImpl.m; sourceTree = "<group>"; };
+		28FA564D1A36AA2700BA95D1 /* PasswordResetOldNewConfirmedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasswordResetOldNewConfirmedViewModel.h; path = ViewModel/PasswordResetOldNewConfirmedViewModel.h; sourceTree = "<group>"; };
+		28FA564E1A36AA2700BA95D1 /* PasswordResetOldNewConfirmedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasswordResetOldNewConfirmedViewModel.m; path = ViewModel/PasswordResetOldNewConfirmedViewModel.m; sourceTree = "<group>"; };
 		6A03B01AB6ACA6564C05C9A3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		713B7EAA2D91D2EB136D2F27 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -161,10 +164,12 @@
 		284A7A461A322B60001A7E4A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				284A7A471A322B6E001A7E4A /* UsernameViewModel.h */,
-				284A7A481A322B6E001A7E4A /* UsernameViewModel.m */,
+				284A7A471A322B6E001A7E4A /* PasswordResetUsernameViewModel.h */,
+				284A7A481A322B6E001A7E4A /* PasswordResetUsernameViewModel.m */,
 				28FA563E1A36195500BA95D1 /* PasswordResetSecurityQuestionsViewModel.h */,
 				28FA563F1A36195500BA95D1 /* PasswordResetSecurityQuestionsViewModel.m */,
+				28FA564D1A36AA2700BA95D1 /* PasswordResetOldNewConfirmedViewModel.h */,
+				28FA564E1A36AA2700BA95D1 /* PasswordResetOldNewConfirmedViewModel.m */,
 				28FA56491A364AE400BA95D1 /* MDViewModelServices.h */,
 				28FA564A1A364EF200BA95D1 /* MDViewModelServicesImpl.h */,
 				28FA564B1A364EF200BA95D1 /* MDViewModelServicesImpl.m */,
@@ -487,7 +492,7 @@
 				28FA56481A36478A00BA95D1 /* MDRegistrationAPIImpl.m in Sources */,
 				2876A50B1A23AE5B00147038 /* AppDelegate.m in Sources */,
 				284A7A441A316042001A7E4A /* VerificationViewController.m in Sources */,
-				284A7A491A322B6E001A7E4A /* UsernameViewModel.m in Sources */,
+				284A7A491A322B6E001A7E4A /* PasswordResetUsernameViewModel.m in Sources */,
 				28F7868E1A2EA08100284FBA /* RegistrationPageContentTableViewController.m in Sources */,
 				28F7869C1A2F54D600284FBA /* PasswordResetPageContentViewController.m in Sources */,
 				28FA56401A36195500BA95D1 /* PasswordResetSecurityQuestionsViewModel.m in Sources */,
@@ -497,6 +502,7 @@
 				28F786991A2F52C800284FBA /* PasswordResetViewController.m in Sources */,
 				28F786781A2E34EE00284FBA /* MainViewController.m in Sources */,
 				28F7869F1A2F54F700284FBA /* PasswordResetPageViewController.m in Sources */,
+				28FA564F1A36AA2700BA95D1 /* PasswordResetOldNewConfirmedViewModel.m in Sources */,
 				28F7868B1A2E3F2E00284FBA /* RegistrationPageContentViewController.m in Sources */,
 				28F7867C1A2E3CB600284FBA /* RegistrationPageViewController.m in Sources */,
 				284A7A4C1A322C6A001A7E4A /* NSString+EmailAdditions.m in Sources */,

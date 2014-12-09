@@ -34,5 +34,17 @@
 
 }
 
+- (RACSignal *)resetPassword:(NSDictionary *)userDict
+{
+    NSString *const pathUri = @"account/reset_password";
+    
+    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:pathUri];
+    
+    return [[[[MDRegistrationAPIClient sharedClient] rac_GET:fullEndPointUri parameters:userDict] logError] replayLazily];
+    
+}
+
+
+
 
 @end

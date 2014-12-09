@@ -12,6 +12,6 @@
 
 @interface MDViewModelServicesImpl : NSObject <MDViewModelServices>
 
-//- (id<MDRegistrationAPI>)getMDRegistrationService;
+
 
 @end

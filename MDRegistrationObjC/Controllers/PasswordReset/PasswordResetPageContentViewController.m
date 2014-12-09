@@ -8,7 +8,7 @@
 
 #import "PasswordResetPageContentViewController.h"
 #import <ReactiveCocoa.h>
-#import "UsernameViewModel.h"
+#import "PasswordResetUsernameViewModel.h"
 #import "PasswordResetViewController.h"
 #import "PasswordResetSecurityQuestionsViewModel.h"
 #import "MDViewModelServicesImpl.h"
@@ -18,7 +18,7 @@
 @property (nonatomic) BOOL usernameIsValid;
 
 @property(nonatomic, strong) id viewModel;
-@property(nonatomic, strong) UsernameViewModel *viewModelUsername;
+@property(nonatomic, strong) PasswordResetUsernameViewModel *viewModelUsername;
 @property(nonatomic, strong) PasswordResetSecurityQuestionsViewModel *viewModelSecQuestions;
 
 @property(nonatomic, weak) PasswordResetPageViewController *parentVC;
@@ -50,7 +50,7 @@
     switch ((int)self.currentIndex) {
         case 0:
 //            self.viewModelUsername = [UsernameViewModel new];
-            self.viewModelUsername = [[UsernameViewModel alloc]
+            self.viewModelUsername = [[PasswordResetUsernameViewModel alloc]
                               initWithServices:self.viewModelServices];
             self.viewModelUsername.delegate = self.delegate;
             self.viewModel = self.viewModelUsername;
@@ -74,8 +74,8 @@
 - (void)bindViewModel:(id)viewModel
 {
     
-    if ([self.viewModel isKindOfClass:[UsernameViewModel class]]) {
-        [self bindViewModelUsername:(UsernameViewModel *)self.viewModel];
+    if ([self.viewModel isKindOfClass:[PasswordResetUsernameViewModel class]]) {
+        [self bindViewModelUsername:(PasswordResetUsernameViewModel *)self.viewModel];
     } else {
         [self bindViewModelSecQuestions:(PasswordResetSecurityQuestionsViewModel *)self.viewModel];
     }
@@ -83,7 +83,7 @@
 
 }
 
-- (void)bindViewModelUsername:(UsernameViewModel*)viewModel
+- (void)bindViewModelUsername:(PasswordResetUsernameViewModel*)viewModel
 {
     
     if (self.delegate && self.viewModelUsername.nextCommand) {

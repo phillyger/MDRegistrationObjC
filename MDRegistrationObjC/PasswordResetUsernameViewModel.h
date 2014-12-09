@@ -8,7 +8,7 @@
 #import "PasswordResetViewControllerDelegate.h"
 #import "MDViewModelServices.h"
 
-@interface UsernameViewModel : NSObject
+@interface PasswordResetUsernameViewModel : NSObject
 
 - (instancetype)initWithServices:(id<MDViewModelServices>)services;
 
