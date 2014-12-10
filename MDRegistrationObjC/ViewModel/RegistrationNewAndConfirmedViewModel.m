@@ -41,7 +41,7 @@
         _nextCommand = [[RACCommand alloc] initWithEnabled:self.passwordsValidSignal signalBlock:^RACSignal *(id input) {
 //            @strongify(self);
             
-            //            return [self checkIsAvailable:self.username];
+            [self.delegate shouldLoadNextPage];
             return [RACSignal empty];
         }];
     }

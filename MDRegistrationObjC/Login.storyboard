@@ -23,9 +23,6 @@
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="login:" destination="20y-2c-DMm" eventType="touchUpInside" id="jYa-BQ-Sg3"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ohy-9S-dS9">
                                 <rect key="frame" x="56" y="178" width="209" height="30"/>
@@ -98,7 +95,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="tsf-ZY-i7g" kind="modal" identifier="LoginSegueVerification" id="lqh-NQ-Bu8"/>
+                        <outlet property="loginButton" destination="Gz4-yq-YQm" id="uQ0-TD-mTQ"/>
+                        <outlet property="passwordTextField" destination="e86-f1-KJb" id="mTQ-Cg-Jfw"/>
+                        <outlet property="usernameTextField" destination="ohy-9S-dS9" id="Fxk-eY-2Sw"/>
+                        <segue destination="tsf-ZY-i7g" kind="modal" identifier="LoginSegueActivation" id="lqh-NQ-Bu8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7PS-Fb-HQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -614,6 +614,72 @@
             </objects>
             <point key="canvasLocation" x="3160" y="-703.5"/>
         </scene>
+        <!--Activation-->
+        <scene sceneID="8yf-vf-FKc">
+            <objects>
+                <viewController id="0uK-F8-9QH" customClass="ActivationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QnJ-ri-3KM"/>
+                        <viewControllerLayoutGuide type="bottom" id="NvV-yz-3iD"/>
+                    </layoutGuides>
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="D5d-lB-mUA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Activation Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MqL-eR-sGP">
+                                <rect key="frame" x="16" y="145" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zc-Tg-jHa">
+                                <rect key="frame" x="16" y="185" width="288" height="30"/>
+                                <state key="normal" title="Activate">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="An activation code has been sent to you via SMS. Please enter this N digit activation code below." translatesAutoresizingMaskIntoConstraints="NO" id="v60-kA-NLk">
+                                <rect key="frame" x="16" y="72" width="288" height="69"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="CWL-Ne-Hgq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="If you did not receive your access code within 60 seconds, press the 'No Code' button." translatesAutoresizingMaskIntoConstraints="NO" id="VHL-I6-RPS">
+                                <rect key="frame" x="16" y="227" width="288" height="69"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9zc-Tg-jHa" firstAttribute="top" secondItem="MqL-eR-sGP" secondAttribute="bottom" constant="10" id="5b5-Do-d5i"/>
+                            <constraint firstItem="v60-kA-NLk" firstAttribute="top" secondItem="QnJ-ri-3KM" secondAttribute="bottom" constant="8" symbolic="YES" id="VLK-Zo-ekw"/>
+                            <constraint firstItem="v60-kA-NLk" firstAttribute="trailing" secondItem="MqL-eR-sGP" secondAttribute="trailing" id="Zzh-j4-H94"/>
+                            <constraint firstItem="VHL-I6-RPS" firstAttribute="trailing" secondItem="9zc-Tg-jHa" secondAttribute="trailing" id="cdX-3P-KTg"/>
+                            <constraint firstItem="MqL-eR-sGP" firstAttribute="trailing" secondItem="9zc-Tg-jHa" secondAttribute="trailing" id="cih-uP-D4z"/>
+                            <constraint firstItem="v60-kA-NLk" firstAttribute="leading" secondItem="MqL-eR-sGP" secondAttribute="leading" id="dr3-Ca-dfw"/>
+                            <constraint firstItem="NvV-yz-3iD" firstAttribute="top" secondItem="VHL-I6-RPS" secondAttribute="bottom" constant="272" id="gv4-XA-Ylw"/>
+                            <constraint firstItem="MqL-eR-sGP" firstAttribute="top" secondItem="v60-kA-NLk" secondAttribute="bottom" constant="4" id="i99-Bc-k8E"/>
+                            <constraint firstItem="VHL-I6-RPS" firstAttribute="top" secondItem="9zc-Tg-jHa" secondAttribute="bottom" constant="12" id="lhx-Gy-CBo"/>
+                            <constraint firstItem="9zc-Tg-jHa" firstAttribute="leading" secondItem="VHL-I6-RPS" secondAttribute="leading" id="q5T-Ky-VAb"/>
+                            <constraint firstItem="9zc-Tg-jHa" firstAttribute="leading" secondItem="D5d-lB-mUA" secondAttribute="leadingMargin" id="qlE-7a-SGy"/>
+                            <constraint firstItem="VHL-I6-RPS" firstAttribute="trailing" secondItem="D5d-lB-mUA" secondAttribute="trailingMargin" id="sku-Fq-6rb"/>
+                            <constraint firstItem="9zc-Tg-jHa" firstAttribute="leading" secondItem="MqL-eR-sGP" secondAttribute="leading" id="yXt-TP-6RW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Activation" id="ee2-cU-TnP"/>
+                    <connections>
+                        <outlet property="activationButton" destination="9zc-Tg-jHa" id="GyZ-Lc-c0e"/>
+                        <outlet property="activationTokenTextField" destination="MqL-eR-sGP" id="i73-jw-zKb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LGj-8U-h7I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-271" y="1495"/>
+        </scene>
         <!--Verification-->
         <scene sceneID="6Q8-us-cwy">
             <objects>
@@ -703,7 +769,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eud-M9-HuK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="226" y="742"/>
+            <point key="canvasLocation" x="148" y="1488"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VPv-vw-JQa">
@@ -915,7 +981,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="7bM-Ub-2rD" kind="relationship" relationship="rootViewController" id="LOV-Ae-eY2"/>
+                        <segue destination="0uK-F8-9QH" kind="relationship" relationship="rootViewController" id="yXQ-sW-kLr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fG-fJ-vBg" userLabel="First Responder" sceneMemberID="firstResponder"/>

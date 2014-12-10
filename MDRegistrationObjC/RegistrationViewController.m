@@ -48,7 +48,13 @@
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RegistrationPageViewController"];
-    self.pageViewController.dataSource = self;
+    
+    /**
+     *   Disable gesture swipes by setting datasource to nil
+     */
+    // TODO:: Implement page control.
+    //    self.pageViewController.dataSource = self;
+    
     self.pageViewController.delegate = self;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
@@ -59,6 +65,10 @@
     
     self.maxPages = self.contentViewControllers.count;
 
+    [self.contentViewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        RegistrationPageContentViewController *pageContentVC = (RegistrationPageContentViewController*)obj;
+        pageContentVC.delegate = self;
+    }];
     
  
     [self.pageViewController setViewControllers:@[self.contentViewControllers[0]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -169,29 +179,29 @@
     return [mutableDict copy];
 }
 
-- (NSDictionary*)buildPayloadMock
-{
-    return @{@"firstName" : @"Ger",
-             @"lastName" : @"O'Sullivan",
-             @"password" : @"test1",
-             @"securityQuestions" :  @[
-                             @{
-                                 @"answer" : @"Dublin",
-                                 @"question" : @"What city where you born in?"
-                             },
-                             @{
-                                 @"answer" : @"Meyers",
-                                 @"question" : @"What was your first pet's name?"
-                             },
-                             @{
-                                 @"answer" : @"Mini",
-                                 @"question" : @"What is the make of your first car?"
-                             }
-                             ],
-             @"username" : @"ger@brilliantage.com"
-             };
-    
-}
+//- (NSDictionary*)buildPayloadMock
+//{
+//    return @{@"firstName" : @"Ger",
+//             @"lastName" : @"O'Sullivan",
+//             @"password" : @"test1",
+//             @"securityQuestions" :  @[
+//                             @{
+//                                 @"answer" : @"Dublin",
+//                                 @"question" : @"What city where you born in?"
+//                             },
+//                             @{
+//                                 @"answer" : @"Meyers",
+//                                 @"question" : @"What was your first pet's name?"
+//                             },
+//                             @{
+//                                 @"answer" : @"Mini",
+//                                 @"question" : @"What is the make of your first car?"
+//                             }
+//                             ],
+//             @"username" : @"ger@brilliantage.com"
+//             };
+//    
+//}
 - (void)submit {
     
 //    NSDictionary *parameters = [self buildPayloadMock];
@@ -223,7 +233,7 @@
         
         [weakSelf dismissViewControllerAnimated:YES completion:^{
            
-            [[weakSelf delegate] dismissAndPresentVerificationWithPasscode];
+            [[weakSelf delegate] dismissAndPresentActivationModal];
             
         }];
         
@@ -415,14 +425,28 @@
 
 - (void)shouldDismissController
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    __weak RegistrationViewController *weakSelf = self;
+    
+    [weakSelf dismissViewControllerAnimated:YES completion:^{
+        
+        [[weakSelf delegate] dismissAndPresentActivationModal];
+        
+    }];
 }
 
 - (void)shouldSubmitRegistration
 {
     NSLog(@"Preparing to submit page...");
-    NSDictionary *userInfo = [self buildUserInfoDict:self.contentViewControllers];
-    [self.viewModel subscribeToRegistration:userInfo];
+    [SVProgressHUD show];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // time-consuming task
+        NSDictionary *userInfo = [self buildUserInfoDict:self.contentViewControllers];
+        [self.viewModel subscribeToRegistration:userInfo];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
+    });
+
 }
 
 - (void)bindViewModel:(id)viewModel

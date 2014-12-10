@@ -10,6 +10,8 @@
 
 @protocol LoginViewControllerDelegate <NSObject>
 
-- (void)dismissAndPresentVerificationWithPasscode;
+- (void)dismissAndPresentActivationModal;
+- (void)shouldGotoMainStoryboard;
+- (void)shouldShowLoginFailureAlert;
 
 @end

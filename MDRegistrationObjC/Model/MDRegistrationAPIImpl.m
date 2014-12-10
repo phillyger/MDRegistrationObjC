@@ -59,6 +59,30 @@
     return [[[[MDRegistrationAPIClient sharedClient] rac_POST:fullEndPointUri parameters:userInfo] logError] replayLazily];
 }
 
+- (RACSignal *)authenticate:(NSDictionary *)userInfo
+{
+    NSString *const pathUri = @"authenticate";
+    
+    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:pathUri];
+    
+    //    NSLog(@"%@", userInfo);
+    
+    
+    return [[[[MDRegistrationAPIClient sharedClient] rac_POST:fullEndPointUri parameters:userInfo] logError] replayLazily];
+}
+
+- (RACSignal *)activate:(NSDictionary *)userInfo
+{
+    NSString *const pathUri = @"activate";
+    
+    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:pathUri];
+    
+    //    NSLog(@"%@", userInfo);
+    
+    
+    return [[[[MDRegistrationAPIClient sharedClient] rac_POST:fullEndPointUri parameters:userInfo] logError] replayLazily];
+}
+
 
 
 @end

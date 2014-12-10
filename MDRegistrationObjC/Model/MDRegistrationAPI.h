@@ -20,4 +20,8 @@
 
 - (RACSignal *)register:(NSDictionary *)userInfo;
 
+- (RACSignal *)authenticate:(NSDictionary *)userInfo;
+
+- (RACSignal *)activate:(NSDictionary *)userInfo;
+
 @end

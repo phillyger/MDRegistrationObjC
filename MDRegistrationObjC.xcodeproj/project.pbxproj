@@ -10,11 +10,14 @@
 		284A7A441A316042001A7E4A /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284A7A431A316042001A7E4A /* VerificationViewController.m */; };
 		284A7A491A322B6E001A7E4A /* PasswordResetUsernameViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 284A7A481A322B6E001A7E4A /* PasswordResetUsernameViewModel.m */; };
 		284A7A4C1A322C6A001A7E4A /* NSString+EmailAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 284A7A4B1A322C6A001A7E4A /* NSString+EmailAdditions.m */; };
+		284ACDE81A37F6650004FA50 /* ActivationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 284ACDE71A37F6650004FA50 /* ActivationViewModel.m */; };
 		2851EAFE1A373EA00046856B /* PasswordResetViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2851EAFD1A373EA00046856B /* PasswordResetViewModel.m */; };
 		2851EB011A376F320046856B /* RegistrationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2851EB001A376F320046856B /* RegistrationViewModel.m */; };
 		2851EB051A377A390046856B /* RegistrationUserInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2851EB041A377A390046856B /* RegistrationUserInfoViewModel.m */; };
 		2851EB081A377A580046856B /* RegistrationNewAndConfirmedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2851EB071A377A580046856B /* RegistrationNewAndConfirmedViewModel.m */; };
 		2851EB0B1A377A710046856B /* RegistrationSecurityQuestionsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2851EB0A1A377A710046856B /* RegistrationSecurityQuestionsViewModel.m */; };
+		2851EB121A37C3750046856B /* ActivationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2851EB111A37C3750046856B /* ActivationViewController.m */; };
+		2851EB151A37EB1D0046856B /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2851EB141A37EB1D0046856B /* LoginViewModel.m */; };
 		2876A5081A23AE5B00147038 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876A5071A23AE5B00147038 /* main.m */; };
 		2876A50B1A23AE5B00147038 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876A50A1A23AE5B00147038 /* AppDelegate.m */; };
 		2876A5141A23AE5B00147038 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2876A5121A23AE5B00147038 /* Main.storyboard */; };
@@ -65,6 +68,9 @@
 		284A7A4A1A322C6A001A7E4A /* NSString+EmailAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EmailAdditions.h"; sourceTree = "<group>"; };
 		284A7A4B1A322C6A001A7E4A /* NSString+EmailAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EmailAdditions.m"; sourceTree = "<group>"; };
 		284A7A4D1A3231FF001A7E4A /* PasswordResetViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasswordResetViewControllerDelegate.h; path = Delegates/PasswordResetViewControllerDelegate.h; sourceTree = "<group>"; };
+		284ACDE61A37F6650004FA50 /* ActivationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivationViewModel.h; path = ViewModel/ActivationViewModel.h; sourceTree = "<group>"; };
+		284ACDE71A37F6650004FA50 /* ActivationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivationViewModel.m; path = ViewModel/ActivationViewModel.m; sourceTree = "<group>"; };
+		284ACDE91A37FAB50004FA50 /* ActivationViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivationViewControllerDelegate.h; path = Delegates/ActivationViewControllerDelegate.h; sourceTree = "<group>"; };
 		2851EAFC1A373EA00046856B /* PasswordResetViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasswordResetViewModel.h; path = ViewModel/PasswordResetViewModel.h; sourceTree = "<group>"; };
 		2851EAFD1A373EA00046856B /* PasswordResetViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasswordResetViewModel.m; path = ViewModel/PasswordResetViewModel.m; sourceTree = "<group>"; };
 		2851EAFF1A376F320046856B /* RegistrationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationViewModel.h; path = ViewModel/RegistrationViewModel.h; sourceTree = "<group>"; };
@@ -76,6 +82,10 @@
 		2851EB071A377A580046856B /* RegistrationNewAndConfirmedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationNewAndConfirmedViewModel.m; path = ViewModel/RegistrationNewAndConfirmedViewModel.m; sourceTree = "<group>"; };
 		2851EB091A377A710046856B /* RegistrationSecurityQuestionsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationSecurityQuestionsViewModel.h; path = ViewModel/RegistrationSecurityQuestionsViewModel.h; sourceTree = "<group>"; };
 		2851EB0A1A377A710046856B /* RegistrationSecurityQuestionsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationSecurityQuestionsViewModel.m; path = ViewModel/RegistrationSecurityQuestionsViewModel.m; sourceTree = "<group>"; };
+		2851EB101A37C3750046856B /* ActivationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivationViewController.h; path = Controllers/Activation/ActivationViewController.h; sourceTree = "<group>"; };
+		2851EB111A37C3750046856B /* ActivationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivationViewController.m; path = Controllers/Activation/ActivationViewController.m; sourceTree = "<group>"; };
+		2851EB131A37EB1D0046856B /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewModel.h; path = ViewModel/LoginViewModel.h; sourceTree = "<group>"; };
+		2851EB141A37EB1D0046856B /* LoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewModel.m; path = ViewModel/LoginViewModel.m; sourceTree = "<group>"; };
 		2876A5021A23AE5B00147038 /* MDRegistrationObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDRegistrationObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2876A5061A23AE5B00147038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2876A5071A23AE5B00147038 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -165,6 +175,7 @@
 				284A7A401A315AC5001A7E4A /* LoginViewControllerDelegate.h */,
 				284A7A4D1A3231FF001A7E4A /* PasswordResetViewControllerDelegate.h */,
 				2851EB021A376F6E0046856B /* RegistrationViewControllerDelegate.h */,
+				284ACDE91A37FAB50004FA50 /* ActivationViewControllerDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -200,8 +211,21 @@
 				2851EB071A377A580046856B /* RegistrationNewAndConfirmedViewModel.m */,
 				2851EB091A377A710046856B /* RegistrationSecurityQuestionsViewModel.h */,
 				2851EB0A1A377A710046856B /* RegistrationSecurityQuestionsViewModel.m */,
+				2851EB131A37EB1D0046856B /* LoginViewModel.h */,
+				2851EB141A37EB1D0046856B /* LoginViewModel.m */,
+				284ACDE61A37F6650004FA50 /* ActivationViewModel.h */,
+				284ACDE71A37F6650004FA50 /* ActivationViewModel.m */,
 			);
 			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		2851EB0C1A37C2F20046856B /* Activation */ = {
+			isa = PBXGroup;
+			children = (
+				2851EB101A37C3750046856B /* ActivationViewController.h */,
+				2851EB111A37C3750046856B /* ActivationViewController.m */,
+			);
+			name = Activation;
 			sourceTree = "<group>";
 		};
 		2876A4F91A23AE5B00147038 = {
@@ -295,6 +319,7 @@
 		28F786791A2E34F400284FBA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2851EB0C1A37C2F20046856B /* Activation */,
 				284A7A411A315F91001A7E4A /* Verification */,
 				28F786961A2F528E00284FBA /* Password Reset */,
 				28F786951A2F524D00284FBA /* Registration */,
@@ -518,6 +543,7 @@
 				2851EB0B1A377A710046856B /* RegistrationSecurityQuestionsViewModel.m in Sources */,
 				28F786881A2E3EE600284FBA /* RegistrationViewController.m in Sources */,
 				2851EB081A377A580046856B /* RegistrationNewAndConfirmedViewModel.m in Sources */,
+				2851EB151A37EB1D0046856B /* LoginViewModel.m in Sources */,
 				28F786911A2F47A000284FBA /* PrivacyPolicyViewController.m in Sources */,
 				28FA56481A36478A00BA95D1 /* MDRegistrationAPIImpl.m in Sources */,
 				2876A50B1A23AE5B00147038 /* AppDelegate.m in Sources */,
@@ -535,9 +561,11 @@
 				28F7869F1A2F54F700284FBA /* PasswordResetPageViewController.m in Sources */,
 				28FA564F1A36AA2700BA95D1 /* PasswordResetNewAndConfirmedViewModel.m in Sources */,
 				28F7868B1A2E3F2E00284FBA /* RegistrationPageContentViewController.m in Sources */,
+				2851EB121A37C3750046856B /* ActivationViewController.m in Sources */,
 				28F7867C1A2E3CB600284FBA /* RegistrationPageViewController.m in Sources */,
 				2851EB051A377A390046856B /* RegistrationUserInfoViewModel.m in Sources */,
 				284A7A4C1A322C6A001A7E4A /* NSString+EmailAdditions.m in Sources */,
+				284ACDE81A37F6650004FA50 /* ActivationViewModel.m in Sources */,
 				2876A5361A23B0F700147038 /* LoginViewController.m in Sources */,
 				28FA564C1A364EF200BA95D1 /* MDViewModelServicesImpl.m in Sources */,
 			);

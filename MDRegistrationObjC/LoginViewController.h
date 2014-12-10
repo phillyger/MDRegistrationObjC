@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewControllerDelegate.h"
+#import "MDReactiveView.h"
 
-@interface LoginViewController : UIViewController <LoginViewControllerDelegate>
+@interface LoginViewController : UIViewController <LoginViewControllerDelegate, MDReactiveView>
 
 
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end

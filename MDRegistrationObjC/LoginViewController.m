@@ -7,9 +7,11 @@
 //
 
 #import "LoginViewController.h"
-#import "MDRegistrationAPIClient.h"
-#import "AFHTTPRequestOperationManager.h"
+#import <ReactiveCocoa.h>
+#import "EXTScope.h"
+#import "MDViewModelServicesImpl.h"
 #import "RegistrationViewController.h"
+#import "LoginViewModel.h"
 
 #import "VerificationViewController.h"
 
@@ -18,10 +20,13 @@ static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:809
 static NSString *kMainStoryboardiPad = @"Main";
 
 @interface LoginViewController ()
-- (IBAction)login:(UIButton *)sender;
 
 @property (nonatomic)RegistrationViewController *registerVC;
 @property (nonatomic)VerificationViewController *verifyVC;
+
+@property(nonatomic, strong) LoginViewModel *viewModel;
+@property (strong, nonatomic) MDViewModelServicesImpl *viewModelServices;
+
 @end
 
 @implementation LoginViewController
@@ -32,32 +37,18 @@ static NSString *kMainStoryboardiPad = @"Main";
 
 }
 
-- (IBAction)login:(UIButton *)sender {
-    
-    NSDictionary *parameters = @{@"username": @"ger@brilliantage.com", @"password":@"test1"};
-    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:@"authenticate"];
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+     [self initializeViewModel];
+}
 
-    NSError *error = nil;
-    NSMutableURLRequest *request;
-    
-    request = [[[MDRegistrationAPIClient sharedClient] requestSerializer] requestWithMethod:@"POST" URLString:fullEndPointUri parameters:parameters error:&error];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
-                                         initWithRequest:request];
-    
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success: %@", [operation responseString]);
-        [self openMainStoryboard];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Outcome: %@", [operation responseString]);
-        NSLog(@"Error: %@", error);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unauthorized"  message:@"We were unable to validate your credentials. Please re-enter your credentials" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        
-        [alert show];
-    }];
-    
-    [operation start];
+- (void)initializeViewModel
+{
+    self.viewModelServices = [[MDViewModelServicesImpl alloc] init];
+    self.viewModel = [[LoginViewModel alloc] initWithServices:self.viewModelServices ];
+    self.viewModel.delegate = self;
+    [self bindViewModel:self.viewModel];
     
 }
 
@@ -70,11 +61,11 @@ static NSString *kMainStoryboardiPad = @"Main";
     [self presentViewController:initialDashboardController animated:YES completion:nil];
 }
 
-- (void)dismissAndPresentVerificationWithPasscode
+- (void)dismissAndPresentActivationModal
 {
-    NSLog(@"dismissAndPresentVerificationWithPasscode...");
+    NSLog(@"dismissAndPresentActivationModal...");
     
-    [self performSegueWithIdentifier:@"LoginSegueVerification" sender:nil];
+    [self performSegueWithIdentifier:@"LoginSegueActivation" sender:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -91,15 +82,29 @@ static NSString *kMainStoryboardiPad = @"Main";
         
         self.verifyVC = verifyNavVC.childViewControllers.firstObject;
         
-        
-        
-//        [self presentViewController:verifyVC animated:YES completion:^{
-//            [[LTHPasscodeViewController sharedUser] showLockScreenWithAnimation:YES
-//                                                                     withLogout:NO
-//                                                                 andLogoutTitle:nil];
-//        }];
-        
     }
+}
+
+#pragma mark - Delegation methods
+- (void)shouldGotoMainStoryboard
+{
+    [self openMainStoryboard];
+}
+
+- (void)shouldShowLoginFailureAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unauthorized"  message:@"We were unable to validate your credentials. Please re-enter your credentials" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    
+    [alert show];
+}
+
+- (void)bindViewModel:(id)viewModel
+{
+
+    self.loginButton.rac_command = self.viewModel.loginCommand;
+    RAC(self.viewModel, username) = self.usernameTextField.rac_textSignal;
+    RAC(self.viewModel, password) = self.passwordTextField.rac_textSignal;
+    
 }
 
 @end

@@ -1,25 +1,27 @@
 //
-//  RegistrationViewModel.m
+//  ActivationViewModel.m
 //  MDRegistrationObjC
 //
 //  Created by GER OSULLIVAN on 12/9/14.
 //  Copyright (c) 2014 brilliantage. All rights reserved.
 //
 
-#import "RegistrationViewModel.h"
+#import "ActivationViewModel.h"
 #import <ReactiveCocoa.h>
 #import "EXTScope.h"
 #import "MDViewModelServicesImpl.h"
 
-
-@interface RegistrationViewModel ()
+@interface ActivationViewModel ()
 
 @property (weak, nonatomic) id<MDViewModelServices> services;
 @property (nonatomic) UIAlertView *alertView;
 
+@property(nonatomic, strong) RACSignal *activationCodeValidSignal;
+
+
 @end
 
-@implementation RegistrationViewModel
+@implementation ActivationViewModel
 
 - (instancetype)initWithServices:(id<MDViewModelServices>)services
 {
@@ -31,15 +33,13 @@
     return self;
 }
 
-
-
-- (RACSignal *)submitRegister:(NSDictionary*)userInfo {
+- (RACSignal *)activate:(NSDictionary*)userInfo {
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         //        @weakify(self);
         
-        [[[[self.services getMDRegistrationService] register:userInfo]
+        [[[[self.services getMDRegistrationService] activate:userInfo]
           map:^id(RACTuple *tuple) {
               return tuple.second;
           }]
@@ -59,9 +59,9 @@
     }];
 }
 
--(void)subscribeToRegistration:(NSDictionary*)userInfo
+-(void)subscribeToActivate:(NSDictionary*)userInfo
 {
-    [[self submitRegister:userInfo] subscribeNext:^(NSDictionary *responseDict) {
+    [[self activate:userInfo] subscribeNext:^(NSDictionary *responseDict) {
         NSLog(@"hello");
         NSLog(@"%@", responseDict);
         
@@ -71,22 +71,48 @@
             
             NSLog(@"good to go");
             
-            [self.delegate shouldDismissController];
+//            [self.delegate shouldGotoMainStoryboard];
             
         } else {
             NSLog(@"stop");
-            [self.delegate shouldShowRegistrationFailureAlert];
+            [self.delegate shouldShowActivationFailureAlert];
             
         }
         
         
     } error:^(NSError *error) {
         NSLog(@"stop");
-         [self.delegate shouldShowRegistrationFailureAlert];
+        [self.delegate shouldShowActivationFailureAlert];
     } completed:^{
         // do nothing
     }];
     
 }
+
+- (RACCommand *)activateCommand {
+    if (!_activateCommand) {
+        //        @weakify(self);
+        _activateCommand = [[RACCommand alloc] initWithEnabled:self.activationCodeValidSignal signalBlock:^RACSignal *(id input) {
+            //            @strongify(self);
+            
+            NSLog(@"%@", input);
+//            NSDictionary *userInfo = @{@"username":self.username, @"password":self.password, @"activationToken":self.activationToken};
+//            [self subscribeToActivate:userInfo];
+            
+            return [RACSignal empty];
+        }];
+    }
+    return _activateCommand;
+}
+
+- (RACSignal *)activationCodeValidSignal {
+    if (!_activationCodeValidSignal) {
+        _activationCodeValidSignal = [RACObserve(self, activationToken) map:^id(NSString *code) {
+            return @(code.length == 4);
+        }];
+    }
+    return _activationCodeValidSignal;
+}
+
 
 @end

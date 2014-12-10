@@ -16,6 +16,7 @@
 @interface RegistrationUserInfoViewModel ()
 @property (weak, nonatomic) id<MDViewModelServices> services;
 
+@property(nonatomic, strong) RACSignal *allUserInfoValidSignal;
 @property(nonatomic, strong) RACSignal *usernameValidSignal;
 @property(nonatomic, strong) RACSignal *firstNameValidSignal;
 @property(nonatomic, strong) RACSignal *lastNameValidSignal;
@@ -62,12 +63,12 @@
 - (RACCommand *)nextCommand {
     if (!_nextCommand) {
         @weakify(self);
-        _nextCommand = [[RACCommand alloc] initWithEnabled:self.usernameValidSignal signalBlock:^RACSignal *(id input) {
+        _nextCommand = [[RACCommand alloc] initWithEnabled:self.allUserInfoValidSignal signalBlock:^RACSignal *(id input) {
             @strongify(self);
             
-            return [self checkIsAvailable:self.username];
+            [self.delegate shouldLoadNextPage];
             
-            //			return [RACSignal empty];
+            return [RACSignal empty];
         }];
     }
     return _nextCommand;
@@ -109,5 +110,44 @@
     }
     return _usernameValidSignal;
 }
+
+- (RACSignal *)firstNameValidSignal {
+    if (!_firstNameValidSignal) {
+        _firstNameValidSignal = [RACObserve(self, firstName) map:^id(NSString *firstName) {
+            return @(firstName.length > 1);
+        }];
+    }
+    return _firstNameValidSignal;
+}
+
+- (RACSignal *)lastNameValidSignal {
+    if (!_lastNameValidSignal) {
+        _lastNameValidSignal = [RACObserve(self, lastName) map:^id(NSString *lastName) {
+            return @(lastName.length > 1);
+        }];
+    }
+    return _lastNameValidSignal;
+}
+
+- (RACSignal *)phoneNumberValidSignal {
+    if (!_phoneNumberValidSignal) {
+        _phoneNumberValidSignal = [RACObserve(self, phoneNumber) map:^id(NSString *phoneNumber) {
+            return @(phoneNumber.length > 1);
+        }];
+    }
+    return _phoneNumberValidSignal;
+}
+
+
+
+///Only enable the create account button when each field is filled out correctly.
+-(RACSignal *)allUserInfoValidSignal {
+    return [RACSignal combineLatest:@[self.usernameValidSignal, self.firstNameValidSignal, self.lastNameValidSignal, self.phoneNumberValidSignal]
+                             reduce:^(NSNumber *username, NSNumber *firstName, NSNumber *lastName, NSNumber* phoneNumber) {
+                                 return @((username.boolValue && firstName.boolValue && lastName.boolValue && phoneNumber.boolValue));
+                             }];
+    
+}
+
 
 @end

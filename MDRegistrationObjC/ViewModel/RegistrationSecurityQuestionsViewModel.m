@@ -39,6 +39,7 @@
     if (self) {
         _services = services;
         
+        [self initialize];
         
     }
     return self;
@@ -46,21 +47,14 @@
 
 - (void)initialize
 {
-    [[self fetchQuestions:_username] subscribeNext:^(NSDictionary *response) {
-        //            NSLog(@"hello");
-        //            NSLog(@"%@", response);
-        //            NSLog(@"%@", [response valueForKeyPath:@"data.question1"]);
-        //            NSLog(@"%@", [response valueForKeyPath:@"data.question2"]);
-        //            NSLog(@"%@", [response valueForKeyPath:@"data.question3"]);
-        //
-        self.question1 = [response valueForKeyPath:@"data.question1"];
-        self.question2 = [response valueForKeyPath:@"data.question2"];
-        self.question3 = [response valueForKeyPath:@"data.question3"];
+
+    NSString *placeHolderText= @"Tap to select a question";
+    self.question1 = placeHolderText;
+    self.question2 = placeHolderText;
+    self.question3 = placeHolderText;
         
         
-    } completed:^{
-        // do nothing
-    }];
+
 }
 
 
@@ -91,8 +85,9 @@
             @strongify(self);
             
             //            return [self checkIsAvailable:self.username];
-            [self.delegate shouldLoadNextPage];
+            [self.delegate shouldSubmitRegistration];
             return [RACSignal empty];
+
         }];
     }
     return _nextCommand;
@@ -155,7 +150,7 @@
             return @(question.length > 1);
         }];
     }
-    return _question2ValidSignal;
+    return _question3ValidSignal;
 }
 
 
