@@ -19,6 +19,8 @@
 
 @interface RegistrationPageContentViewController ()
 
+@property (strong)RACSignal *phoneNumberSignal;
+
 @property(nonatomic, strong) id viewModel;
 @property(nonatomic, strong) RegistrationUserInfoViewModel *viewModelUserInfo;      // screen #1
 @property(nonatomic, strong) RegistrationNewAndConfirmedViewModel *viewModelPwdNewAndConfirmed; // screen #2
@@ -130,13 +132,15 @@
         [self.delegate shouldSetSignalOnRightNavItemButton:self.viewModelUserInfo.nextCommand];
     }
     
-    self.phoneNumberTextField.delegate = self;
+
     
     RAC(self.viewModelUserInfo, username) = self.usernameTextField.rac_textSignal;
     RAC(self.viewModelUserInfo, firstName) = self.firstNameTextField.rac_textSignal;
     RAC(self.viewModelUserInfo, lastName) = self.lastNameTextField.rac_textSignal;
-    RAC(self.viewModelUserInfo, phoneNumber) = self.phoneNumberTextField.rac_textSignal;
+    _phoneNumberSignal = self.phoneNumberTextField.rac_textSignal;
+    RAC(self.viewModelUserInfo, phoneNumber) = _phoneNumberSignal;
 //    RAC(self.statusLabel, text) = RACObserve(self.viewModelUserInfo, statusMessage);
+        self.phoneNumberTextField.delegate = self;
 }
 
 - (void)bindViewModelSecQuestions:(RegistrationSecurityQuestionsViewModel*)viewModel
@@ -182,10 +186,19 @@
     if (textField == _phoneNumberTextField) {
         BOOL phoneNumberHasChanged = [[STPhoneFormatter phoneFormatter] phoneNumberMustChangeInRange:range replacementString:string];
         
+//        if ([[STPhoneFormatter phoneFormatter] isValid]) {
+//            NSLog(@"Is Valid");
+////            self.viewModelUserInfo.phoneNumber = textField.text;
+//
+//
+//        }
+        
         if (phoneNumberHasChanged) {
             textField.text = [[STPhoneFormatter phoneFormatter] formattedPhoneNumber];
-            
         }
+        [_phoneNumberSignal subscribeNext:^(id x) {
+            self.viewModelUserInfo.phoneNumber = textField.text;
+        }];
         
         return NO;
     }

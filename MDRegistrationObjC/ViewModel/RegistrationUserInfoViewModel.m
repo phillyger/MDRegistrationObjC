@@ -132,7 +132,7 @@
 - (RACSignal *)phoneNumberValidSignal {
     if (!_phoneNumberValidSignal) {
         _phoneNumberValidSignal = [RACObserve(self, phoneNumber) map:^id(NSString *phoneNumber) {
-            return @(phoneNumber.length > 1);
+            return @(phoneNumber.length == 14);
         }];
     }
     return _phoneNumberValidSignal;
