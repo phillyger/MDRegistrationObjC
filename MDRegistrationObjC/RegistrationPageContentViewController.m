@@ -15,7 +15,7 @@
 #import "RegistrationSecurityQuestionsViewModel.h"
 
 #import "MDViewModelServicesImpl.h"
-
+#import "STPhoneFormatter.h"
 
 @interface RegistrationPageContentViewController ()
 
@@ -130,6 +130,8 @@
         [self.delegate shouldSetSignalOnRightNavItemButton:self.viewModelUserInfo.nextCommand];
     }
     
+    self.phoneNumberTextField.delegate = self;
+    
     RAC(self.viewModelUserInfo, username) = self.usernameTextField.rac_textSignal;
     RAC(self.viewModelUserInfo, firstName) = self.firstNameTextField.rac_textSignal;
     RAC(self.viewModelUserInfo, lastName) = self.lastNameTextField.rac_textSignal;
@@ -172,5 +174,23 @@
     //    RAC(self.statusLabel, text) = RACObserve(self.viewModelUsername, statusMessage);
 }
 
+#pragma mark -
+#pragma mark UITextField Delegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == _phoneNumberTextField) {
+        BOOL phoneNumberHasChanged = [[STPhoneFormatter phoneFormatter] phoneNumberMustChangeInRange:range replacementString:string];
+        
+        if (phoneNumberHasChanged) {
+            textField.text = [[STPhoneFormatter phoneFormatter] formattedPhoneNumber];
+            
+        }
+        
+        return NO;
+    }
+    
+    return YES;
+}
 
 @end

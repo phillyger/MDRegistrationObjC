@@ -16,6 +16,7 @@
 - (instancetype)initWithServices:(id<MDViewModelServices>)services;
 
 @property(nonatomic, strong) RACCommand *nextCommand;
+@property(nonatomic, strong) RACCommand *tapSecQuestionLabelCommand;
 
 // write to this property
 @property(nonatomic, strong) NSString *username;

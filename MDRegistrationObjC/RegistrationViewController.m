@@ -202,59 +202,59 @@
 //             };
 //    
 //}
-- (void)submit {
-    
-//    NSDictionary *parameters = [self buildPayloadMock];
-    NSDictionary *parameters = [self buildPayload];
-    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:@"register"];
-    
-    NSError *error = nil;
-    NSMutableURLRequest *request;
-    
-    
-    
-    request = [[[MDRegistrationAPIClient sharedClient] requestSerializer] requestWithMethod:@"POST" URLString:fullEndPointUri parameters:parameters error:&error];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
-                                         initWithRequest:request];
-    
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success: %@", [operation responseString]);
-        [SVProgressHUD dismiss];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registration Complete!"  message:@"Your registration was successful. We have sent an activation code to the phone number you registered with. Please use this activation code to..." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        
-        [alert show];
-        
-
-        
-        NSLog(@"Transition");
-        
-        __weak RegistrationViewController *weakSelf = self;
-        
-        [weakSelf dismissViewControllerAnimated:YES completion:^{
-           
-            [[weakSelf delegate] dismissAndPresentActivationModal];
-            
-        }];
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [SVProgressHUD dismiss];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unauthorized"  message:@"We were unable to register your account. Please contact your system admin." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        
-        [alert show];
-    }];
-    
-    
-    
-    [SVProgressHUD show];
-
-    
-    
-    [operation start];
-    
-}
+//- (void)submit {
+//    
+////    NSDictionary *parameters = [self buildPayloadMock];
+//    NSDictionary *parameters = [self buildPayload];
+//    NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:@"register"];
+//    
+//    NSError *error = nil;
+//    NSMutableURLRequest *request;
+//    
+//    
+//    
+//    request = [[[MDRegistrationAPIClient sharedClient] requestSerializer] requestWithMethod:@"POST" URLString:fullEndPointUri parameters:parameters error:&error];
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
+//                                         initWithRequest:request];
+//    
+//
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"Success: %@", [operation responseString]);
+//        [SVProgressHUD dismiss];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registration Complete!"  message:@"Your registration was successful. We have sent an activation code to the phone number you registered with. Please use this activation code to..." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        
+//        [alert show];
+//        
+//
+//        
+//        NSLog(@"Transition");
+//        
+//        __weak RegistrationViewController *weakSelf = self;
+//        
+//        [weakSelf dismissViewControllerAnimated:YES completion:^{
+//           
+//            [[weakSelf delegate] shouldDismissAndPresentActivationModalWithUserInfo];
+//            
+//        }];
+//        
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//        [SVProgressHUD dismiss];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unauthorized"  message:@"We were unable to register your account. Please contact your system admin." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        
+//        [alert show];
+//    }];
+//    
+//    
+//    
+//    [SVProgressHUD show];
+//
+//    
+//    
+//    [operation start];
+//    
+//}
 
 - (void)showRegistrationSuccessAlert
 {
@@ -423,13 +423,13 @@
     [self loadPreviousPage];
 }
 
-- (void)shouldDismissController
+- (void)shouldDismissControllerWithUserInfo:(NSDictionary*)userInfo
 {
     __weak RegistrationViewController *weakSelf = self;
     
     [weakSelf dismissViewControllerAnimated:YES completion:^{
         
-        [[weakSelf delegate] dismissAndPresentActivationModal];
+        [[weakSelf delegate] shouldPresentActivationModalWithUserInfo:userInfo];
         
     }];
 }

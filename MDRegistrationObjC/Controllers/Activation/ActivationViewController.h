@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *activationTokenTextField;
 @property (weak, nonatomic) IBOutlet UIButton *activationButton;
 
+@property (strong)NSDictionary* userInfo;
 @end

@@ -12,6 +12,8 @@
 #import "MDViewModelServicesImpl.h"
 
 
+static NSInteger RESPONSE_CODE_SUCCESS = 200000;
+
 @interface RegistrationViewModel ()
 
 @property (weak, nonatomic) id<MDViewModelServices> services;
@@ -62,16 +64,14 @@
 -(void)subscribeToRegistration:(NSDictionary*)userInfo
 {
     [[self submitRegister:userInfo] subscribeNext:^(NSDictionary *responseDict) {
-        NSLog(@"hello");
-        NSLog(@"%@", responseDict);
         
         NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
         
-        if ([outcomeCode intValue] == 200000) {
+        if ([outcomeCode intValue] == RESPONSE_CODE_SUCCESS) {
             
             NSLog(@"good to go");
             
-            [self.delegate shouldDismissController];
+            [self.delegate shouldDismissControllerWithUserInfo:userInfo];
             
         } else {
             NSLog(@"stop");

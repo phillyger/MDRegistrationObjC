@@ -12,7 +12,7 @@
 
 @class RegistrationPageContentTableViewController;
 
-@interface RegistrationPageContentViewController : UIViewController <MDReactiveView>
+@interface RegistrationPageContentViewController : UIViewController <MDReactiveView, UITextFieldDelegate>
 
 @property (nonatomic)RegistrationPageContentTableViewController *securityQuestions;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;

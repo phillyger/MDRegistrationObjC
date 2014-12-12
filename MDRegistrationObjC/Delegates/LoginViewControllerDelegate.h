@@ -10,7 +10,7 @@
 
 @protocol LoginViewControllerDelegate <NSObject>
 
-- (void)dismissAndPresentActivationModal;
+- (void)shouldPresentActivationModalWithUserInfo:(NSDictionary*)userInfo;
 - (void)shouldGotoMainStoryboard;
 - (void)shouldShowLoginFailureAlert;
 

@@ -14,6 +14,7 @@
 #import "LoginViewModel.h"
 
 #import "VerificationViewController.h"
+#import "ActivationViewController.h"
 
 static UIStoryboard *main;
 static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
@@ -23,6 +24,7 @@ static NSString *kMainStoryboardiPad = @"Main";
 
 @property (nonatomic)RegistrationViewController *registerVC;
 @property (nonatomic)VerificationViewController *verifyVC;
+@property (nonatomic)ActivationViewController *activationVC;
 
 @property(nonatomic, strong) LoginViewModel *viewModel;
 @property (strong, nonatomic) MDViewModelServicesImpl *viewModelServices;
@@ -61,11 +63,11 @@ static NSString *kMainStoryboardiPad = @"Main";
     [self presentViewController:initialDashboardController animated:YES completion:nil];
 }
 
-- (void)dismissAndPresentActivationModal
+- (void)shouldPresentActivationModalWithUserInfo:(NSDictionary*)userInfo
 {
-    NSLog(@"dismissAndPresentActivationModal...");
+    NSLog(@"shouldPresentActivationModalWithUserInfo...");
     
-    [self performSegueWithIdentifier:@"LoginSegueActivation" sender:nil];
+    [self performSegueWithIdentifier:@"LoginSegueActivation" sender:userInfo];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -76,12 +78,12 @@ static NSString *kMainStoryboardiPad = @"Main";
         self.registerVC = regNavVC.childViewControllers.firstObject;
         self.registerVC.delegate = self;
         
-    } else if ([[segue identifier] isEqualToString:@"LoginSegueVerification"]) {
+    } else if ([[segue identifier] isEqualToString:@"LoginSegueActivation"]) {
         
-        UINavigationController *verifyNavVC = (UINavigationController*)segue.destinationViewController;
+        UINavigationController *activationNavVC = (UINavigationController*)segue.destinationViewController;
         
-        self.verifyVC = verifyNavVC.childViewControllers.firstObject;
-        
+        self.activationVC = (ActivationViewController*)activationNavVC.childViewControllers.firstObject;
+        self.activationVC.userInfo = (NSDictionary*)[sender copy];
     }
 }
 

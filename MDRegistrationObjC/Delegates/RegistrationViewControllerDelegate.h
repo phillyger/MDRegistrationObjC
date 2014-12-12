@@ -15,7 +15,7 @@
 - (void)shouldLoadNextPage;
 - (void)shouldLoadPreviousPage;
 - (void)shouldSubmitRegistration;
-- (void)shouldDismissController;
+- (void)shouldDismissControllerWithUserInfo:(NSDictionary*)userInfo;
 
 - (void)shouldShowRegistrationSuccessAlert;
 - (void)shouldShowRegistrationFailureAlert;
