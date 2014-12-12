@@ -20,4 +20,6 @@
 - (void)shouldShowRegistrationSuccessAlert;
 - (void)shouldShowRegistrationFailureAlert;
 
+-(void)shouldRegisterPasswordInKeychainWithUsername:(NSString*)username withPassword:(NSString*)password;
+
 @end

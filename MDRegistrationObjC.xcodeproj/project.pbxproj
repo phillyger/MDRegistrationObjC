@@ -27,6 +27,7 @@
 		2876A5361A23B0F700147038 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876A5351A23B0F700147038 /* LoginViewController.m */; };
 		2876A5381A23B1B300147038 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2876A5371A23B1B300147038 /* Login.storyboard */; };
 		2876A53D1A23B40500147038 /* MDRegistrationAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876A53C1A23B40500147038 /* MDRegistrationAPIClient.m */; };
+		28DF4A081A3B8E7100E43725 /* VerificationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DF4A071A3B8E7100E43725 /* VerificationViewModel.m */; };
 		28F786781A2E34EE00284FBA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F786771A2E34EE00284FBA /* MainViewController.m */; };
 		28F7867C1A2E3CB600284FBA /* RegistrationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F7867B1A2E3CB600284FBA /* RegistrationPageViewController.m */; };
 		28F786841A2E3EE600284FBA /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F7867E1A2E3EE600284FBA /* page1.png */; };
@@ -102,6 +103,9 @@
 		2876A5371A23B1B300147038 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		2876A53B1A23B40500147038 /* MDRegistrationAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRegistrationAPIClient.h; sourceTree = "<group>"; };
 		2876A53C1A23B40500147038 /* MDRegistrationAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRegistrationAPIClient.m; sourceTree = "<group>"; };
+		28DF4A061A3B8E7100E43725 /* VerificationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerificationViewModel.h; path = ViewModel/VerificationViewModel.h; sourceTree = "<group>"; };
+		28DF4A071A3B8E7100E43725 /* VerificationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerificationViewModel.m; path = ViewModel/VerificationViewModel.m; sourceTree = "<group>"; };
+		28DF4A091A3B8ECC00E43725 /* VerificationViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerificationViewControllerDelegate.h; path = Delegates/VerificationViewControllerDelegate.h; sourceTree = "<group>"; };
 		28F786761A2E34EE00284FBA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainViewController.h; sourceTree = "<group>"; };
 		28F786771A2E34EE00284FBA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainViewController.m; sourceTree = "<group>"; };
 		28F7867A1A2E3CB600284FBA /* RegistrationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationPageViewController.h; path = Controllers/RegistrationPageViewController.h; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				284A7A4D1A3231FF001A7E4A /* PasswordResetViewControllerDelegate.h */,
 				2851EB021A376F6E0046856B /* RegistrationViewControllerDelegate.h */,
 				284ACDE91A37FAB50004FA50 /* ActivationViewControllerDelegate.h */,
+				28DF4A091A3B8ECC00E43725 /* VerificationViewControllerDelegate.h */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -215,6 +220,8 @@
 				2851EB141A37EB1D0046856B /* LoginViewModel.m */,
 				284ACDE61A37F6650004FA50 /* ActivationViewModel.h */,
 				284ACDE71A37F6650004FA50 /* ActivationViewModel.m */,
+				28DF4A061A3B8E7100E43725 /* VerificationViewModel.h */,
+				28DF4A071A3B8E7100E43725 /* VerificationViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -542,6 +549,7 @@
 				2851EB011A376F320046856B /* RegistrationViewModel.m in Sources */,
 				2851EB0B1A377A710046856B /* RegistrationSecurityQuestionsViewModel.m in Sources */,
 				28F786881A2E3EE600284FBA /* RegistrationViewController.m in Sources */,
+				28DF4A081A3B8E7100E43725 /* VerificationViewModel.m in Sources */,
 				2851EB081A377A580046856B /* RegistrationNewAndConfirmedViewModel.m in Sources */,
 				2851EB151A37EB1D0046856B /* LoginViewModel.m in Sources */,
 				28F786911A2F47A000284FBA /* PrivacyPolicyViewController.m in Sources */,

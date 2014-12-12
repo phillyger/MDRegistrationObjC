@@ -7,25 +7,30 @@
 //
 
 #import "VerificationViewController.h"
-#import "LTHPasscodeViewController.h"
+#import <ReactiveCocoa.h>
+#import "EXTScope.h"
+#import "MDViewModelServicesImpl.h"
+#import "VerificationViewModel.h"
+
+@interface VerificationViewController ()
+
+@property(nonatomic, strong) VerificationViewModel *viewModel;
+@property (strong, nonatomic) MDViewModelServicesImpl *viewModelServices;
+
+@end
 
 @implementation VerificationViewController
 
 - (void)viewDidLoad
 {
     
-//    [LTHPasscodeViewController sharedUser].enterPasscodeString= @"Enter Activation Code";
-//    [LTHPasscodeViewController sharedUser].enablePasscodeString = @"Enter Activation Code";
-//    [LTHPasscodeViewController sharedUser].enterNewPasscodeString = @"Enter Activation Code";
-//    [LTHPasscodeViewController sharedUser].enterOldPasscodeString = @"Re-Enter Activation Code";
+    self.navigationItem.hidesBackButton = YES;
+    
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Verify" style:UIBarButtonItemStyleBordered target:self action:nil];
 
-//    [[LTHPasscodeViewController sharedUser] showLockScreenWithAnimation:YES
-//                                                                 withLogout:NO
-//                                                             andLogoutTitle:nil];
-//    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleBordered target:self action:@selector(submit)];
-//    
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closeModal)];
+    [self initializeViewModel];
+    
 }
 
 - (void)closeModal
@@ -33,9 +38,44 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)initializeViewModel
+{
+    self.viewModelServices = [[MDViewModelServicesImpl alloc] init];
+    self.viewModel = [[VerificationViewModel alloc] initWithServices:self.viewModelServices ];
+    self.viewModel.delegate = self;
+    [self bindViewModel:self.viewModel];
+    
+}
+
 - (void)submit
 {
     NSLog(@"Submit verification...");
+}
+
+- (void)bindViewModel:(id)viewModel
+{
+    RAC(self.viewModel, birthDate) = [RACSignal
+     combineLatest:@[self.dobDDTextField.rac_textSignal, self.dobMMTextField.rac_textSignal, self.dobYYYYTextField.rac_textSignal]
+     reduce:(id)^id(NSString *dobDD, NSString *dobMM, NSString *dobYYYY){
+         return [NSString stringWithFormat:@"%@-%@-%@", dobMM, dobDD, dobYYYY];
+     }];
+    
+    
+    RAC(self.viewModel, memberId) = self.memberIdTextField.rac_textSignal;
+    RAC(self.viewModel, firstName) = self.firstNameTextField.rac_textSignal;
+    RAC(self.viewModel, lastName) = self.lastNameTextField.rac_textSignal;
+    RAC(self.viewModel, username) = self.usernameTextField.rac_textSignal;
+    RAC(self.viewModel, zip) = self.zipTextField.rac_textSignal;
+    RAC(self.viewModel, dobMM) = self.dobMMTextField.rac_textSignal;
+    RAC(self.viewModel, dobDD) = self.dobDDTextField.rac_textSignal;
+    RAC(self.viewModel, dobYYYY) = self.dobYYYYTextField.rac_textSignal;
+    
+    self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.verifyCommand;
+}
+
+- (void)shouldShowVerificationFailureAlert
+{
+    
 }
 
 

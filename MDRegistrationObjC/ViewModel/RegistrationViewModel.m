@@ -63,6 +63,11 @@ static NSInteger RESPONSE_CODE_SUCCESS = 200000;
 
 -(void)subscribeToRegistration:(NSDictionary*)userInfo
 {
+    NSString* username = [userInfo valueForKeyPath:@"username"];
+    NSString* password = [userInfo valueForKeyPath:@"password"];
+    [self.delegate shouldRegisterPasswordInKeychainWithUsername:username withPassword:password];
+    
+    
     [[self submitRegister:userInfo] subscribeNext:^(NSDictionary *responseDict) {
         
         NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
@@ -71,6 +76,7 @@ static NSInteger RESPONSE_CODE_SUCCESS = 200000;
             
             NSLog(@"good to go");
             
+
             [self.delegate shouldDismissControllerWithUserInfo:userInfo];
             
         } else {

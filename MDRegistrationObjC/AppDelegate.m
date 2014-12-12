@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 //#import "DetailViewController.h"
 #import "MDViewModelServicesImpl.h"
+#import "SSKeychain.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -23,6 +24,10 @@
 //    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
 //    navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
 //    splitViewController.delegate = self;
+    
+    // SSKeyChain - Specify how the keychain items can be access
+    [SSKeychain setAccessibilityType:kSecAttrAccessibleWhenUnlocked];
+    
     return YES;
 }
 

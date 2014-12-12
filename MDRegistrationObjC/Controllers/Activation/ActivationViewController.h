@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *activationTokenTextField;
 @property (weak, nonatomic) IBOutlet UIButton *activationButton;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
 
 @property (strong)NSDictionary* userInfo;
 @end

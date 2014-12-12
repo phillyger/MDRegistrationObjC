@@ -13,8 +13,7 @@
 
 - (RACSignal *)isAvailable:(NSString *)username;
 
-
-- (RACSignal *)questions:(NSString *)username;
+- (RACSignal *)questionsByAccount:(NSString *)username;
 
 - (RACSignal *)resetPassword:(NSDictionary *)userInfo;
 
@@ -23,5 +22,7 @@
 - (RACSignal *)authenticate:(NSDictionary *)userInfo;
 
 - (RACSignal *)activate:(NSDictionary *)userInfo;
+
+- (RACSignal *)verify:(NSDictionary *)userInfo;
 
 @end

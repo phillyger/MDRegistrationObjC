@@ -13,5 +13,6 @@
 
 - (void)shouldGotoVerification;
 - (void)shouldShowActivationFailureAlert;
+- (void)shouldTransitionToVerification;
 
 @end

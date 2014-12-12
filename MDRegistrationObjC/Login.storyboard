@@ -626,78 +626,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Activation Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MqL-eR-sGP">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Activation Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MqL-eR-sGP">
                                 <rect key="frame" x="16" y="217" width="279" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zc-Tg-jHa">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zc-Tg-jHa">
                                 <rect key="frame" x="16" y="257" width="279" height="30"/>
                                 <state key="normal" title="Activate">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="7bM-Ub-2rD" kind="push" identifier="ActivationSegueVerification" id="Dcu-ui-Mx6"/>
+                                </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="We have sent you an SMS with a code to the following number.  " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="v60-kA-NLk">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="We have sent you an SMS with a code to the following number.  " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="v60-kA-NLk">
                                 <rect key="frame" x="16" y="72" width="279" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="xZn-8M-6Qh"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="To complete your account activation, please enter the 6-digit code below" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0ES-Xf-kzk">
-                                <rect key="frame" x="16" y="159" width="252" height="50"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="To complete your account activation, please enter the 4-digit code below." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0ES-Xf-kzk">
+                                <rect key="frame" x="15" y="159" width="290" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="MdC-bO-9YB"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="If you did not receive your access code within 60 seconds, press the 'No Code' button." translatesAutoresizingMaskIntoConstraints="NO" id="VHL-I6-RPS">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="If you did not receive your access code within 60 seconds, press the 'No Code' button." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VHL-I6-RPS">
                                 <rect key="frame" x="16" y="298" width="279" height="89"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7L8-nn-hqE">
-                                <rect key="frame" x="97" y="130" width="116" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="KD7-vo-ZUV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7L8-nn-hqE">
+                                <rect key="frame" x="15" y="130" width="290" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="9zc-Tg-jHa" firstAttribute="leading" secondItem="VHL-I6-RPS" secondAttribute="leading" id="0NR-Ys-lby"/>
-                            <constraint firstItem="7L8-nn-hqE" firstAttribute="top" secondItem="v60-kA-NLk" secondAttribute="bottom" constant="8" symbolic="YES" id="2UN-kp-QSG"/>
-                            <constraint firstItem="NvV-yz-3iD" firstAttribute="top" secondItem="VHL-I6-RPS" secondAttribute="bottom" constant="181" id="BNn-km-H1b"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0ES-Xf-kzk" secondAttribute="trailing" constant="36" id="CYf-1k-Ikg"/>
-                            <constraint firstItem="MqL-eR-sGP" firstAttribute="top" secondItem="0ES-Xf-kzk" secondAttribute="bottom" constant="8" symbolic="YES" id="Cfl-Xf-P8j"/>
-                            <constraint firstItem="v60-kA-NLk" firstAttribute="leading" secondItem="0ES-Xf-kzk" secondAttribute="leading" id="D4B-3B-KvJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="v60-kA-NLk" secondAttribute="trailing" constant="9" id="Dco-KU-Uog"/>
-                            <constraint firstItem="9zc-Tg-jHa" firstAttribute="leading" secondItem="MqL-eR-sGP" secondAttribute="leading" id="E1Z-UV-pgj"/>
-                            <constraint firstItem="VHL-I6-RPS" firstAttribute="top" secondItem="9zc-Tg-jHa" secondAttribute="bottom" constant="11" id="EN3-2V-HHi"/>
-                            <constraint firstItem="v60-kA-NLk" firstAttribute="centerX" secondItem="7L8-nn-hqE" secondAttribute="centerX" id="O7d-gd-gNd"/>
-                            <constraint firstItem="0ES-Xf-kzk" firstAttribute="leading" secondItem="D5d-lB-mUA" secondAttribute="leadingMargin" id="RjI-wu-yd0"/>
-                            <constraint firstItem="MqL-eR-sGP" firstAttribute="trailing" secondItem="9zc-Tg-jHa" secondAttribute="trailing" id="Y5C-xD-7F3"/>
-                            <constraint firstItem="0ES-Xf-kzk" firstAttribute="top" secondItem="7L8-nn-hqE" secondAttribute="bottom" constant="8" symbolic="YES" id="aYq-nz-lZY"/>
-                            <constraint firstItem="VHL-I6-RPS" firstAttribute="trailing" secondItem="9zc-Tg-jHa" secondAttribute="trailing" id="b9j-W9-xra"/>
-                            <constraint firstItem="MqL-eR-sGP" firstAttribute="trailing" secondItem="v60-kA-NLk" secondAttribute="trailing" id="eNv-ay-aw7"/>
-                            <constraint firstItem="9zc-Tg-jHa" firstAttribute="top" secondItem="MqL-eR-sGP" secondAttribute="bottom" constant="10" id="hOl-y9-pcO"/>
-                            <constraint firstItem="v60-kA-NLk" firstAttribute="top" secondItem="QnJ-ri-3KM" secondAttribute="bottom" constant="8" symbolic="YES" id="hWy-0I-EOG"/>
-                            <constraint firstItem="0ES-Xf-kzk" firstAttribute="leading" secondItem="MqL-eR-sGP" secondAttribute="leading" id="oZE-zW-x86"/>
-                            <constraint firstItem="7L8-nn-hqE" firstAttribute="leading" secondItem="D5d-lB-mUA" secondAttribute="leadingMargin" constant="81" id="sT2-xt-BFq"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Activation" id="ee2-cU-TnP"/>
                     <connections>
                         <outlet property="activationButton" destination="9zc-Tg-jHa" id="GyZ-Lc-c0e"/>
                         <outlet property="activationTokenTextField" destination="MqL-eR-sGP" id="i73-jw-zKb"/>
+                        <outlet property="phoneNumberLabel" destination="7L8-nn-hqE" id="1YZ-d9-QNQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LGj-8U-h7I" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -790,6 +764,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Verification" id="JQx-1i-ECT"/>
+                    <connections>
+                        <outlet property="dobDDTextField" destination="zpU-p6-zgt" id="vtB-9K-3hH"/>
+                        <outlet property="dobMMTextField" destination="Fgp-SA-3pR" id="bfE-tQ-qRH"/>
+                        <outlet property="dobYYYYTextField" destination="HeZ-hk-QmA" id="qOe-6u-6EJ"/>
+                        <outlet property="firstNameTextField" destination="Ox1-zd-RdI" id="2FI-iu-f8K"/>
+                        <outlet property="lastNameTextField" destination="JUs-bJ-EjT" id="V5z-Ld-5fG"/>
+                        <outlet property="memberIdTextField" destination="DqL-yN-eM4" id="UYW-1s-IhO"/>
+                        <outlet property="usernameTextField" destination="Am2-oL-SaV" id="wlX-S2-dRj"/>
+                        <outlet property="zipTextField" destination="azl-WX-cOt" id="35M-FK-43g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eud-M9-HuK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

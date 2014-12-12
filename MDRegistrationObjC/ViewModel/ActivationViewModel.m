@@ -10,6 +10,9 @@
 #import <ReactiveCocoa.h>
 #import "EXTScope.h"
 #import "MDViewModelServicesImpl.h"
+#import "SSKeychain.h"
+
+static  NSString *const SERVICE_NAME=@"incircle.medecision.com";
 
 @interface ActivationViewModel ()
 
@@ -71,7 +74,7 @@
             
             NSLog(@"good to go");
             
-//            [self.delegate shouldGotoMainStoryboard];
+//           [self.delegate shouldTransitionToVerification];
             
         } else {
             NSLog(@"stop");
@@ -96,9 +99,18 @@
             //            @strongify(self);
             
             NSLog(@"%@", input);
-//            NSDictionary *userInfo = @{@"username":self.username, @"password":self.password, @"activationToken":self.activationToken};
-//            [self subscribeToActivate:userInfo];
             
+            // Access that token when needed
+            // Get the stored data before the view loads
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            NSString *username = [defaults objectForKey:@"username"];
+            if (username!=nil) {
+                NSString *password = [SSKeychain passwordForService:SERVICE_NAME account:username];
+
+                NSDictionary *userInfo = @{@"username":username, @"password":password, @"activationToken":self.activationToken};
+               [self subscribeToActivate:userInfo];
+            }
             return [RACSignal empty];
         }];
     }

@@ -17,9 +17,14 @@
 #import "EXTScope.h"
 #import "MDViewModelServicesImpl.h"
 #import "RegistrationViewModel.h"
+#import "SSKeychain.h"
+
+static  NSString *const SERVICE_NAME=@"incircle.medecision.com";
+
 
 @interface RegistrationViewController ()
 
+@property (assign) BOOL isRegisteredInKeychain;
 @property(nonatomic, strong) RegistrationViewModel *viewModel;
 @property (strong, nonatomic) MDViewModelServicesImpl *viewModelServices;
 
@@ -397,6 +402,19 @@
     NSLog(@"passcode: %@", passcode);
 }
 
+-(void)registerPasswordInKeychainWithUsername:(NSString *)username withPassword:(NSString *)password
+{
+    
+    // Get the stored data before the view loads
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // Store the username in the user defaults
+    [defaults setObject:username forKey:@"username"];
+    [defaults synchronize];
+    
+    _isRegisteredInKeychain = [SSKeychain setPassword:password forService:SERVICE_NAME account:username];
+}
+
 #pragma mark - Delegation methods
 - (void)shouldShowRegistrationSuccessAlert
 {
@@ -425,6 +443,11 @@
 
 - (void)shouldDismissControllerWithUserInfo:(NSDictionary*)userInfo
 {
+    
+    if (!_isRegisteredInKeychain) {
+        NSLog(@"wasn't able to register account in keychain");
+        return;
+    }
     __weak RegistrationViewController *weakSelf = self;
     
     [weakSelf dismissViewControllerAnimated:YES completion:^{
@@ -449,6 +472,13 @@
 
 }
 
+- (void)shouldRegisterPasswordInKeychainWithUsername:(NSString *)username withPassword:(NSString *)password
+{
+    
+    [self registerPasswordInKeychainWithUsername:username withPassword:password];
+}
+
+#pragma mark - MDRegistrationAPI delegate
 - (void)bindViewModel:(id)viewModel
 {
     
@@ -466,7 +496,8 @@
                 [mutableDict addEntriesFromDictionary:@{
                                                         @"firstName": contentVC.firstNameTextField.text,
                                                         @"lastName": contentVC.lastNameTextField.text,
-                                                        @"username": contentVC.usernameTextField.text }];
+                                                        @"username": contentVC.usernameTextField.text,
+                                                        @"phoneNumber": contentVC.phoneNumberTextField.text }];
                 break;
             case 1:
                 [mutableDict addEntriesFromDictionary:@{@"password": contentVC.passwordNewTextField.text}];
@@ -489,8 +520,12 @@
         
     }];
     
+    [mutableDict addEntriesFromDictionary:@{@"sendSMS": [NSNumber numberWithBool:YES]}];
+//    [mutableDict addEntriesFromDictionary:@{@"sendSMS":@"true"}];
     return [mutableDict copy];
 }
+
+
 
 
 @end
