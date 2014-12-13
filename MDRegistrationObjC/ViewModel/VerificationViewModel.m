@@ -179,11 +179,11 @@
 
 - (RACSignal *)dobDDValidSignal {
     if (!_dobDDValidSignal) {
-        _dobDDValidSignal = [RACObserve(self, dobDD) map:^id(NSString *dobMM) {
-            return @(dobMM.length == 2);
+        _dobDDValidSignal = [RACObserve(self, dobDD) map:^id(NSString *dobDD) {
+            return @(dobDD.length == 2);
         }];
     }
-    return _dobMMValidSignal;
+    return _dobDDValidSignal;
 }
 
 - (RACSignal *)dobYYYYValidSignal {
