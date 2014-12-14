@@ -14,5 +14,6 @@
 - (void)shouldGotoVerification;
 - (void)shouldShowActivationFailureAlert;
 - (void)shouldTransitionToVerification;
+- (void)shouldAddAuthorizationTokenToRequestHeader:(NSString*)token;
 
 @end

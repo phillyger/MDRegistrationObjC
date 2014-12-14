@@ -12,6 +12,7 @@
 #import "MDViewModelServicesImpl.h"
 #import "RegistrationViewController.h"
 #import "ActivationViewModel.h"
+#import "MDRegistrationAPIClient.h"
 
 @interface ActivationViewController ()
 
@@ -85,6 +86,11 @@
     }
     
     return NO;
+}
+
+- (void)shouldAddAuthorizationTokenToRequestHeader:(NSString *)token
+{
+    [[MDRegistrationAPIClient sharedClient] setAuthorizationTokenHeaderWithToken:token];
 }
 
 @end

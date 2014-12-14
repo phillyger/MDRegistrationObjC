@@ -21,6 +21,7 @@ static NSString * const kMDRegistrationJSONMimeType = @"application/json";
  **/
 
 static NSString * const kMDRegistrationAPIRESTApiKeyName = @"x-md-client-key";
+static NSString * const kMDRegistrationAPIAuthTokenKeyName = @"x-md-token";
 static NSString * const kMDRegistrationAPIRESTApiKeyValue = @"APIKEY123";
 
 
@@ -97,6 +98,14 @@ static NSString * const kMDRegistrationAPIRESTApiKeyValue = @"APIKEY123";
 {
     NSString *clientBaseUrl = [[self baseURL] absoluteString];
     return [clientBaseUrl stringByAppendingString:path];
+}
+
+
+- (void)setAuthorizationTokenHeaderWithToken:(NSString *)token
+{
+//    [self.requestSerializer.HTTPRequestHeaders setValue:kMDRegistrationAPIAuthTokenKeyName forKey:token];
+    
+    [[self requestSerializer] setValue:token forHTTPHeaderField:kMDRegistrationAPIAuthTokenKeyName];
 }
 
 

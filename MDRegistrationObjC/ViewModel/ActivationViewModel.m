@@ -11,8 +11,10 @@
 #import "EXTScope.h"
 #import "MDViewModelServicesImpl.h"
 #import "SSKeychain.h"
+#import "AFHTTPRequestOperation.h"
 
 static  NSString *const SERVICE_NAME=@"incircle.medecision.com";
+static NSString * const kMDRegistrationAPIAuthTokenKeyName = @"x-md-token";
 
 @interface ActivationViewModel ()
 
@@ -44,7 +46,16 @@ static  NSString *const SERVICE_NAME=@"incircle.medecision.com";
         
         [[[[self.services getMDRegistrationService] activate:userInfo]
           map:^id(RACTuple *tuple) {
-              return tuple.second;
+              NSLog(@"Tuple #1: %@", tuple.first);
+              NSLog(@"Tuple #2: %@", tuple.second);
+              RACTupleUnpack(AFHTTPRequestOperation *operation, id responseObject) = tuple;
+              
+              NSDictionary *allHeaders =  operation.response.allHeaderFields;
+              
+              NSString* token= allHeaders[kMDRegistrationAPIAuthTokenKeyName];
+              
+              NSDictionary *dict = @{@"x-md-token":token, @"responseData": (NSDictionary*)responseObject  };
+              return dict;
           }]
          subscribeNext:^(NSDictionary *dict) {
              [subscriber sendNext:dict];
@@ -68,11 +79,14 @@ static  NSString *const SERVICE_NAME=@"incircle.medecision.com";
         NSLog(@"hello");
         NSLog(@"%@", responseDict);
         
-        NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
+        NSString *outcomeCode = [responseDict valueForKeyPath:@"responseData.outcome.code"];
         
         if ([outcomeCode intValue] == 200000) {
             
             NSLog(@"good to go");
+            
+            NSString *token = [responseDict valueForKeyPath:kMDRegistrationAPIAuthTokenKeyName];
+            [self.delegate shouldAddAuthorizationTokenToRequestHeader:token];
             
 //           [self.delegate shouldTransitionToVerification];
             

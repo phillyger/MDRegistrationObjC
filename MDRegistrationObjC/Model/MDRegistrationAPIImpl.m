@@ -139,6 +139,7 @@
     
     NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:pathUri];
     
+    NSLog(@"headers: %@", [[[MDRegistrationAPIClient sharedClient] requestSerializer] HTTPRequestHeaders]);
     return [[[[MDRegistrationAPIClient sharedClient] rac_POST:fullEndPointUri parameters:userInfo] logError] replayLazily];
 }
 

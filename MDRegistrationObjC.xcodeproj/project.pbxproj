@@ -28,6 +28,8 @@
 		2876A5381A23B1B300147038 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2876A5371A23B1B300147038 /* Login.storyboard */; };
 		2876A53D1A23B40500147038 /* MDRegistrationAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876A53C1A23B40500147038 /* MDRegistrationAPIClient.m */; };
 		28DF4A081A3B8E7100E43725 /* VerificationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DF4A071A3B8E7100E43725 /* VerificationViewModel.m */; };
+		28DF4A0D1A3DEB3800E43725 /* CommonDateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DF4A0C1A3DEB3800E43725 /* CommonDateUtils.m */; };
+		28DF4A101A3DF39700E43725 /* StoryboardUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DF4A0F1A3DF39700E43725 /* StoryboardUtils.m */; };
 		28F786781A2E34EE00284FBA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F786771A2E34EE00284FBA /* MainViewController.m */; };
 		28F7867C1A2E3CB600284FBA /* RegistrationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F7867B1A2E3CB600284FBA /* RegistrationPageViewController.m */; };
 		28F786841A2E3EE600284FBA /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F7867E1A2E3EE600284FBA /* page1.png */; };
@@ -106,6 +108,10 @@
 		28DF4A061A3B8E7100E43725 /* VerificationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerificationViewModel.h; path = ViewModel/VerificationViewModel.h; sourceTree = "<group>"; };
 		28DF4A071A3B8E7100E43725 /* VerificationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerificationViewModel.m; path = ViewModel/VerificationViewModel.m; sourceTree = "<group>"; };
 		28DF4A091A3B8ECC00E43725 /* VerificationViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerificationViewControllerDelegate.h; path = Delegates/VerificationViewControllerDelegate.h; sourceTree = "<group>"; };
+		28DF4A0B1A3DEB3800E43725 /* CommonDateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonDateUtils.h; path = Util/CommonDateUtils.h; sourceTree = "<group>"; };
+		28DF4A0C1A3DEB3800E43725 /* CommonDateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonDateUtils.m; path = Util/CommonDateUtils.m; sourceTree = "<group>"; };
+		28DF4A0E1A3DF39700E43725 /* StoryboardUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryboardUtils.h; path = Util/StoryboardUtils.h; sourceTree = "<group>"; };
+		28DF4A0F1A3DF39700E43725 /* StoryboardUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoryboardUtils.m; path = Util/StoryboardUtils.m; sourceTree = "<group>"; };
 		28F786761A2E34EE00284FBA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainViewController.h; sourceTree = "<group>"; };
 		28F786771A2E34EE00284FBA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainViewController.m; sourceTree = "<group>"; };
 		28F7867A1A2E3CB600284FBA /* RegistrationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationPageViewController.h; path = Controllers/RegistrationPageViewController.h; sourceTree = "<group>"; };
@@ -382,6 +388,10 @@
 		28FA563C1A3611B000BA95D1 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				28DF4A0B1A3DEB3800E43725 /* CommonDateUtils.h */,
+				28DF4A0C1A3DEB3800E43725 /* CommonDateUtils.m */,
+				28DF4A0E1A3DF39700E43725 /* StoryboardUtils.h */,
+				28DF4A0F1A3DF39700E43725 /* StoryboardUtils.m */,
 				28FA563D1A3611E500BA95D1 /* MDReactiveView.h */,
 			);
 			name = Util;
@@ -552,11 +562,13 @@
 				28DF4A081A3B8E7100E43725 /* VerificationViewModel.m in Sources */,
 				2851EB081A377A580046856B /* RegistrationNewAndConfirmedViewModel.m in Sources */,
 				2851EB151A37EB1D0046856B /* LoginViewModel.m in Sources */,
+				28DF4A101A3DF39700E43725 /* StoryboardUtils.m in Sources */,
 				28F786911A2F47A000284FBA /* PrivacyPolicyViewController.m in Sources */,
 				28FA56481A36478A00BA95D1 /* MDRegistrationAPIImpl.m in Sources */,
 				2876A50B1A23AE5B00147038 /* AppDelegate.m in Sources */,
 				284A7A441A316042001A7E4A /* VerificationViewController.m in Sources */,
 				284A7A491A322B6E001A7E4A /* PasswordResetUsernameViewModel.m in Sources */,
+				28DF4A0D1A3DEB3800E43725 /* CommonDateUtils.m in Sources */,
 				28F7868E1A2EA08100284FBA /* RegistrationPageContentTableViewController.m in Sources */,
 				2851EAFE1A373EA00046856B /* PasswordResetViewModel.m in Sources */,
 				28F7869C1A2F54D600284FBA /* PasswordResetPageContentViewController.m in Sources */,

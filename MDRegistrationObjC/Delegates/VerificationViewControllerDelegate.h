@@ -11,4 +11,6 @@
 @protocol VerificationViewControllerDelegate <NSObject>
 
 - (void)shouldShowVerificationFailureAlert;
+
+- (void)shouldOpenMainStoryboard;
 @end

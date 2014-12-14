@@ -15,10 +15,11 @@
 
 #import "VerificationViewController.h"
 #import "ActivationViewController.h"
+#import "StoryboardUtils.h"
 
-static UIStoryboard *main;
+
 static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
-static NSString *kMainStoryboardiPad = @"Main";
+
 
 @interface LoginViewController ()
 
@@ -33,11 +34,7 @@ static NSString *kMainStoryboardiPad = @"Main";
 
 @implementation LoginViewController
 
-+(void)load
-{
-    main = [UIStoryboard storyboardWithName:kMainStoryboardiPad bundle:nil];
 
-}
 
 - (void)viewDidLoad
 {
@@ -55,13 +52,7 @@ static NSString *kMainStoryboardiPad = @"Main";
 }
 
 
-- (void)openMainStoryboard {
-    
-    UIViewController *initialDashboardController = [main instantiateInitialViewController];
-    initialDashboardController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
-    [self presentViewController:initialDashboardController animated:YES completion:nil];
-}
+
 
 - (void)shouldPresentActivationModalWithUserInfo:(NSDictionary*)userInfo
 {
@@ -90,7 +81,7 @@ static NSString *kMainStoryboardiPad = @"Main";
 #pragma mark - Delegation methods
 - (void)shouldGotoMainStoryboard
 {
-    [self openMainStoryboard];
+    [StoryboardUtils openMainStoryboardWithPresentingController:self];
 }
 
 - (void)shouldShowLoginFailureAlert

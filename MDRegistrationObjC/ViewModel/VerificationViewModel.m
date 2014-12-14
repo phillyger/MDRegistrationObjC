@@ -72,7 +72,7 @@
 -(void)subscribeToVerify:(NSDictionary*)userInfo
 {
     [[self verify:userInfo] subscribeNext:^(NSDictionary *responseDict) {
-        NSLog(@"hello");
+
         NSLog(@"%@", responseDict);
         
         NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
@@ -81,7 +81,7 @@
             
             NSLog(@"good to go");
             
-            //           [self.delegate shouldTransitionToVerification];
+            [self.delegate shouldOpenMainStoryboard];
             
         } else {
             NSLog(@"stop");

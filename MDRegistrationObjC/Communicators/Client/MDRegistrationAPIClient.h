@@ -14,5 +14,6 @@
 + (instancetype)sharedClient;
 
 - (NSString *)appendPathVarToEndPointUri:(NSString*)path;
+- (void)setAuthorizationTokenHeaderWithToken:(NSString*)token;
 
 @end
