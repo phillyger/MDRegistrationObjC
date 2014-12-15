@@ -33,7 +33,7 @@
     if (self) {
         _services = services;
         
-//        [self mapNextCommandStateToStatusMessage];
+        [self mapNextCommandStateToStatusMessage];
     }
     return self;
 }
@@ -41,7 +41,7 @@
 
 - (void)mapNextCommandStateToStatusMessage {
     RACSignal *startedMessageSource = [self.nextCommand.executionSignals map:^id(RACSignal *subscribeSignal) {
-        return NSLocalizedString(@"Sending request...", nil);
+        return NSLocalizedString(@"Checking availability...", nil);
     }];
     
     RACSignal *completedMessageSource = [self.nextCommand.executionSignals flattenMap:^RACStream *(RACSignal *subscribeSignal) {
@@ -118,14 +118,16 @@
             
         } else {
             NSLog(@"stop");
-            [self.delegate shouldShowUserNotAvailableAlert];
+//            [self.delegate shouldShowUserNotAvailableAlert];
+            self.statusMessage = @"Unable to ...";
             
         }
         
         
     } error:^(NSError *error) {
         NSLog(@"stop");
-        [self.delegate shouldShowUserNotAvailableAlert];
+//        [self.delegate shouldShowUserNotAvailableAlert];
+        self.statusMessage = [error localizedDescription];
     } completed:^{
         // do nothing
     }];

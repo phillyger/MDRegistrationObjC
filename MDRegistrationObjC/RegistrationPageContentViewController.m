@@ -49,6 +49,11 @@
 //    self.titleLabel.text = self.titleText;
         self.viewModelServices = [[MDViewModelServicesImpl alloc] init];
     
+//     self.usernameTextField.delegate = self;
+//    self.firstNameTextField.delegate = self;
+//    self.lastNameTextField.delegate = self;
+//    self.phoneNumberTextField.delegate = self;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -140,7 +145,7 @@
     RAC(self.viewModelUserInfo, lastName) = self.lastNameTextField.rac_textSignal;
     _phoneNumberSignal = self.phoneNumberTextField.rac_textSignal;
     RAC(self.viewModelUserInfo, phoneNumber) = _phoneNumberSignal;
-//    RAC(self.statusLabel, text) = RACObserve(self.viewModelUserInfo, statusMessage);
+    RAC(self.statusLabel, text) = RACObserve(self.viewModelUserInfo, statusMessage);
         self.phoneNumberTextField.delegate = self;
 }
 
@@ -206,5 +211,18 @@
     
     return YES;
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
+
+#pragma mark - UITextField delegate
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
+
 
 @end

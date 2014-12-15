@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmedNewTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordNewTextField;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 
 @property (nonatomic,weak) id <RegistrationViewControllerDelegate> delegate;

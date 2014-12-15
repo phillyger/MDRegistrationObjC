@@ -111,14 +111,15 @@
             
         } else {
             NSLog(@"stop");
-            [self.delegate shouldShowUserNotFoundAlert];
+//            [self.delegate shouldShowUserNotFoundAlert];
+            self.statusMessage = @"Username not found!";
             
         }
         
         
     } error:^(NSError *error) {
         NSLog(@"stop");
-        [self.delegate shouldShowUserNotFoundAlert];
+
     } completed:^{
         // do nothing
     }];

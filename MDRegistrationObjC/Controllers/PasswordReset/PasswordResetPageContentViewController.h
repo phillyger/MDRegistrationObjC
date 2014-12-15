@@ -11,7 +11,7 @@
 #import "PasswordResetPageContentTableViewController.h"
 #import "MDReactiveView.h"
 
-@interface PasswordResetPageContentViewController : UIViewController <MDReactiveView>
+@interface PasswordResetPageContentViewController : UIViewController <MDReactiveView, UITextFieldDelegate>
 
 @property (nonatomic)PasswordResetPageContentTableViewController *securityQuestions;
 //@property NSUInteger pageIndex;

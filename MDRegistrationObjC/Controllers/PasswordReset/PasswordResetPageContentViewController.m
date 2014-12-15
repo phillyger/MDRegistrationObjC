@@ -42,6 +42,10 @@
     
     self.viewModelServices = [[MDViewModelServicesImpl alloc] init];
     self.parentVC = (PasswordResetPageViewController*)self.parentViewController;
+    
+//    self.usernameTextField.delegate = self;
+
+    
 
 }
 
@@ -171,7 +175,17 @@
     
 }
 
-
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [self.view endEditing:YES];
+//}
+//
+//
+//#pragma mark - UITextField delegate
+//- (void)textFieldDidEndEditing:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//}
 
 
 
