@@ -33,6 +33,8 @@ static int YYYY_MIN_VALUE = 1987;   // 18+ years old
     
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Verify" style:UIBarButtonItemStyleBordered target:self action:nil];
+    
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closeModal)];
 
     [self initializeViewModel];
     
@@ -144,9 +146,16 @@ static int YYYY_MIN_VALUE = 1987;   // 18+ years old
     [alert show];
 }
 
-- (void)shouldGotoMainStoryboard
+- (void)shouldOpenMainStoryboard
 {
-    [StoryboardUtils openMainStoryboardWithPresentingController:self];
+    __weak VerificationViewController *weakSelf = self;
+    
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        
+//    }];
+    
+    [StoryboardUtils openMainStoryboardWithPresentingController:weakSelf];
+
 }
 
 @end

@@ -135,7 +135,7 @@
  */
 - (RACSignal *)verify:(NSDictionary *)userInfo
 {
-    NSString *const pathUri = @"verify";
+    NSString *const pathUri = @"secure/verify";
     
     NSString *fullEndPointUri = [[MDRegistrationAPIClient sharedClient] appendPathVarToEndPointUri:pathUri];
     

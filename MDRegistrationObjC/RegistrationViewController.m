@@ -60,6 +60,13 @@ static  NSString *const SERVICE_NAME=@"incircle.medecision.com";
     // TODO:: Implement page control.
         self.pageViewController.dataSource = self;
     
+    for (UIScrollView *view in self.pageViewController.view.subviews) {
+        
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            
+            view.scrollEnabled = NO;
+        }
+    }
     self.pageViewController.delegate = self;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(loadNextPage)];
