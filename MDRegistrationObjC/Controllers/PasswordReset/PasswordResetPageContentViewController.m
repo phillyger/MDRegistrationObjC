@@ -166,7 +166,7 @@
     
     if ([[segue identifier] isEqualToString:@"PasswordResetSegueSecurityQuestions"]) {
         
-        self.securityQuestions = (RegistrationPageContentTableViewController*)segue.destinationViewController;
+        self.securityQuestions = (PasswordResetPageContentTableViewController*)segue.destinationViewController;
     }
     
 }

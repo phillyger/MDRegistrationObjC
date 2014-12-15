@@ -18,7 +18,10 @@
 @property(nonatomic, strong) RACCommand *nextCommand;
 @property(nonatomic, strong) RACCommand *tapSecQuestionLabelCommand;
 
-// write to this property
+// write to these property
+
+@property(nonatomic, strong) NSArray *questions;
+
 @property(nonatomic, strong) NSString *username;
 
 @property(nonatomic, strong) NSString *answer1;

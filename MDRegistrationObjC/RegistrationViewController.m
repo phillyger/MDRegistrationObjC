@@ -58,7 +58,7 @@ static  NSString *const SERVICE_NAME=@"incircle.medecision.com";
      *   Disable gesture swipes by setting datasource to nil
      */
     // TODO:: Implement page control.
-    //    self.pageViewController.dataSource = self;
+        self.pageViewController.dataSource = self;
     
     self.pageViewController.delegate = self;
     
@@ -476,6 +476,13 @@ static  NSString *const SERVICE_NAME=@"incircle.medecision.com";
 {
     
     [self registerPasswordInKeychainWithUsername:username withPassword:password];
+}
+
+- (void)shouldShowUserNotAvailableAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Username Unavailable"  message:@"The username you entered already exists. Please enter a new username." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    
+    [alert show];
 }
 
 #pragma mark - MDRegistrationAPI delegate

@@ -45,6 +45,14 @@
 
 - (void)initialize
 {
+    
+    self.questions = @[@"What city where you born in?",
+                       @"What was your first pet’s name?",
+                       @"What is the make of your first car?",
+                       @"What is the middle name of your oldest child?",
+                       @"What school did you attend in 6th grade?",
+                       @"In what town was your first job?"];
+    
     [[self fetchQuestions:_username] subscribeNext:^(NSDictionary *response) {
         //            NSLog(@"hello");
         //            NSLog(@"%@", response);

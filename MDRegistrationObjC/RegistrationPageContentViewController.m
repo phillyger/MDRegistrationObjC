@@ -47,6 +47,7 @@
 
 //    self.backgroundImageView.image = [UIImage imageNamed:self.imageFile];
 //    self.titleLabel.text = self.titleText;
+        self.viewModelServices = [[MDViewModelServicesImpl alloc] init];
     
 }
 

@@ -51,46 +51,121 @@
 	RAC(self, statusMessage) = [RACSignal merge:@[startedMessageSource, completedMessageSource, failedMessageSource]];
 }
 
-
 - (RACCommand *)nextCommand {
-	if (!_nextCommand) {
-		@weakify(self);
-		_nextCommand = [[RACCommand alloc] initWithEnabled:self.usernameValidSignal signalBlock:^RACSignal *(id input) {
-			@strongify(self);
+    if (!_nextCommand) {
+        @weakify(self);
+        _nextCommand = [[RACCommand alloc] initWithEnabled:self.usernameValidSignal signalBlock:^RACSignal *(id input) {
+            @strongify(self);
             
-            return [self checkIsAvailable:self.username];
-
-//			return [RACSignal empty];
-		}];
-	}
-	return _nextCommand;
+            //            [self.delegate shouldLoadNextPage];
+            [self subscribeToIsAvailable:self.username];
+            
+            return [RACSignal empty];
+        }];
+    }
+    return _nextCommand;
 }
 
-- (RACSignal *)checkIsAvailable:(NSString *)username {
-
-    @weakify(self);
-	
+- (RACSignal *)isAvailable:(NSString *)username {
     
-	return [[[self.services getMDRegistrationService] isAvailable:username]
-            doNext:^(RACTuple *JSONAndHeaders) {
-                @strongify(self);
-   
-                NSArray *tupleList =[JSONAndHeaders allObjects];
-                NSLog(@"%@", tupleList.lastObject);
-                NSDictionary *responseDict = tupleList.lastObject;
-                
-                NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
-                
-                if ([outcomeCode intValue] == 200000) {
-                    
-                    NSLog(@"good to go");
-                    [self.delegate shouldLoadNextPage];
-                } else {
-                    NSLog(@"stop");
-                }
-            }];
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        //        @weakify(self);
+        
+        [[[[self.services getMDRegistrationService] isAvailable:username]
+          map:^id(RACTuple *tuple) {
+              return tuple.second;
+          }]
+         subscribeNext:^(NSDictionary *dict) {
+             [subscriber sendNext:dict];
+             [subscriber sendCompleted];
+         }
+         error:^(NSError *error) {
+             NSLog(@"error:%@", error);
+             [subscriber sendError:error];
+         }
+         ];
+        // 6. When we are done, remvoe the reference to this request
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
+    }];
+}
+
+-(void)subscribeToIsAvailable:(NSString *)username
+{
+    [[self isAvailable:username] subscribeNext:^(NSDictionary *responseDict) {
+        
+        NSLog(@"%@", responseDict);
+        
+        NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
+        BOOL availble = [[responseDict valueForKeyPath:@"data.available"] boolValue];
+        
+        if ([outcomeCode intValue] == 200000 && !availble) {
+            
+            NSLog(@"good to go");
+            
+            
+            [self.delegate shouldLoadNextPage];
+            
+            
+        } else {
+            NSLog(@"stop");
+            [self.delegate shouldShowUserNotFoundAlert];
+            
+        }
+        
+        
+    } error:^(NSError *error) {
+        NSLog(@"stop");
+        [self.delegate shouldShowUserNotFoundAlert];
+    } completed:^{
+        // do nothing
+    }];
     
 }
+
+
+//
+//- (RACCommand *)nextCommand {
+//	if (!_nextCommand) {
+//		@weakify(self);
+//		_nextCommand = [[RACCommand alloc] initWithEnabled:self.usernameValidSignal signalBlock:^RACSignal *(id input) {
+//			@strongify(self);
+//            
+//            return [self checkIsAvailable:self.username];
+//
+////			return [RACSignal empty];
+//		}];
+//	}
+//	return _nextCommand;
+//}
+//
+//- (RACSignal *)checkIsAvailable:(NSString *)username {
+//
+//    @weakify(self);
+//	
+//    
+//	return [[[self.services getMDRegistrationService] isAvailable:username]
+//            doNext:^(RACTuple *JSONAndHeaders) {
+//                @strongify(self);
+//   
+//                NSArray *tupleList =[JSONAndHeaders allObjects];
+//                NSLog(@"%@", tupleList.lastObject);
+//                NSDictionary *responseDict = tupleList.lastObject;
+//                
+//                NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
+//                
+//                if ([outcomeCode intValue] == 200000) {
+//                    
+//                    NSLog(@"good to go");
+//                    [self.delegate shouldLoadNextPage];
+//                } else {
+//                    NSLog(@"stop");
+//                }
+//            }];
+//    
+//}
 
 
 

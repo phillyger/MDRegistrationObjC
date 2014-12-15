@@ -51,7 +51,7 @@
      *   Disable gesture swipes by setting datasource to nil
      */
     // TODO:: Implement page control.
-    //    self.pageViewController.dataSource = self;
+        self.pageViewController.dataSource = self;
     
     self.pageViewController.delegate = self;
     
@@ -315,6 +315,13 @@
     NSLog(@"Preparing to submit page...");
     NSDictionary *userInfo = [self buildUserInfoDict:self.contentViewControllers];
     [self.viewModel subscribeToResetPassword:userInfo];
+}
+
+- (void)shouldShowUserNotFoundAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Username Not Registered"  message:@"We were unable to find a valid account for this username. Please enter a new username." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    
+    [alert show];
 }
 
 #pragma mark - ReactiveCocoa 

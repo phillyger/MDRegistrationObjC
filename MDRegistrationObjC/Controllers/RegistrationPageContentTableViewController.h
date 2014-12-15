@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MDReactiveView.h"
 
-@interface RegistrationPageContentTableViewController : UITableViewController<UITextFieldDelegate>
+//@interface RegistrationPageContentTableViewController : UITableViewController<UITextFieldDelegate>
+@interface RegistrationPageContentTableViewController : UITableViewController<UITextFieldDelegate,MDReactiveView>
 
 @property (weak, nonatomic) IBOutlet UILabel *question1Label;
 @property (weak, nonatomic) IBOutlet UILabel *question2Label;

@@ -19,7 +19,9 @@
 
 
 
-// write to this property
+// write to these property
+@property(nonatomic, strong) NSArray *questions;
+
 @property(nonatomic, strong) NSString *username;
 
 @property(nonatomic, strong) NSString *answer1;

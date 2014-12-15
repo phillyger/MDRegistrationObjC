@@ -8,15 +8,17 @@
 
 #import "RegistrationPageContentTableViewController.h"
 #import "ActionSheetStringPicker.h"
+#import "RegistrationSecurityQuestionsViewModel.h"
+#import "MDViewModelServicesImpl.h"
 
 @interface RegistrationPageContentTableViewController ()
 
-@property (nonatomic, strong) NSArray *questions;
+@property (nonatomic, strong) NSArray *selectionQuestions;
 @property (nonatomic, assign) NSInteger selectedIndex;
+@property(nonatomic, strong) RegistrationSecurityQuestionsViewModel *viewModelSecQuestions; // screen #3
+@property (strong, nonatomic) MDViewModelServicesImpl *viewModelServices;
 
-//- (void)questionWasSelected:(NSNumber *)selectedIndex element:(id)element;
-//- (void)selectAQuestion:(UIControl *)sender;r
-
+- (void)selectAQuestionWithCellTagId:(NSInteger)cellTagId sender:(UITableViewCell*)sender;
 
 @end
 
@@ -44,16 +46,17 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 
-    self.questions = @[@"What city where you born in?",
-                       @"What was your first pet’s name?",
-                       @"What is the make of your first car?",
-                       @"What is the middle name of your oldest child?",
-                       @"What school did you attend in 6th grade?",
-                       @"In what town was your first job?"];
+//    self.questions = @[@"What city where you born in?",
+//                       @"What was your first pet’s name?",
+//                       @"What is the make of your first car?",
+//                       @"What is the middle name of your oldest child?",
+//                       @"What school did you attend in 6th grade?",
+//                       @"In what town was your first job?"];
+
+    self.viewModelSecQuestions = [[RegistrationSecurityQuestionsViewModel alloc]
+                                  initWithServices:self.viewModelServices];
     
-    
-    
-    
+    [self bindViewModel:self.viewModelSecQuestions];
     
 }
 
@@ -68,6 +71,42 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - ViewModel Delegation
+- (void)bindViewModel:(id)viewModel
+{
+
+    RAC(self, selectionQuestions) = [self fetchAvailableSecurityQuestionsList];
+}
+
+- (RACSignal *)fetchAvailableSecurityQuestionsList{
+
+    //TODO: Replace hardcoded Sec Questions with an asyn call.
+    RACSignal *arrayReducedSignal = [RACSignal combineLatest:@[ RACObserve(self.question1Label, text), RACObserve(self.question2Label, text), RACObserve(self.question3Label, text) ]
+                                                  reduce:^NSArray*(NSString *q1, NSString *q2, NSString *q3) {
+                                                      
+                                                      NSMutableArray *tmpArray = [@[@"What city where you born in?",
+                                                                                    @"What was your first pet’s name?",
+                                                                                    @"What is the make of your first car?",
+                                                                                    @"What is the middle name of your oldest child?",
+                                                                                    @"What school did you attend in 6th grade?",
+                                                                                    @"In what town was your first job?"] mutableCopy];
+                                                      
+                                                      if ([tmpArray containsObject:q1]) {
+                                                          [tmpArray removeObject:q1];
+                                                      }
+                                                      if ([tmpArray containsObject:q2]) {
+                                                          [tmpArray removeObject:q2];
+                                                      }
+                                                      if ([tmpArray containsObject:q3]) {
+                                                          [tmpArray removeObject:q3];
+                                                      }
+                                                      
+                                                      return [tmpArray copy];
+                                                  }];
+
+    return arrayReducedSignal;
 }
 
 #pragma mark - Table view data source
@@ -106,19 +145,19 @@
 
 //    NSLog(@"cell tag in func: %d", (int)cellTagId);
     
-    [ActionSheetStringPicker showPickerWithTitle:@"Select Question" rows:self.questions initialSelection:self.selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+    [ActionSheetStringPicker showPickerWithTitle:@"Select Question" rows:self.selectionQuestions initialSelection:self.selectedIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
         switch (cellTagId) {
             case 1:
-                self.question1Label.text = (self.questions)[(NSUInteger) selectedIndex];
+                self.question1Label.text = (self.selectionQuestions)[(NSUInteger) selectedIndex];
                 self.answer1TextField.enabled = YES;
                 break;
             case 2:
-                self.question2Label.text = (self.questions)[(NSUInteger) selectedIndex];
+                self.question2Label.text = (self.selectionQuestions)[(NSUInteger) selectedIndex];
                 self.answer2TextField.enabled = YES;
                 break;
             case 3:
-                self.question3Label.text = (self.questions)[(NSUInteger) selectedIndex];
+                self.question3Label.text = (self.selectionQuestions)[(NSUInteger) selectedIndex];
                 self.answer3TextField.enabled = YES;
                 break;
             default:

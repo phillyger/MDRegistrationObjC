@@ -17,5 +17,6 @@
 - (void)shouldLoadPreviousPage;
 - (void)shouldSubmitPasswordReset;
 - (void)shouldDismissController;
+- (void)shouldShowUserNotFoundAlert;
 
 @end
