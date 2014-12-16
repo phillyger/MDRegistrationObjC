@@ -82,6 +82,8 @@
 
 - (RACSignal *)fetchAvailableSecurityQuestionsList{
 
+    
+    
     //TODO: Replace hardcoded Sec Questions with an asyn call.
     RACSignal *arrayReducedSignal = [RACSignal combineLatest:@[ RACObserve(self.question1Label, text), RACObserve(self.question2Label, text), RACObserve(self.question3Label, text) ]
                                                   reduce:^NSArray*(NSString *q1, NSString *q2, NSString *q3) {

@@ -156,6 +156,9 @@
         [self.delegate shouldSetSignalOnRightNavItemButton:self.viewModelSecQuestions.nextCommand];
     }
     
+    self.viewModelSecQuestions.question1 = self.securityQuestions.question1Label.text;
+    self.viewModelSecQuestions.question2 = self.securityQuestions.question2Label.text;
+    self.viewModelSecQuestions.question3 = self.securityQuestions.question3Label.text;
     
     RAC(self.securityQuestions.question1Label,text) = RACObserve(self.viewModelSecQuestions, question1);
     RAC(self.securityQuestions.question2Label,text) = RACObserve(self.viewModelSecQuestions, question2);
@@ -165,7 +168,6 @@
     RAC(self.viewModelSecQuestions, answer1) = self.securityQuestions.answer1TextField.rac_textSignal;
     RAC(self.viewModelSecQuestions, answer2) = self.securityQuestions.answer2TextField.rac_textSignal;
     RAC(self.viewModelSecQuestions, answer3) = self.securityQuestions.answer3TextField.rac_textSignal;
-    
     
     
     //    RAC(self.statusLabel, text) = RACObserve(self.viewModelUsername, statusMessage);

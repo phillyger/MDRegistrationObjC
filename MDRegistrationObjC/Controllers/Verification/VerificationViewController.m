@@ -36,6 +36,13 @@ static int YYYY_MIN_VALUE = 1987;   // 18+ years old
     
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(closeModal)];
 
+    // Init the field values we have within userInfo if available.
+    if (self.userInfo) {
+        self.firstNameTextField.text = self.userInfo[@"firstName"];
+        self.lastNameTextField.text = self.userInfo[@"lastName"];
+        self.usernameTextField.text = self.userInfo[@"username"];
+    }
+    
     [self initializeViewModel];
     
 }
@@ -61,6 +68,7 @@ static int YYYY_MIN_VALUE = 1987;   // 18+ years old
 
 - (void)bindViewModel:(id)viewModel
 {
+    
     RAC(self.viewModel, birthDate) = [RACSignal
      combineLatest:@[self.dobDDTextField.rac_textSignal, self.dobMMTextField.rac_textSignal, self.dobYYYYTextField.rac_textSignal]
      reduce:(id)^id(NSString *dobDD, NSString *dobMM, NSString *dobYYYY){

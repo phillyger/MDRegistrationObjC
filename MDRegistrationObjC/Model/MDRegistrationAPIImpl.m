@@ -18,9 +18,9 @@
 /**
  *  Checks if a username already exists.
  *
- *  @param username <#username description#>
+ *  @param username The unique username value
  *
- *  @return RACSignal
+ *  @return RACSignal A signal that sends an response indicating if the username is available for selection.
  */
 - (RACSignal *)isAvailable:(NSString *)username {
     
@@ -33,9 +33,9 @@
 /**
  *  Returns a list of questions associated with user account
  *
- *  @param username <#username description#>
+ *  @param username The unique username value
  *
- *  @return <#return value description#>
+ *  @return RACSignal A signal that sends a response upon successful fetch.
  */
 - (RACSignal *)questionsByAccount:(NSString *)username
 {
@@ -51,9 +51,9 @@
 /**
  *  Resets the password for the current user
  *
- *  @param userInfo <#userInfo description#>
+ *  @param userInfo The unique username value
  *
- *  @return <#return value description#>
+ *  @return RACSignal A signal that sends a response upon successful post.
  */
 - (RACSignal *)resetPassword:(NSDictionary *)userInfo
 {
@@ -71,9 +71,9 @@
 /**
  *  Registers a new user account
  *
- *  @param userInfo <#userInfo description#>
+ *  @param userInfo An NSDictionary of user information
  *
- *  @return <#return value description#>
+ *  @return RACSignal A signal that sends a response upon successful post.
  */
 - (RACSignal *)register:(NSDictionary *)userInfo
 {
@@ -90,9 +90,9 @@
 /**
  *  Authenicates a given user
  *
- *  @param userInfo <#userInfo description#>
+ *  @param userInfo An NSDictionary of user information
  *
- *  @return <#return value description#>
+ *  @return RACSignal A signal that sends a response upon successful post.
  */
 - (RACSignal *)authenticate:(NSDictionary *)userInfo
 {
@@ -109,9 +109,9 @@
 /**
  *  Activates a user account
  *
- *  @param userInfo <#userInfo description#>
+ *  @param userInfo An NSDictionary of user information
  *
- *  @return <#return value description#>
+ *  @return RACSignal A signal that sends a response upon successful post.
  */
 - (RACSignal *)activate:(NSDictionary *)userInfo
 {
@@ -129,9 +129,9 @@
 /**
  *  Activates a user account
  *
- *  @param userInfo <#userInfo description#>
+ *  @param userInfo An NSDictionary of user information
  *
- *  @return <#return value description#>
+ *  @return RACSignal A signal that sends a response upon successful post.
  */
 - (RACSignal *)verify:(NSDictionary *)userInfo
 {

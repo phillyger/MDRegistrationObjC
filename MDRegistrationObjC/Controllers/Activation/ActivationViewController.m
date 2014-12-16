@@ -13,10 +13,12 @@
 #import "RegistrationViewController.h"
 #import "ActivationViewModel.h"
 #import "MDRegistrationAPIClient.h"
+#import "VerificationViewController.h"
 
 @interface ActivationViewController ()
 
 @property(nonatomic, strong) ActivationViewModel *viewModel;
+@property(nonatomic, strong) VerificationViewController *verificationVC;
 @property (strong, nonatomic) MDViewModelServicesImpl *viewModelServices;
 
 @end
@@ -86,6 +88,15 @@
     }
     
     return NO;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:@"ActivationSegueVerification"]) {
+        self.verificationVC = (VerificationViewController*)segue.destinationViewController;
+        self.verificationVC.userInfo = [self.userInfo copy];
+    }
 }
 
 - (void)shouldAddAuthorizationTokenToRequestHeader:(NSString *)token

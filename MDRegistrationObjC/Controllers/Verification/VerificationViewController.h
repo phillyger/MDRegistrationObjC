@@ -24,4 +24,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *dobYYYYTextField;
 
 
+@property (strong)NSDictionary* userInfo;
 @end

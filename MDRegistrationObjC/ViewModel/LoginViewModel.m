@@ -64,7 +64,6 @@
 -(void)subscribeToLogin:(NSDictionary*)userInfo
 {
     [[self login:userInfo] subscribeNext:^(NSDictionary *responseDict) {
-        NSLog(@"hello");
         NSLog(@"%@", responseDict);
         
         NSString *outcomeCode = [responseDict valueForKeyPath:@"outcome.code"];
