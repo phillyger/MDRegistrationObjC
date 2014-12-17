@@ -196,7 +196,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e4h-c0-mQT">
                                 <rect key="frame" x="16" y="62" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" keyboardType="namePhonePad"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAT-MT-vck">
                                 <rect key="frame" x="16" y="100" width="263" height="26"/>
@@ -209,7 +209,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zXF-uM-Y7O">
                                 <rect key="frame" x="16" y="134" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" keyboardType="namePhonePad"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wez-Ry-m6f">
                                 <rect key="frame" x="16" y="172" width="263" height="26"/>
@@ -437,28 +437,29 @@
             <objects>
                 <viewController storyboardIdentifier="RegistrationContent3ViewController" id="ZRd-iu-GSL" customClass="RegistrationPageContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SfE-ok-fq1"/>
-                        <viewControllerLayoutGuide type="bottom" id="UgI-pA-xdH"/>
+                        <viewControllerLayoutGuide type="top" id="664-IE-XDX"/>
+                        <viewControllerLayoutGuide type="bottom" id="SIb-4n-5QV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kb3-w7-obE">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yK5-ZK-JDF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z33-IC-kKF">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJY-G5-hO2">
                                 <rect key="frame" x="0.0" y="43" width="320" height="525"/>
                                 <connections>
-                                    <segue destination="yoa-cJ-dsR" kind="embed" identifier="RegistrationSegueSecurityQuestions" id="K2u-MG-L0G"/>
+                                    <segue destination="yoa-cJ-dsR" kind="embed" identifier="RegistrationSegueSecurityQuestions" id="a0t-wL-sM4"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Z33-IC-kKF" firstAttribute="leading" secondItem="kb3-w7-obE" secondAttribute="leading" id="Frf-ym-A6o"/>
-                            <constraint firstAttribute="trailing" secondItem="Z33-IC-kKF" secondAttribute="trailing" id="HPg-rB-lhR"/>
-                            <constraint firstItem="Z33-IC-kKF" firstAttribute="bottom" secondItem="UgI-pA-xdH" secondAttribute="top" id="S1v-Yv-S3x"/>
-                            <constraint firstItem="Z33-IC-kKF" firstAttribute="top" secondItem="kb3-w7-obE" secondAttribute="top" constant="43" id="mnO-Uu-07x"/>
+                            <constraint firstItem="uJY-G5-hO2" firstAttribute="centerY" secondItem="yK5-ZK-JDF" secondAttribute="centerY" constant="21.5" id="9Jr-MK-KaF"/>
+                            <constraint firstItem="uJY-G5-hO2" firstAttribute="centerX" secondItem="yK5-ZK-JDF" secondAttribute="centerX" id="AdC-0S-Buk"/>
+                            <constraint firstItem="uJY-G5-hO2" firstAttribute="bottom" secondItem="SIb-4n-5QV" secondAttribute="top" id="Nzd-2g-eho"/>
+                            <constraint firstItem="uJY-G5-hO2" firstAttribute="top" secondItem="yK5-ZK-JDF" secondAttribute="top" constant="43" id="ZXB-RX-Myp"/>
+                            <constraint firstItem="uJY-G5-hO2" firstAttribute="leading" secondItem="yK5-ZK-JDF" secondAttribute="leading" id="aOX-L0-jAP"/>
+                            <constraint firstAttribute="trailing" secondItem="uJY-G5-hO2" secondAttribute="trailing" id="oTL-nq-KRE"/>
                         </constraints>
-                    </view>
+                    </scrollView>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="currentIndex">
@@ -614,6 +615,7 @@
                             <outlet property="delegate" destination="yoa-cJ-dsR" id="nS8-wC-vHu"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="answer1TextField" destination="fwf-qV-hV8" id="e6s-M5-6re"/>
                         <outlet property="answer2TextField" destination="0tH-V3-kbq" id="5TZ-hg-k1P"/>
@@ -853,7 +855,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username/Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DaL-iQ-1ch">
                                 <rect key="frame" x="16" y="107" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="statusLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqH-NX-O6o">
                                 <rect key="frame" x="21" y="145" width="283" height="21"/>
@@ -901,28 +903,31 @@
             <objects>
                 <viewController storyboardIdentifier="PasswordResetContent2ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w2d-3S-rJD" customClass="PasswordResetPageContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9Ey-cI-zgl"/>
-                        <viewControllerLayoutGuide type="bottom" id="7CT-5m-NBZ"/>
+                        <viewControllerLayoutGuide type="top" id="yUq-tG-bbQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="upn-aU-9dv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="m0T-Iv-3Qb">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="RaR-1q-x1a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="699-0L-rmt">
-                                <rect key="frame" x="0.0" y="49" width="320" height="439"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAR-6M-A9Q">
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="524" id="W3h-dl-MUv"/>
+                                </constraints>
                                 <connections>
-                                    <segue destination="byl-ah-eN2" kind="embed" identifier="PasswordResetSegueSecurityQuestions" id="C2C-9P-69s"/>
+                                    <segue destination="byl-ah-eN2" kind="embed" identifier="PasswordResetSegueSecurityQuestions" id="VVI-Ji-YdS"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="699-0L-rmt" firstAttribute="top" secondItem="9Ey-cI-zgl" secondAttribute="bottom" constant="29" id="HxT-90-jWl"/>
-                            <constraint firstItem="699-0L-rmt" firstAttribute="leading" secondItem="m0T-Iv-3Qb" secondAttribute="leading" id="Tef-Tj-r3p"/>
-                            <constraint firstAttribute="trailing" secondItem="699-0L-rmt" secondAttribute="trailing" id="bYd-ck-qCa"/>
-                            <constraint firstItem="7CT-5m-NBZ" firstAttribute="top" secondItem="699-0L-rmt" secondAttribute="bottom" constant="80" id="dH0-eS-6gh"/>
+                            <constraint firstAttribute="trailing" secondItem="zAR-6M-A9Q" secondAttribute="trailing" id="1eX-e3-Q1J"/>
+                            <constraint firstItem="zAR-6M-A9Q" firstAttribute="top" secondItem="yUq-tG-bbQ" secondAttribute="bottom" constant="24" id="8Aj-0A-67H"/>
+                            <constraint firstItem="zAR-6M-A9Q" firstAttribute="bottom" secondItem="upn-aU-9dv" secondAttribute="top" id="XJe-ct-tyN"/>
+                            <constraint firstItem="zAR-6M-A9Q" firstAttribute="centerX" secondItem="RaR-1q-x1a" secondAttribute="centerX" id="cEH-En-ulg"/>
+                            <constraint firstItem="zAR-6M-A9Q" firstAttribute="leading" secondItem="RaR-1q-x1a" secondAttribute="leading" id="qXR-RK-j3T"/>
                         </constraints>
-                    </view>
+                    </scrollView>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="currentIndex">
                             <integer key="value" value="1"/>
@@ -1026,7 +1031,7 @@
             <objects>
                 <tableViewController id="byl-ah-eN2" customClass="PasswordResetPageContentTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ggU-Mm-VNX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -1177,6 +1182,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIR-RL-0eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2662" y="-724"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="sSK-xk-CQM">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Ulb-s4-4y1" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JEa-oS-IgW"/>
+                        <viewControllerLayoutGuide type="bottom" id="XO6-AS-3Gb"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="m2O-N7-X7c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lkh-Je-6fY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="XIE-Rq-kOR">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="aJ8-T9-58I" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w3b-iK-aRc"/>
+                        <viewControllerLayoutGuide type="bottom" id="NpA-d6-KDf"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Nw-2w-v1o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEG-JD-pWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
