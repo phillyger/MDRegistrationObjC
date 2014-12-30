@@ -100,4 +100,16 @@ static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:809
     
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
+
+#pragma mark - UITextField delegate
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
+
 @end
