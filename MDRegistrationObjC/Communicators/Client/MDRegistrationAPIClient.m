@@ -10,8 +10,9 @@
 //#import "CommonUtilities.h"
 
 
-static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
+//static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
 //static NSString * const kMDRegistrationAPIBaseURLString = @"http://clvdv-rapid-2:8085/app/rest";
+static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8085/app/rest";
 static NSString * const kMDRegistrationAPICharset = @"utf-8";
 static NSString * const kMDRegistrationJSONMimeType = @"application/json";
 
