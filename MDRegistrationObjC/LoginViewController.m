@@ -18,7 +18,6 @@
 #import "StoryboardUtils.h"
 
 
-static NSString * const kMDRegistrationAPIBaseURLString = @"http://localhost:8099/app/rest";
 
 
 @interface LoginViewController ()

@@ -32,10 +32,6 @@
 		28DF4A101A3DF39700E43725 /* StoryboardUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DF4A0F1A3DF39700E43725 /* StoryboardUtils.m */; };
 		28F786781A2E34EE00284FBA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F786771A2E34EE00284FBA /* MainViewController.m */; };
 		28F7867C1A2E3CB600284FBA /* RegistrationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F7867B1A2E3CB600284FBA /* RegistrationPageViewController.m */; };
-		28F786841A2E3EE600284FBA /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F7867E1A2E3EE600284FBA /* page1.png */; };
-		28F786851A2E3EE600284FBA /* page2.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F7867F1A2E3EE600284FBA /* page2.png */; };
-		28F786861A2E3EE600284FBA /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F786801A2E3EE600284FBA /* page3.png */; };
-		28F786871A2E3EE600284FBA /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 28F786811A2E3EE600284FBA /* page4.png */; };
 		28F786881A2E3EE600284FBA /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F786831A2E3EE600284FBA /* RegistrationViewController.m */; };
 		28F7868B1A2E3F2E00284FBA /* RegistrationPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F7868A1A2E3F2E00284FBA /* RegistrationPageContentViewController.m */; };
 		28F7868E1A2EA08100284FBA /* RegistrationPageContentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28F7868D1A2EA08100284FBA /* RegistrationPageContentTableViewController.m */; };
@@ -116,10 +112,6 @@
 		28F786771A2E34EE00284FBA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainViewController.m; sourceTree = "<group>"; };
 		28F7867A1A2E3CB600284FBA /* RegistrationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationPageViewController.h; path = Controllers/RegistrationPageViewController.h; sourceTree = "<group>"; };
 		28F7867B1A2E3CB600284FBA /* RegistrationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationPageViewController.m; path = Controllers/RegistrationPageViewController.m; sourceTree = "<group>"; };
-		28F7867E1A2E3EE600284FBA /* page1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page1.png; sourceTree = "<group>"; };
-		28F7867F1A2E3EE600284FBA /* page2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page2.png; sourceTree = "<group>"; };
-		28F786801A2E3EE600284FBA /* page3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page3.png; sourceTree = "<group>"; };
-		28F786811A2E3EE600284FBA /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
 		28F786821A2E3EE600284FBA /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
 		28F786831A2E3EE600284FBA /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		28F786891A2E3F2E00284FBA /* RegistrationPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationPageContentViewController.h; sourceTree = "<group>"; };
@@ -270,7 +262,6 @@
 				284A7A4B1A322C6A001A7E4A /* NSString+EmailAdditions.m */,
 				284A7A461A322B60001A7E4A /* ViewModel */,
 				284A7A3F1A315A6A001A7E4A /* Delegates */,
-				28F7867D1A2E3EE600284FBA /* images */,
 				28F786791A2E34F400284FBA /* Controllers */,
 				2876A5391A23B40500147038 /* Communicators */,
 				2876A5091A23AE5B00147038 /* AppDelegate.h */,
@@ -342,17 +333,6 @@
 				28F786901A2F47A000284FBA /* PrivacyPolicyViewController.m */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		28F7867D1A2E3EE600284FBA /* images */ = {
-			isa = PBXGroup;
-			children = (
-				28F7867E1A2E3EE600284FBA /* page1.png */,
-				28F7867F1A2E3EE600284FBA /* page2.png */,
-				28F786801A2E3EE600284FBA /* page3.png */,
-				28F786811A2E3EE600284FBA /* page4.png */,
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 		28F786951A2F524D00284FBA /* Registration */ = {
@@ -499,13 +479,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2876A5381A23B1B300147038 /* Login.storyboard in Resources */,
-				28F786841A2E3EE600284FBA /* page1.png in Resources */,
 				2876A5141A23AE5B00147038 /* Main.storyboard in Resources */,
 				2876A5191A23AE5B00147038 /* LaunchScreen.xib in Resources */,
 				2876A5161A23AE5B00147038 /* Images.xcassets in Resources */,
-				28F786871A2E3EE600284FBA /* page4.png in Resources */,
-				28F786851A2E3EE600284FBA /* page2.png in Resources */,
-				28F786861A2E3EE600284FBA /* page3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
